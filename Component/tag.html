@@ -1,0 +1,114 @@
+<!-- @dsCard group="Components" title="Tag" def="A tag is a compact label used to classify, organize, and categorize information." -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--font-ui);background:var(--surface-0);color:var(--ink-900)}
+  .card{padding:28px 24px;display:flex;flex-direction:column;gap:32px;max-width:760px}
+  .sec{display:flex;flex-direction:column;gap:14px}
+  .sec-head{border-bottom:1px solid var(--line-100);padding-bottom:var(--space-2)}
+  .sec-head .ttl{font-size:11px;font-weight:600;color:var(--ink-900);text-transform:uppercase;letter-spacing:.05em}
+  .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+
+  /* ---- Tag ---- */
+  .tag{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:var(--radius-sm);
+       font-size:11px;font-weight:500;line-height:1;color:var(--ink-700);background:var(--surface-100);
+       border:1px solid var(--line-200);white-space:nowrap;max-width:180px}
+  .tag .lbl{overflow:hidden;text-overflow:ellipsis}
+  .tag .ldot{width:7px;height:7px;border-radius:50%;flex:none;background:currentColor}
+  .tag .tico{width:12px;height:12px;flex:none}
+  /* removable close */
+  .tag .x{width:14px;height:14px;border-radius:50%;display:grid;place-items:center;flex:none;cursor:pointer;
+          color:inherit;opacity:.6;transition:opacity .12s ease,background .12s ease}
+  .tag .x:hover{opacity:1;background:rgba(0,0,0,.08)}
+  .tag .x svg{width:8px;height:8px}
+  .tag.rm{opacity:0;transform:scale(.85);transition:opacity .15s ease,transform .15s ease;pointer-events:none}
+
+  /* categorical colors (subtle) */
+  .t-neutral{color:var(--ink-700);background:var(--surface-100);border-color:var(--line-200)}
+  .t-blue{color:var(--blue-600);background:var(--blue-100);border-color:#BFE2FF}
+  .t-green{color:var(--success);background:var(--success-bg);border-color:#BBE6C7}
+  .t-red{color:var(--danger);background:var(--danger-bg);border-color:#F2C2C5}
+  .t-alert{color:var(--alert);background:var(--alert-bg);border-color:#F7D9AE}
+  .t-purple{color:var(--purple-600);background:#F0E6FF;border-color:#DEC9FF}
+  .t-info{color:var(--info);background:var(--info-bg);border-color:#BFE2EF}
+
+  /* solid variant */
+  .tag.solid{border-color:transparent;color:var(--surface-0)}
+  .tag.solid.t-blue{background:var(--blue-500)}
+  .tag.solid.t-green{background:var(--success)}
+  .tag.solid.t-red{background:var(--danger)}
+  .tag.solid.t-neutral{background:var(--ink-600)}
+
+  /* small size */
+  .tag.sm{height:18px;font-size:10px;padding:0 6px;gap:var(--space-1)}
+</style></head><body>
+<div class="card">
+
+  <!-- CATEGORIES -->
+  <div class="sec">
+    <div class="sec-head"><div class="ttl">Categories (subtle)</div></div>
+    <div class="row">
+      <span class="tag t-neutral"><span class="lbl">Default</span></span>
+      <span class="tag t-blue"><span class="lbl">MVNO</span></span>
+      <span class="tag t-green"><span class="lbl">Prepaid</span></span>
+      <span class="tag t-red"><span class="lbl">High Risk</span></span>
+      <span class="tag t-alert"><span class="lbl">Roaming</span></span>
+      <span class="tag t-purple"><span class="lbl">Enterprise</span></span>
+      <span class="tag t-info"><span class="lbl">5G</span></span>
+    </div>
+  </div>
+
+  <!-- WITH LEADING DOT -->
+  <div class="sec">
+    <div class="sec-head"><div class="ttl">With category dot</div></div>
+    <div class="row">
+      <span class="tag t-green"><span class="ldot"></span><span class="lbl">Active</span></span>
+      <span class="tag t-alert"><span class="ldot"></span><span class="lbl">Pending</span></span>
+      <span class="tag t-red"><span class="ldot"></span><span class="lbl">Suspended</span></span>
+      <span class="tag t-neutral"><span class="ldot"></span><span class="lbl">Archived</span></span>
+    </div>
+  </div>
+
+  <!-- SOLID -->
+  <div class="sec">
+    <div class="sec-head"><div class="ttl">Solid</div></div>
+    <div class="row">
+      <span class="tag solid t-blue"><span class="lbl">MVNO</span></span>
+      <span class="tag solid t-green"><span class="lbl">Verified</span></span>
+      <span class="tag solid t-red"><span class="lbl">Blocked</span></span>
+      <span class="tag solid t-neutral"><span class="lbl">Draft</span></span>
+    </div>
+  </div>
+
+  <!-- REMOVABLE -->
+  <div class="sec">
+    <div class="sec-head"><div class="ttl">Removable (click ✕)</div></div>
+    <div class="row" id="rmRow">
+      <span class="tag t-blue" data-rm><span class="lbl">Mumbai</span><span class="x"><svg fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></span></span>
+      <span class="tag t-blue" data-rm><span class="lbl">Delhi</span><span class="x"><svg fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></span></span>
+      <span class="tag t-blue" data-rm><span class="lbl">Bengaluru</span><span class="x"><svg fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></span></span>
+      <span class="tag t-blue" data-rm><span class="lbl">Chennai</span><span class="x"><svg fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></span></span>
+    </div>
+  </div>
+
+  <!-- SIZE -->
+  <div class="sec">
+    <div class="sec-head"><div class="ttl">Small</div></div>
+    <div class="row">
+      <span class="tag sm t-blue"><span class="lbl">MVNO</span></span>
+      <span class="tag sm t-green"><span class="ldot"></span><span class="lbl">Active</span></span>
+      <span class="tag sm t-neutral"><span class="lbl">v2.4</span></span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  document.getElementById('rmRow').addEventListener('click',(e)=>{
+    const x=e.target.closest('.x'); if(!x) return;
+    const tag=x.closest('[data-rm]'); tag.classList.add('rm');
+    setTimeout(()=>tag.remove(), 160);
+  });
+</script>
+</body></html>

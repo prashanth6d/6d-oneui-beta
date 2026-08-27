@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Micro Dashboard" subtitle="Collapsed summary+CTA bar, medium labels, ellipsis values with hover tooltips" viewport="820x420" --><html lang="en"><head><meta charset="utf-8">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  body{margin:0;font-family:var(--font-ui);background:var(--surface-50);color:var(--ink-900)}
+  .wrap{padding:24px;max-width:1120px}
+  .md{background:var(--surface-0);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);border:1px solid var(--line-100);overflow:hidden}
+
+  /* body grid — no vertical borders, horizontal row dividers only */
+  .grid{display:grid;grid-template-columns:repeat(var(--cols,6),1fr);overflow:hidden;transition:max-height .25s ease}
+  .grid.hidden{max-height:0}
+  .cell{min-width:0;padding:12px 12px 12px 0;border-bottom:1px solid var(--line-100)}
+  .cell.lastrow{border-bottom:0}
+
+  .lab{font-size:12px;font-weight:400;line-height:16px;color:var(--ink-400);padding-left:10px;text-align:left}
+  .val{font-size:13px;font-weight:400;line-height:20px;color:var(--ink-900);padding-left:10px;margin-top:2px;text-align:left;
+       white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+  .span2{grid-column:span 2}
+
+  /* status — colored text label, NO dot */
+  .stat{display:inline-flex;align-items:center;font-size:13px;font-weight:400;line-height:20px;max-width:100%;padding-left:10px}
+  .stat span.t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .copy{display:inline-flex;align-items:center;gap:var(--space-2);font-size:13px;font-weight:400;line-height:20px;color:var(--ink-900);cursor:pointer;max-width:100%;padding-left:10px}
+  .copy span.t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .copy svg{width:14px;height:14px;flex:none;color:var(--ink-400)}
+  .copy:hover svg{color:var(--blue-500)}
+  /* text button / hyperlink — DS: blue-500, hover underline */
+  .link{font-size:13px;font-weight:400;line-height:20px;color:var(--blue-500);cursor:pointer;padding-left:10px;
+        display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .link:hover{color:var(--blue-600);text-decoration:underline}
+
+  /* bottom bar — summary (left) + contained CTA chip pinned right, no background */
+  .bar{display:flex;align-items:center;gap:var(--space-4);padding:8px 12px 8px 20px;background:transparent}
+  .summary{flex:1;min-width:0;display:none;align-items:center;gap:var(--space-2);
+           font-size:13px;font-weight:400;color:var(--ink-700);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .md.collapsed .summary{display:flex}
+  .cta{flex:none;margin:0 0 0 auto;display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:var(--radius-md);
+       background:var(--blue-100);cursor:pointer;font-size:12px;font-weight:400;color:var(--blue-500);user-select:none}
+  .cta:hover{background:var(--blue-200)}
+  .cta svg{width:15px;height:15px;transition:transform .22s}
+  .md.collapsed .cta svg{transform:rotate(180deg)}
+</style></head><body>
+<div class="wrap">
+  <div class="md" id="md">
+    <div class="grid" id="grid"></div>
+    <div class="bar">
+      <div class="summary" id="summary"></div>
+      <div class="cta" id="toggle">
+        <span id="toggleLabel">Hide</span>
+        <svg fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ============================================================
+     DYNAMIC DATA — rows render from this array.
+     Grid is COLS wide; rows flow automatically (1, 2, 3, 4+).
+     type: 'text' | 'status' | 'copy' | 'link'   span: 1 | 2
+     ============================================================ */
+  const COLS = 6;
+  const data = [
+    { label:'Account ID', value:'1234567890', type:'copy', span:2 },
+    { label:'Status', value:'Active', type:'status', tone:'success' },
+    { label:'Plan', value:'Enterprise' },
+    { label:'Region', value:'APAC — South Zone' },
+    { label:'Details', value:'View Details', type:'link' },
+
+    { label:'Created On', value:'12 Mar 2025' },
+    { label:'Owner', value:'prashanth_19@6dtech.co.in' },
+    { label:'SIMs Allocated', value:'4,820' },
+    { label:'Utilisation', value:'78%' },
+    { label:'Billing Cycle', value:'Monthly' },
+    { label:'Renewal', value:'01 Apr 2026' },
+  ];
+
+  const toneColor = { success:'var(--success)', danger:'var(--danger)', warning:'var(--alert)', info:'var(--blue-500)' };
+  const esc = s => String(s).replace(/"/g,'&quot;');
+
+  function renderValue(it){
+    if(it.type === 'status'){
+      const c = toneColor[it.tone] || 'var(--success)';
+      return `<div class="stat" style="color:${c}"><span class="t" title="${esc(it.value)}">${it.value}</span></div>`;
+    }
+    if(it.type === 'copy'){
+      return `<div class="copy" data-copy="${esc(it.value)}"><span class="t" title="${esc(it.value)}">${it.value}</span><svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></div>`;
+    }
+    if(it.type === 'link'){
+      return `<div class="link" title="${esc(it.value)}">${it.value}</div>`;
+    }
+    return `<div class="val" title="${esc(it.value)}">${it.value}</div>`;
+  }
+
+  function render(){
+    const grid = document.getElementById('grid');
+    grid.style.setProperty('--cols', COLS);
+    // assign each item to a visual row (respecting spans + wrap)
+    let used = 0; const rowOf = [];
+    data.forEach(it=>{ const span=it.span||1; if(used%COLS!==0 && used%COLS+span>COLS){ used += COLS-(used%COLS); } rowOf.push(Math.floor(used/COLS)); used+=span; });
+    const lastRow = Math.max(...rowOf);
+    grid.innerHTML = data.map((it,i)=>`
+      <div class="cell ${it.span===2?'span2':''} ${rowOf[i]===lastRow?'lastrow':''}">
+        <div class="lab">${it.label}</div>
+        ${renderValue(it)}
+      </div>`).join('');
+
+    grid.querySelectorAll('.copy').forEach(el=>{
+      el.addEventListener('click',()=>{ navigator.clipboard && navigator.clipboard.writeText(el.dataset.copy); });
+    });
+
+    // short summary for the collapsed bar — first few key fields
+    const keys = data.filter(d=>!d.type || d.type==='status' || d.type==='copy').slice(0,4);
+    document.getElementById('summary').innerHTML = keys.map((d,i)=>
+      `<span title="${esc(d.label+': '+d.value)}">${i>0?'<span style="color:var(--line-300);margin:0 4px">·</span>':''}<b style="font-weight:400;color:var(--ink-900)">${d.value}</b></span>`
+    ).join('');
+  }
+  render();
+
+  // hide / show CTA
+  const md = document.getElementById('md');
+  const grid = document.getElementById('grid');
+  const label = document.getElementById('toggleLabel');
+  document.getElementById('toggle').addEventListener('click', ()=>{
+    const collapsed = md.classList.toggle('collapsed');
+    grid.classList.toggle('hidden', collapsed);
+    label.textContent = collapsed ? 'Show' : 'Hide';
+  });
+</script>
+</body></html>

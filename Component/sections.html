@@ -1,0 +1,155 @@
+<!-- @dsCard group="Components" name="Sections" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--font-ui);background:var(--surface-50);color:var(--ink-900)}
+  .page{padding:24px;display:flex;flex-direction:column;gap:24px;max-width:880px}
+  .note{font-size:11px;line-height:16px;color:var(--ink-400)}
+  .note b{color:var(--ink-900);font-weight:600}
+
+  /* =========================================================================
+     SECTION — canonical container/background for form fields (CRUD operations)
+     White background · radius LG (10px) · shadow SM · sits on surface-50 page
+     ========================================================================= */
+  .section{background:var(--surface-0);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden}
+
+  /* optional header: title + sub-text on the left, actions on the right */
+  .section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-3);
+                padding:16px 20px;border-bottom:1px solid var(--line-100)}
+  .section-head .titles{display:flex;flex-direction:column;gap:0;min-width:0}
+  .section-title{font:var(--t-section);color:var(--ink-900)}
+  .section-sub{font:var(--t-small);color:var(--ink-600)}
+  .section-actions{display:flex;align-items:center;gap:var(--space-2);flex:none}
+
+  /* body: 16px internal padding scale → 20px comfortable form padding, 12-col grid */
+  .section-body{padding:var(--space-4)}
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px 24px}
+  .col-6{grid-column:span 6}
+  .col-4{grid-column:span 4}
+  .col-12{grid-column:span 12}
+
+  /* form fields — authoritative Form Field spec */
+  .fld{display:flex;flex-direction:column;gap:6px;min-width:0}
+  .fld label{font:var(--t-label);color:var(--field-label)}
+  .fld label .req{color:var(--danger);margin-left:2px}
+  .ctrl{height:var(--field-h);border:1px solid var(--field-border);border-radius:var(--field-radius);
+        padding:0 12px;font:var(--t-body-med);color:var(--field-value);background:var(--surface-0);width:100%;outline:none;
+        transition:border-color .15s ease}
+  textarea.ctrl{height:var(--textarea-h);padding:8px 12px;resize:vertical;font-family:var(--font-ui)}
+  .ctrl::placeholder{color:var(--ink-400)}
+  .ctrl:focus{border-color:var(--field-border-focus)}
+  select.ctrl{appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%236D6D6D' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 10px center;padding-right:32px}
+
+  /* text button used in section header actions */
+  .tbtn{font:var(--t-body-med);color:var(--blue-500);background:none;border:0;cursor:pointer;padding:2px 0;
+        display:inline-flex;align-items:center;gap:6px}
+  .tbtn:hover{color:var(--blue-600);text-decoration:underline}
+  .tbtn svg{width:15px;height:15px}
+
+  /* developer slot — where additional CRUD fields are added */
+  .dev-slot{grid-column:span 12;border:1px dashed var(--line-200);border-radius:var(--radius-md);background:var(--surface-50);
+            padding:var(--space-4);text-align:center;font:var(--t-small);color:var(--ink-400)}
+  .dev-slot code{font-family:ui-monospace,Menlo,Consolas,monospace;color:var(--ink-600)}
+</style></head><body>
+<div class="page">
+
+  <div class="note">The <b>Section</b> is the standard background container for form fields in CRUD screens — <b>white background</b>, <b>radius LG (10px)</b>, <b>shadow SM</b>, placed on the <b>surface-50</b> page. Compose one Section per logical field group. Header (title + sub-text + actions) is optional.</div>
+
+  <!-- ============ SECTION WITH HEADER + ACTION ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="titles">
+        <div class="section-title">Account Details</div>
+        <div class="section-sub">Primary identity information for this customer record.</div>
+      </div>
+      <div class="section-actions">
+        <button class="tbtn" type="button">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Add field</button>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="grid">
+        <div class="fld col-6">
+          <label>Account name<span class="req">*</span></label>
+          <input class="ctrl" type="text" placeholder="Enter account name">
+        </div>
+        <div class="fld col-6">
+          <label>Account type<span class="req">*</span></label>
+          <select class="ctrl">
+            <option value="">Select type</option>
+            <option>Enterprise</option><option>MVNO</option><option>Reseller</option>
+          </select>
+        </div>
+        <div class="fld col-6">
+          <label>Primary contact email<span class="req">*</span></label>
+          <input class="ctrl" type="email" placeholder="name@company.com">
+        </div>
+        <div class="fld col-6">
+          <label>Phone number</label>
+          <input class="ctrl" type="tel" placeholder="+91 00000 00000">
+        </div>
+        <div class="fld col-12">
+          <label>Registered address</label>
+          <textarea class="ctrl" placeholder="Street, city, state, postal code"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION WITH HEADER ONLY ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="titles">
+        <div class="section-title">Plan &amp; Services</div>
+        <div class="section-sub">Connectivity plan and billing preferences.</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="grid">
+        <div class="fld col-4">
+          <label>Connectivity plan<span class="req">*</span></label>
+          <select class="ctrl">
+            <option value="">Select plan</option>
+            <option>Postpaid Flex 50</option><option>Postpaid Flex 100</option><option>Enterprise Unlimited</option>
+          </select>
+        </div>
+        <div class="fld col-4">
+          <label>Billing cycle</label>
+          <select class="ctrl">
+            <option value="">Select cycle</option>
+            <option>Monthly</option><option>Quarterly</option><option>Annual</option>
+          </select>
+        </div>
+        <div class="fld col-4">
+          <label>Activation date</label>
+          <input class="ctrl" type="text" placeholder="DD / MM / YYYY">
+        </div>
+        <div class="dev-slot">Developer area — add the CRUD fields this section requires using <code>.fld</code> + <code>.ctrl</code> on the 12-column <code>.grid</code>.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ HEADERLESS SECTION (plain field background) ============ -->
+  <div class="section">
+    <div class="section-body">
+      <div class="grid">
+        <div class="fld col-6">
+          <label>Tax / GST number</label>
+          <input class="ctrl" type="text" placeholder="22AAAAA0000A1Z5">
+        </div>
+        <div class="fld col-6">
+          <label>Payment method</label>
+          <select class="ctrl">
+            <option value="">Select method</option>
+            <option>Auto-debit</option><option>Bank transfer</option><option>Credit card</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body></html>

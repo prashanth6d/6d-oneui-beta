@@ -1,0 +1,280 @@
+<!-- @dsCard group="Components" name="Wizard UI" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;font-family:var(--font-ui);background:var(--surface-0);color:var(--ink-900)}
+
+  /* ---- wizard shell: fills the device, body scrolls, footer always sticky ---- */
+  .wizard{display:flex;flex-direction:column;height:100dvh;background:var(--surface-0)}
+
+  /* ---- horizontal pill stepper (unchanged showcase pattern) ---- */
+  .stepper-band{flex:none;padding:24px 32px 20px}
+  .stepper{display:flex;align-items:flex-start;max-width:920px}
+  .node{display:flex;flex-direction:column;align-items:center;flex:none}
+
+  /* pill — 24px tall, 12px/20px medium */
+  .pill{height:24px;display:none;align-items:center;gap:6px;border-radius:var(--radius-pill);
+        font-size:12px;font-weight:500;line-height:20px;white-space:nowrap;padding:0 12px}
+  .node.completed .pill,.node.current .pill{display:inline-flex}
+  .node.completed .pill{background:var(--surface-0);border:1px solid var(--line-200);color:var(--stepper);padding-left:var(--space-1)}
+  .node.current .pill{background:var(--stepper);border:1px solid var(--stepper);color:var(--surface-0)}
+
+  /* 16px tick icon (completed only) */
+  .check{display:none;width:16px;height:16px;flex:none}
+  .node.completed .check{display:inline-flex}
+
+  /* number circle — 24px (pending) */
+  .circle{display:none;width:24px;height:24px;border-radius:50%;border:1.5px solid var(--line-300);
+          place-items:center;font-size:12px;font-weight:500;line-height:20px;color:var(--ink-700);background:var(--surface-0)}
+  .node.pending .circle{display:grid}
+
+  /* connector */
+  .seg{flex:1;min-width:30px;height:2px;background:var(--line-200);margin-top:11px}
+  .seg.done{background:var(--stepper)}
+
+  /* step label — 8px below the stepper */
+  .label{margin-top:var(--space-2);font-size:12px;font-weight:500;line-height:20px;color:var(--ink-400)}
+  .node.current .label{color:var(--ink-900)}
+
+  /* ---- default body: developer drops fields here (no top/bottom border) ---- */
+  .w-body{flex:1;overflow:auto;padding:30px 32px}
+  .w-body-inner{max-width:920px}
+  .step-pane{display:none}
+  .step-pane.active{display:block}
+  .pane-title{font:var(--t-h2);color:var(--ink-900);margin:0 0 4px}
+  .pane-sub{font:var(--t-body);color:var(--ink-600);margin:0 0 24px}
+
+  /* 12-column form grid using form-field spec */
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px 24px}
+  .fld{display:flex;flex-direction:column;gap:6px}
+  .col-6{grid-column:span 6}
+  .col-12{grid-column:span 12}
+  .fld label{font:var(--t-label);color:var(--field-label)}
+  .ctrl{height:var(--field-h);border:1px solid var(--field-border);border-radius:var(--field-radius);
+        padding:0 12px;font:var(--t-body-med);color:var(--field-value);background:var(--surface-0);width:100%;outline:none}
+  textarea.ctrl{height:var(--textarea-h);padding:8px 12px;resize:vertical;font-family:var(--font-ui)}
+  .ctrl::placeholder{color:var(--ink-400)}
+  .ctrl:focus{border-color:var(--field-border-focus)}
+  select.ctrl{appearance:none;cursor:pointer;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%236D6D6D' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 10px center;padding-right:32px}
+
+  /* developer-area hint — placeholder zone for steps without sample fields */
+  .dev-slot{grid-column:span 12;border:1px dashed var(--line-200);border-radius:var(--radius-md);background:var(--surface-50);
+            padding:24px;text-align:center;font:var(--t-small);color:var(--ink-400)}
+  .dev-slot code{font-family:ui-monospace,Menlo,Consolas,monospace;color:var(--ink-600)}
+
+  /* ---- footer: completion progress (left) + Back / Save as draft / Continue (right) ---- */
+  .w-foot{flex:none;position:sticky;bottom:0;z-index:5;display:flex;align-items:center;gap:var(--space-3);
+          padding:14px 32px;background:var(--surface-0);box-shadow:var(--shadow-xs)}
+  .progress{display:flex;align-items:center;gap:12px;min-width:0}
+  .progress .step-of{font:var(--t-body-med);color:var(--ink-900);white-space:nowrap}
+  .bar{width:170px;height:6px;border-radius:var(--radius-pill);background:var(--line-100);overflow:hidden;flex:none}
+  .bar .fill{height:100%;border-radius:var(--radius-pill);background:var(--stepper);width:0;transition:width .35s ease}
+  .pct{font:var(--t-body-med);color:var(--ink-600);white-space:nowrap}
+  .pct::before{content:"·";margin-right:12px;color:var(--ink-400)}
+  .foot-spacer{flex:1}
+  .actions{display:flex;align-items:center;gap:10px;flex:none}
+
+  /* buttons — canonical Primary / Secondary (buttons.html, unchanged styles) */
+  .btn{font-size:12px;font-weight:500;line-height:1;border-radius:var(--radius-sm);padding:9px 14px;border:1px solid transparent;
+       cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:fit-content}
+  .btn.primary{background:var(--blue-500);color:var(--surface-0)}
+  .btn.primary:hover{background:var(--blue-600)}
+  .btn.secondary{background:var(--surface-0);color:var(--blue-500);border-color:var(--blue-500)}
+  .btn.secondary:hover{background:var(--blue-100);box-shadow:var(--shadow-md)}
+  .btn.tertiary{background:var(--surface-0);color:var(--ink-900);border-color:var(--line-200)}
+  .btn.tertiary:hover{border-color:var(--ink-400);box-shadow:var(--shadow-md)}
+  .btn.disabled,.btn:disabled{background:var(--line-100);color:var(--ink-400);border-color:transparent;cursor:not-allowed;box-shadow:none}
+  .check svg circle{fill:var(--success)}
+  .check svg path{stroke:var(--surface-0)}
+</style></head><body>
+<div class="wizard">
+
+  <!-- ===== STEPPER ===== -->
+  <div class="stepper-band">
+    <div class="stepper" id="stepper">
+      <div class="node">
+        <div class="pill"><span class="check"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M17 9l-5.6 5.6L8 11.2" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ptext">Account Details</span></div>
+        <div class="circle">1</div>
+        <div class="label">Account Details</div>
+      </div>
+      <div class="seg"></div>
+      <div class="node">
+        <div class="pill"><span class="check"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M17 9l-5.6 5.6L8 11.2" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ptext">Plan &amp; Services</span></div>
+        <div class="circle">2</div>
+        <div class="label">Plan &amp; Services</div>
+      </div>
+      <div class="seg"></div>
+      <div class="node">
+        <div class="pill"><span class="check"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M17 9l-5.6 5.6L8 11.2" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ptext">Billing</span></div>
+        <div class="circle">3</div>
+        <div class="label">Billing</div>
+      </div>
+      <div class="seg"></div>
+      <div class="node">
+        <div class="pill"><span class="check"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11"/><path d="M17 9l-5.6 5.6L8 11.2" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ptext">Review</span></div>
+        <div class="circle">4</div>
+        <div class="label">Review</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DEFAULT BODY — developers add the fields each step needs here ===== -->
+  <div class="w-body">
+   <div class="w-body-inner">
+
+    <!-- STEP 1 -->
+    <section class="step-pane" data-step="0">
+      <h2 class="pane-title">Account Details</h2>
+      <p class="pane-sub">Capture the customer's primary identity information.</p>
+      <div class="grid">
+        <div class="fld col-6">
+          <label>Account name</label>
+          <input class="ctrl" data-field type="text" placeholder="Enter account name">
+        </div>
+        <div class="fld col-6">
+          <label>Account type</label>
+          <select class="ctrl" data-field>
+            <option value="">Select type</option>
+            <option>Enterprise</option><option>MVNO</option><option>Reseller</option>
+          </select>
+        </div>
+        <div class="fld col-6">
+          <label>Primary contact email</label>
+          <input class="ctrl" data-field type="email" placeholder="name@company.com">
+        </div>
+        <div class="fld col-6">
+          <label>Phone number</label>
+          <input class="ctrl" data-field type="tel" placeholder="+91 00000 00000">
+        </div>
+        <div class="fld col-12">
+          <label>Registered address</label>
+          <textarea class="ctrl" data-field placeholder="Street, city, state, postal code"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2 — sample field + developer slot -->
+    <section class="step-pane" data-step="1">
+      <h2 class="pane-title">Plan &amp; Services</h2>
+      <p class="pane-sub">Assign the connectivity plan and add-on services.</p>
+      <div class="grid">
+        <div class="fld col-6">
+          <label>Connectivity plan</label>
+          <select class="ctrl" data-field>
+            <option value="">Select plan</option>
+            <option>Postpaid Flex 50</option><option>Postpaid Flex 100</option><option>Enterprise Unlimited</option>
+          </select>
+        </div>
+        <div class="fld col-6">
+          <label>Billing cycle</label>
+          <select class="ctrl" data-field>
+            <option value="">Select cycle</option>
+            <option>Monthly</option><option>Quarterly</option><option>Annual</option>
+          </select>
+        </div>
+        <div class="dev-slot">Developer area — add the fields this step requires using the form-field spec (<code>.fld</code> + <code>.ctrl</code> on the 12-column <code>.grid</code>).</div>
+      </div>
+    </section>
+
+    <!-- STEP 3 -->
+    <section class="step-pane" data-step="2">
+      <h2 class="pane-title">Billing</h2>
+      <p class="pane-sub">Set up payment and invoicing preferences.</p>
+      <div class="grid">
+        <div class="fld col-6">
+          <label>Payment method</label>
+          <select class="ctrl" data-field>
+            <option value="">Select method</option>
+            <option>Auto-debit</option><option>Bank transfer</option><option>Credit card</option>
+          </select>
+        </div>
+        <div class="fld col-6">
+          <label>Tax / GST number</label>
+          <input class="ctrl" data-field type="text" placeholder="22AAAAA0000A1Z5">
+        </div>
+        <div class="dev-slot">Developer area — add the fields this step requires using the form-field spec (<code>.fld</code> + <code>.ctrl</code> on the 12-column <code>.grid</code>).</div>
+      </div>
+    </section>
+
+    <!-- STEP 4 -->
+    <section class="step-pane" data-step="3">
+      <h2 class="pane-title">Review</h2>
+      <p class="pane-sub">Confirm the details before submitting the account.</p>
+      <div class="grid">
+        <div class="dev-slot">Developer area — render the read-only review summary for the captured fields here.</div>
+      </div>
+    </section>
+
+   </div>
+  </div>
+
+  <!-- ===== FOOTER — completion progress + Back / Save as draft / Continue ===== -->
+  <div class="w-foot">
+    <div class="progress">
+      <span class="step-of" id="stepOf">Step 1 of 4</span>
+      <span class="bar"><span class="fill" id="barFill"></span></span>
+      <span class="pct" id="pct">0% complete</span>
+    </div>
+    <div class="foot-spacer"></div>
+    <div class="actions">
+      <button class="btn tertiary" id="backBtn" type="button">Back</button>
+      <button class="btn secondary" id="draftBtn" type="button">Save as draft</button>
+      <button class="btn primary" id="nextBtn" type="button">Continue</button>
+      <button class="btn primary" id="submitBtn" type="button" style="display:none">Submit</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const nodes   = [...document.querySelectorAll('#stepper .node')];
+  const segs    = [...document.querySelectorAll('#stepper .seg')];
+  const panes   = [...document.querySelectorAll('.step-pane')];
+  const backBtn = document.getElementById('backBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const submitBtn = document.getElementById('submitBtn');
+  const stepOf  = document.getElementById('stepOf');
+  const barFill = document.getElementById('barFill');
+  const pctEl   = document.getElementById('pct');
+  const fields  = [...document.querySelectorAll('[data-field]')];
+  const N = nodes.length;
+  let cur = 0;
+
+  // completion % = captured fields / total fields across the whole wizard
+  function completion(){
+    if(!fields.length) return 0;
+    const filled = fields.filter(f => String(f.value).trim() !== '').length;
+    return Math.round(filled / fields.length * 100);
+  }
+
+  function render(){
+    nodes.forEach((n,i)=>{
+      n.classList.remove('completed','current','pending');
+      n.classList.add(i < cur ? 'completed' : i === cur ? 'current' : 'pending');
+    });
+    segs.forEach((s,i)=> s.classList.toggle('done', i < cur));
+    panes.forEach((p,i)=> p.classList.toggle('active', i === cur));
+
+    stepOf.textContent = `Step ${cur+1} of ${N}`;
+    const pct = completion();
+    barFill.style.width = pct + '%';
+    pctEl.textContent = pct + '% complete';
+
+    backBtn.disabled = cur === 0;
+    backBtn.classList.toggle('disabled', cur === 0);
+    const last = cur === N - 1;
+    nextBtn.style.display   = last ? 'none' : 'inline-flex';
+    submitBtn.style.display = last ? 'inline-flex' : 'none';
+  }
+
+  backBtn.addEventListener('click', ()=>{ if(cur>0){ cur--; render(); } });
+  nextBtn.addEventListener('click', ()=>{ if(cur<N-1){ cur++; render(); } });
+  fields.forEach(f => f.addEventListener('input', render));
+  document.getElementById('draftBtn').addEventListener('click', ()=>{/* persist draft */});
+  render();
+</script>
+</body></html>

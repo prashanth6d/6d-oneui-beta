@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Brand & AI gradient" subtitle="Brand navy/purple + AARYA gradients — swatch cards with contrast, HEX/RGBA + usage notes" viewport="1040x720" --><html lang="en"><head><meta charset="utf-8">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  body{margin:0;font-family:var(--font-ui);background:var(--surface-50);color:var(--ink-900)}
+  .cc-page{padding:24px}
+  .cc-note{box-sizing:border-box;display:flex;gap:var(--space-2);align-items:flex-start;padding:12px 14px;margin-bottom:24px;background:#FFF8E6;border:1px solid #F0D98A;border-radius:var(--radius-lg);font-size:11px;line-height:16px;color:var(--ink-900)}
+  .cc-note b{font-weight:600}
+  .cc-note .ic{flex:0 0 auto;width:16px;height:16px;border-radius:50%;background:#E0A500;color:var(--surface-0);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1}
+  .cc-section{margin-bottom:28px}
+  .cc-section:last-child{margin-bottom:0}
+  .cc-h{margin:0 0 16px;font-size:22px;font-weight:600;letter-spacing:-.01em}
+  .cc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+  .cc{background:var(--surface-0);border:1px solid var(--line-100);border-radius:var(--radius-md);padding:10px;box-shadow:var(--shadow-xs)}
+  .cc-fill{position:relative;height:120px;border-radius:var(--radius-md);box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+  .cc-badges{position:absolute;top:10px;left:10px;display:flex;flex-direction:column;gap:5px;align-items:flex-start}
+  .cc-badge{display:inline-flex;align-items:center;gap:6px;padding:3px 9px 3px 4px;border-radius:var(--radius-pill);background:rgba(255,255,255,.92);color:var(--ink-900);font-size:10px;font-weight:500;line-height:1;font-variant-numeric:tabular-nums;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+  .cc-dot{width:13px;height:13px;border-radius:50%;flex:none}
+  .cc-dot.dark{background:#000}
+  .cc-dot.light{background:#fff;box-shadow:inset 0 0 0 1px rgba(0,0,0,.25)}
+  .cc-name{margin:10px 2px 6px;font-size:14px;font-weight:600;line-height:20px}
+  .cc-meta{margin:0 2px;font-size:11px;line-height:16px;color:var(--ink-400);font-variant-numeric:tabular-nums}
+  .cc-hex{color:var(--ink-600);text-transform:uppercase}
+  .cc-use{margin:8px 2px 2px;padding-top:7px;border-top:1px solid var(--line-100);font-size:11px;line-height:15px;color:var(--ink-600)}
+  .cc-grad{overflow:hidden}
+  .cc-stops{position:absolute;left:12px;bottom:10px;display:flex;flex-direction:column;gap:4px;font-size:10px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.4);font-variant-numeric:tabular-nums}
+  .cc-stops.dark{color:var(--ink-900);text-shadow:none}
+  .cc-stops span{display:flex;align-items:center;gap:6px}
+  .cc-stopdot{width:10px;height:10px;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+</style></head><body>
+<div class="cc-note">
+  <span class="ic">!</span>
+  <span><b>Use on request only.</b> The AARYA brand / AI gradients are reserved for AARYA AI surfaces. Do not apply them to general screens, components, or backgrounds unless explicitly requested.</span>
+</div>
+<div id="palette" class="cc-page" style="padding-top:0"></div>
+<script>
+window.PALETTE=[{title:"Brand & AI",colors:[
+  {name:"Logo Navy",hex:"#243A74",use:"Logo wordmark, deep headings; banner navy background."},
+  {name:"AARYA Start",hex:"#103278",use:"Start stop of the AARYA AI gradient."},
+  {name:"AARYA End",hex:"#5C006B",use:"End stop of the AARYA AI gradient."},
+  {name:"AI Accent",hex:"#9747FF",use:"AI accent — canvas rule-node highlights."},
+  {name:"AI Accent+",hex:"#8A38F5",use:"Header search-bar gradient; purple avatars and tags."},
+  {name:"AARYA gradient (AI surface)",gradient:"linear-gradient(90deg,#103278 0%,#5C006B 100%)",use:"AARYA AI surfaces (on request only).",stops:[{pct:"0%",hex:"#103278"},{pct:"100%",hex:"#5C006B"}]},
+  {name:"Soft gradient (user bubble)",gradient:"linear-gradient(90deg,#DDF1FF 0%,#FFD8A3 100%)",textDark:true,use:"AARYA user chat bubble.",stops:[{pct:"0%",hex:"#DDF1FF"},{pct:"100%",hex:"#FFD8A3"}]}
+]}];
+</script>
+<script src="color-card-render.js"></script>
+</body></html>

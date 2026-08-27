@@ -1,0 +1,64 @@
+<!-- @dsCard group="Components" name="Input Field" subtitle="Single-line text input with label, hover/focus, clear icon, and validation/error states" viewport="700x320" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--font-ui);background:var(--surface-0);color:var(--ink-900)}
+  .card{padding:24px}
+  .note{font-size:11px;color:var(--ink-400);margin-bottom:18px}
+  .note b{color:var(--ink-900);font-weight:600}
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(220px,300px));gap:22px 28px;align-items:start}
+  .lbl{font-size:12px;font-weight:500;color:var(--ink-600);margin-bottom:6px;display:block}
+
+  /* ---- Form Field input — 40px (--field-h), var(--line-200) border, var(--ink-600) focus ---- */
+  .field{height:var(--field-h);border:1px solid var(--line-200);border-radius:var(--radius-sm);background:var(--surface-0);padding:0 10px;
+         display:flex;align-items:center;gap:var(--space-2);font-size:12px;font-weight:500;color:var(--ink-900);
+         transition:border-color .15s ease,box-shadow .15s ease}
+  .field:hover{border-color:var(--ink-400)}
+  .field:hover:not(.dis):not(:focus-within){background:var(--surface-50)}
+  .field input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:inherit;color:var(--ink-900)}
+  .field input::placeholder{color:var(--ink-400);font-weight:500}
+  .field:focus-within{border-color:var(--ink-600);background:var(--surface-0);box-shadow:var(--field-focus-ring)}
+  .field.err{border-color:var(--danger)}
+  .field.err:focus-within{box-shadow:0 0 0 3px rgba(218,30,40,.1)}
+  .field.dis{background:var(--surface-50);border-color:var(--line-100)}
+  .field.dis input{color:var(--ink-400)}
+  .clear{width:16px;height:16px;color:var(--clear-icon);cursor:pointer;transition:color .12s,transform .12s;flex:none;opacity:0;pointer-events:none}
+  .clear.show{opacity:1;pointer-events:auto}
+  .clear:hover{color:var(--clear-icon-hover);transform:scale(1.12)}
+  .err-msg{font-size:11px;color:var(--danger);margin-top:var(--space-1);max-height:0;overflow:hidden;opacity:0;transition:max-height .2s ease,opacity .2s ease}
+  .err-msg.show{max-height:30px;opacity:1}
+</style></head><body>
+<div class="card">
+  <div class="note">Canonical <b>Input Field</b> component. States below are canonical — label 12px/500 var(--ink-600), value 12px/500 var(--ink-900), height 40px (<b>--field-h</b>), border 1px var(--line-200), focus 1px var(--ink-600), 4px radius, 16px clear icon. <b>On hover the field background fills var(--surface-50)</b> (default var(--surface-0)).</div>
+  <div class="grid">
+    <div><label class="lbl">Default</label>
+      <div class="field" data-input><input placeholder="Placeholder"><svg class="clear" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></div>
+    </div>
+    <div><label class="lbl">Focused / Active (type to see clear icon)</label>
+      <div class="field" data-input><input value="Default Value"><svg class="clear show" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></div>
+    </div>
+    <div><label class="lbl">Error / validation (min 10 chars)</label>
+      <div class="field err" data-input data-min="10"><input value="Short"><svg class="clear show" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></div>
+      <div class="err-msg show">Minimum value should be 10 characters long</div>
+    </div>
+    <div><label class="lbl">Disabled</label>
+      <div class="field dis"><input value="Disabled Value" disabled></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('[data-input]').forEach(f=>{
+    const inp=f.querySelector('input'), clr=f.querySelector('.clear'), min=+f.dataset.min||0;
+    const msg=f.parentElement.querySelector('.err-msg');
+    function sync(){
+      clr.classList.toggle('show', inp.value.length>0);
+      if(min){ const bad=inp.value.length>0 && inp.value.length<min; f.classList.toggle('err',bad); if(msg) msg.classList.toggle('show',bad); }
+    }
+    inp.addEventListener('input', sync);
+    clr.addEventListener('click', ()=>{ inp.value=''; inp.focus(); sync(); });
+    sync();
+  });
+</script>
+</body></html>

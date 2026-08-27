@@ -1,0 +1,109 @@
+/* ============================================================================
+   6D Technologies — ONE UI Design System
+   Foundations: MOTION tokens (durations, easings, keyframes)
+   ----------------------------------------------------------------------------
+   STRICT: every transition/animation in every generated screen must use these
+   tokens. Never write a literal duration (e.g. `0.3s`) or easing in component
+   CSS. If a needed motion doesn't exist here, it must be added here first.
+   Consolidates the previous ad-hoc set (0.1/0.12/0.15/0.18/0.2/0.25/0.3/0.7s)
+   into a fixed 5-step scale.
+   ============================================================================ */
+
+:root {
+  /* ---- Duration scale (fixed — no other values exist) -------------------- */
+  --dur-1: 120ms;  /* @kind other */ /* micro feedback: row hover, menu-item hover bg */
+  --dur-2: 150ms;  /* @kind other */ /* standard hover: buttons, icons, .ds-close, borders */
+  --dur-3: 200ms;  /* @kind other */ /* state toggles: switches, chevron rotation, tab change */
+  --dur-4: 250ms;  /* @kind other */ /* expand/collapse: sidebar rail, nav groups, accordions */
+  --dur-5: 300ms;  /* @kind other */ /* panels: drawer/overlay slide-in, modal enter */
+
+  /* ---- Easing (fixed) ----------------------------------------------------- */
+  --ease-standard: cubic-bezier(0.4, 0.0, 0.2, 1);  /* @kind other */ /* default for everything */
+  --ease-out:      cubic-bezier(0.0, 0.0, 0.2, 1);  /* @kind other */ /* entrances */
+  --ease-in:       cubic-bezier(0.4, 0.0, 1.0, 1);  /* @kind other */ /* exits */
+
+  /* ---- Named component motions (the ONLY assignments allowed) ------------ */
+  --motion-hover:    background-color var(--dur-2) var(--ease-standard),
+                     border-color     var(--dur-2) var(--ease-standard),
+                     color            var(--dur-2) var(--ease-standard),
+                     box-shadow       var(--dur-2) var(--ease-standard);
+  --motion-row:      background-color var(--dur-1) var(--ease-standard);
+  --motion-toggle:   transform var(--dur-3) var(--ease-standard),
+                     background-color var(--dur-3) var(--ease-standard);
+  --motion-collapse: width var(--dur-4) var(--ease-standard);
+  --motion-expand:   max-height var(--dur-4) var(--ease-standard);
+  --motion-chevron:  transform var(--dur-3) var(--ease-standard);
+}
+
+/* ---- Canonical entrance keyframes (the ONLY keyframes allowed) ----------- */
+
+/* Dropdowns / popovers / profile menu — fade + 6px rise */
+@keyframes ds-fade-up {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.ds-anim-dropdown { animation: ds-fade-up var(--dur-2) var(--ease-out); }
+
+/* Drawer / overlay panel — slide in from right */
+@keyframes ds-drawer-in {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+.ds-anim-drawer { animation: ds-drawer-in var(--dur-5) var(--ease-out); }
+
+/* Modal / popup — fade + subtle scale */
+@keyframes ds-modal-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.ds-anim-modal { animation: ds-modal-in var(--dur-5) var(--ease-out); }
+
+/* Scrim behind drawer/modal — fade only */
+@keyframes ds-scrim-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.ds-anim-scrim { animation: ds-scrim-in var(--dur-5) var(--ease-out); }
+
+/* Toaster — drops in from above its own height (canonical: -110%, not -20px) */
+@keyframes ds-toaster-in {
+  from { opacity: 0; transform: translateY(-110%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.ds-anim-toaster { animation: ds-toaster-in var(--dur-5) var(--ease-out); }
+
+/* Loader spinner — the single exception to the duration scale (700ms linear) */
+@keyframes ds-spin { to { transform: rotate(360deg); } }
+.ds-anim-spin { animation: ds-spin 700ms linear infinite; }
+
+/* ---- Decorative loops (named exceptions to the duration scale) ------------
+   Allowed ONLY in the components named below. All are killed by the
+   reduced-motion gate. */
+
+/* Left Menu no-result: cloud illustration floats (3s loop) */
+@keyframes ds-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+.ds-anim-float { animation: ds-float 3s var(--ease-standard) infinite; }
+
+/* Left Menu no-result: magnifier scans left↔right (2.4s loop) */
+@keyframes ds-scan { 0%,100% { transform: translate(0,0); } 50% { transform: translate(6px,4px); } }
+.ds-anim-scan { animation: ds-scan 2.4s var(--ease-standard) infinite; }
+
+/* Header search recording state: waveform bars pulse (900ms loop, stagger via delay) */
+@keyframes ds-wave { 0%,100% { transform: scaleY(0.35); } 50% { transform: scaleY(1); } }
+.ds-anim-wave { animation: ds-wave 900ms var(--ease-standard) infinite; transform-origin: center; }
+
+/* Toaster close icon — rotates 180° and turns red on hover */
+.ds-toaster-close { transition: transform var(--dur-3) var(--ease-standard),
+                                color var(--dur-2) var(--ease-standard); }
+.ds-toaster-close:hover { transform: rotate(180deg); color: var(--danger); }
+
+/* ---- Accessibility gate (REQUIRED on every screen) ------------------------
+   All decorative/entrance motion is disabled for users who opt out.
+   State-communicating transitions collapse to near-instant. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

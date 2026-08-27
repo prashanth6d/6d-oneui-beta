@@ -1,0 +1,103 @@
+<!-- @dsCard group="Components" title="Rating" def="Ratings provide insight regarding others' opinions and experiences, and can allow the user to submit a rating of their own." -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--font-ui);background:var(--surface-0);color:var(--ink-900)}
+  .card{padding:28px 24px;display:flex;flex-direction:column;gap:32px;max-width:760px}
+  .sec{display:flex;flex-direction:column;gap:14px}
+  .cap{font-size:10px;color:var(--ink-400);text-transform:uppercase;letter-spacing:.05em}
+  .note{font-size:11px;color:var(--ink-400);line-height:1.6}
+  .note b{color:var(--ink-900);font-weight:600}
+  .row{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+  .cell{display:flex;flex-direction:column;gap:var(--space-2)}
+  .lbl{font-size:11px;font-weight:600;color:var(--ink-600)}
+
+  /* ---- Rating ---- */
+  .rating{display:inline-flex;align-items:center;gap:var(--space-1);line-height:0}
+  .rating .star{position:relative;display:inline-block;color:var(--line-200)}
+  .rating .star svg{width:var(--sz,20px);height:var(--sz,20px);display:block}
+  /* gold fill overlay clipped by width for halves */
+  .rating .star .fill{position:absolute;inset:0;overflow:hidden;color:var(--gold);width:0}
+  .rating .star.full .fill{width:100%}
+  .rating .star.half .fill{width:50%}
+
+  .rating.sm{--sz:14px}
+  .rating.md{--sz:20px}
+  .rating.lg{--sz:28px}
+
+  /* interactive */
+  .rating.interactive .star{cursor:pointer}
+  .rating.interactive .star svg{transition:transform .1s ease}
+  .rating.interactive .star:hover svg{transform:scale(1.12)}
+
+  .meta{display:inline-flex;align-items:baseline;gap:var(--space-2)}
+  .score{font-size:14px;font-weight:600;color:var(--ink-900)}
+  .count{font-size:12px;color:var(--ink-400)}
+  .liveval{font-size:12px;color:var(--ink-600);min-width:64px}
+  .liveval b{color:var(--ink-900);font-weight:600}
+</style></head><body>
+<div class="card">
+
+  <div class="note">A rating renders five stars filled in <b>--gold var(--warning)</b> against an empty <b>--line-200 var(--line-200)</b> track; partial values show a half star clipped at 50%. Read-only by default; the interactive variant lets the user submit their own rating. Sizes: small 14px, medium 20px (default), large 28px.</div>
+
+  <!-- READ-ONLY -->
+  <div class="sec">
+    <div class="cap">Read-only — average score</div>
+    <div class="row">
+      <div class="cell">
+        <span class="lbl">2.5 of 5</span>
+        <span class="rating md" data-rating="2.5"></span>
+      </div>
+      <div class="cell">
+        <span class="lbl">With score &amp; count</span>
+        <span class="meta">
+          <span class="rating md" data-rating="4.5"></span>
+          <span class="score">4.5</span><span class="count">(1,284)</span>
+        </span>
+      </div>
+      <div class="cell">
+        <span class="lbl">Small</span>
+        <span class="rating sm" data-rating="3"></span>
+      </div>
+      <div class="cell">
+        <span class="lbl">Large</span>
+        <span class="rating lg" data-rating="4"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERACTIVE -->
+  <div class="sec">
+    <div class="cap">Interactive — submit your rating</div>
+    <div class="row">
+      <span class="rating lg interactive" id="liveRating" data-rating="0"></span>
+      <span class="liveval" id="liveVal">Not rated</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const STAR='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.06 6.6.79-4.9 4.55 1.3 6.55L12 17.9l-5.9 3.1 1.3-6.55-4.9-4.55 6.6-.79z"/></svg>';
+  function buildStars(el, val){
+    let html='';
+    for(let i=1;i<=5;i++){
+      let cls='star';
+      if(val>=i) cls+=' full';
+      else if(val>=i-0.5) cls+=' half';
+      html+='<span class="'+cls+'" data-i="'+i+'">'+STAR+'<span class="fill">'+STAR+'</span></span>';
+    }
+    el.innerHTML=html;
+  }
+  document.querySelectorAll('[data-rating]').forEach(el=>buildStars(el, parseFloat(el.dataset.rating)||0));
+
+  // interactive
+  const live=document.getElementById('liveRating'), out=document.getElementById('liveVal');
+  let current=0;
+  function paint(v){ buildStars(live, v); }
+  live.addEventListener('mousemove', e=>{ const s=e.target.closest('[data-i]'); if(s) paint(+s.dataset.i); });
+  live.addEventListener('mouseleave', ()=> paint(current));
+  live.addEventListener('click', e=>{ const s=e.target.closest('[data-i]'); if(s){ current=+s.dataset.i; paint(current); out.innerHTML='You rated <b>'+current+' of 5</b>'; } });
+</script>
+</body></html>

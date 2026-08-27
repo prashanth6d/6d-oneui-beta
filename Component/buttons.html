@@ -1,0 +1,207 @@
+<!-- @dsCard group="Components" name="Buttons" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--font-ui);background:var(--surface-0);color:var(--ink-900)}
+  .card{padding:26px 24px;display:flex;flex-direction:column;gap:var(--space-5)}
+  .row{display:flex;flex-wrap:wrap;gap:26px}
+  .grp{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+  .ttl{font:var(--t-tiny);color:var(--ink-400);text-transform:uppercase;letter-spacing:.04em}
+
+  /* state matrix: rows = states, columns = variants */
+  .matrix{display:grid;grid-template-columns:auto repeat(5,minmax(0,1fr));gap:16px 26px;align-items:center}
+  .matrix .ch{font:var(--t-tiny);color:var(--ink-400);text-transform:uppercase;letter-spacing:.04em}
+  .matrix .rh{font-size:12px;font-weight:500;color:var(--ink-900);justify-self:start;white-space:nowrap}
+  .matrix .cell{display:flex}
+
+  /* ---- base button: 9px/10px padding, 4px radius, label 12px/500 ---- */
+  /* width is AUTO — grows/shrinks with the label length. Never fix a button width. */
+  .btn{font-size:12px;font-weight:500;line-height:1;border-radius:var(--radius-sm);padding:9px 14px;border:1px solid transparent;
+       cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:fit-content}
+
+  /* focus ring — sanctioned Primary/200; applied to any variant via .fc */
+  .btn.fc,.btn:focus-visible{outline:none;box-shadow:0 0 0 3px var(--primary-200)}
+
+  /* primary */
+  .primary{background:var(--blue-500);color:var(--surface-0)}
+  .primary.hv,.primary:hover{background:var(--blue-600)}
+  /* secondary */
+  .secondary{background:var(--surface-0);color:var(--blue-500);border-color:var(--blue-500)}
+  .secondary.hv,.secondary:hover{background:var(--blue-100);box-shadow:var(--shadow-md)}
+  /* tertiary */
+  .tertiary{background:var(--surface-0);color:var(--ink-900);border-color:var(--line-200)}
+  .tertiary.hv,.tertiary:hover{border-color:var(--ink-400);box-shadow:var(--shadow-md)}
+  /* disabled — one canonical disabled style for every variant */
+  .disabled,.btn:disabled{background:var(--line-100);color:var(--ink-400);border-color:transparent;cursor:not-allowed;box-shadow:none}
+  /* success */
+  .success{background:var(--success);color:var(--surface-0)}
+  .success.outline{background:var(--surface-0);color:var(--success);border-color:var(--success)}
+  /* danger */
+  .danger{background:var(--danger);color:var(--surface-0)}
+  .danger.outline{background:var(--surface-0);color:var(--danger);border-color:var(--danger)}
+  .btn.success.hv,.btn.success:hover,.btn.danger.hv,.btn.danger:hover{box-shadow:var(--shadow-md)}
+
+  /* text buttons */
+  .tbtn{font-size:13px;font-weight:500;background:none;border:0;cursor:pointer;padding:2px 0;width:fit-content}
+  .tbtn.primary{color:var(--blue-500);background:none}
+  .tbtn.primary.hv,.tbtn.primary:hover{color:var(--blue-600);text-decoration:underline;background:none}
+  .tbtn.danger{color:var(--danger);background:none;border:0}
+  .tbtn.danger.hv,.tbtn.danger:hover{color:var(--danger);text-decoration:underline}
+
+  /* button dropdown */
+  .dd{position:relative;display:inline-block}
+  .iconbtn{display:inline-flex;align-items:center;justify-content:space-between;gap:var(--space-2);min-width:172px;width:100%;
+           font-size:12px;font-weight:500;line-height:1;border-radius:var(--radius-sm);padding:9px 14px;border:1px solid transparent;
+           background:var(--blue-500);color:var(--surface-0);cursor:pointer}
+  .iconbtn svg{width:15px;height:15px;flex:none;transition:transform .18s}
+  .iconbtn:hover,.dd:hover .iconbtn{background:var(--blue-600)}
+  .dd:hover .iconbtn .chev{transform:rotate(180deg)}
+  /* default width = button width; grows for long values; opens on hover */
+  .menu{position:absolute;top:100%;left:0;min-width:100%;width:max-content;display:none;
+        background:var(--surface-0);border:1px solid var(--line-100);border-radius:var(--radius-md);
+        box-shadow:var(--field-list-shadow);z-index:5}
+  .dd:hover .menu{display:block}
+  .menu .it{position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;height:36px;padding:0 16px;
+            font-size:12px;color:var(--ink-900);border-top:1px solid var(--line-100);cursor:pointer}
+  .menu .it:first-child{border-top:0}
+  .menu .it:hover{background:var(--blue-100)}
+  .menu .it svg{width:15px;height:15px;color:var(--ink-400);flex:none}
+  /* second-level drilldown flyout — soft fade/slide in on hover */
+  .submenu{position:absolute;left:100%;top:-1px;min-width:190px;
+           background:var(--surface-0);border:1px solid var(--line-100);border-radius:var(--radius-md);box-shadow:var(--field-list-shadow);z-index:6;
+           opacity:0;visibility:hidden;transform:translateX(8px);
+           transition:opacity .2s ease, transform .2s ease, visibility .2s}
+  .menu .it:hover > .submenu{opacity:1;visibility:visible;transform:translateX(0)}
+  .submenu .it2{display:flex;align-items:center;height:36px;padding:0 16px;font-size:12px;color:var(--ink-900);
+                border-top:1px solid var(--line-100);cursor:pointer;white-space:nowrap}
+  .submenu .it2:first-child{border-top:0}
+  .submenu .it2:hover{background:var(--blue-100)}
+
+  /* toggle switch */
+  .switch{width:46px;height:24px;border-radius:var(--radius-pill);background:var(--line-200);position:relative;cursor:pointer;transition:background .2s;border:0}
+  .switch.on{background:var(--success)}
+  .switch .knob{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:var(--surface-0);transition:left .2s;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+  .switch.on .knob{left:25px}
+
+  .st{font:var(--t-micro);color:var(--ink-400)}
+</style></head><body>
+<div class="card">
+
+  <!-- STATE MATRIX: every variant × Default / Hover / Focused / Disabled -->
+  <div class="matrix">
+    <div></div>
+    <div class="ch">Primary</div>
+    <div class="ch">Secondary</div>
+    <div class="ch">Tertiary</div>
+    <div class="ch">Success</div>
+    <div class="ch">Danger</div>
+
+    <div class="rh">Default</div>
+    <div class="cell"><button class="btn primary">Button</button></div>
+    <div class="cell"><button class="btn secondary">Button</button></div>
+    <div class="cell"><button class="btn tertiary">Button</button></div>
+    <div class="cell"><button class="btn success">Button</button></div>
+    <div class="cell"><button class="btn danger">Button</button></div>
+
+    <div class="rh">Hover</div>
+    <div class="cell"><button class="btn primary hv">Button</button></div>
+    <div class="cell"><button class="btn secondary hv">Button</button></div>
+    <div class="cell"><button class="btn tertiary hv">Button</button></div>
+    <div class="cell"><button class="btn success hv">Button</button></div>
+    <div class="cell"><button class="btn danger hv">Button</button></div>
+
+    <div class="rh">Focused</div>
+    <div class="cell"><button class="btn primary fc">Button</button></div>
+    <div class="cell"><button class="btn secondary fc">Button</button></div>
+    <div class="cell"><button class="btn tertiary fc">Button</button></div>
+    <div class="cell"><button class="btn success fc">Button</button></div>
+    <div class="cell"><button class="btn danger fc">Button</button></div>
+
+    <div class="rh">Disabled</div>
+    <div class="cell"><button class="btn primary disabled" disabled>Button</button></div>
+    <div class="cell"><button class="btn secondary disabled" disabled>Button</button></div>
+    <div class="cell"><button class="btn tertiary disabled" disabled>Button</button></div>
+    <div class="cell"><button class="btn success disabled" disabled>Button</button></div>
+    <div class="cell"><button class="btn danger disabled" disabled>Button</button></div>
+  </div>
+
+  <!-- Text buttons -->
+  <div class="row">
+    <div class="grp">
+      <div class="ttl">Text buttons</div>
+      <button class="tbtn primary">Primary Text Button</button>
+      <button class="tbtn danger">Danger Text Button</button>
+    </div>
+  </div>
+
+  <!-- ROW 2 -->
+  <div class="row">
+    <div class="grp">
+      <div class="ttl">Button Dropdown</div>
+      <div class="dd" id="dd">
+        <button class="iconbtn" id="ddBtn">Button Dropdown
+          <svg class="chev" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="menu">
+          <div class="it">MVNO
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+            <div class="submenu">
+              <div class="it2">Onboard New MVNO</div>
+              <div class="it2">View MVNO List</div>
+              <div class="it2">Bulk Import</div>
+            </div>
+          </div>
+          <div class="it">Reseller
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+            <div class="submenu">
+              <div class="it2">Add Reseller</div>
+              <div class="it2">Manage Tiers</div>
+            </div>
+          </div>
+          <div class="it">Enterprise
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+            <div class="submenu">
+              <div class="it2">Create Enterprise Account</div>
+              <div class="it2">Assign Connectivity Plan</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grp">
+      <div class="ttl">Toggle</div>
+      <button class="switch on" type="button" aria-pressed="true"><span class="knob"></span></button>
+      <button class="switch" type="button" aria-pressed="false"><span class="knob"></span></button>
+      <div class="st">on · off</div>
+    </div>
+
+    <div class="grp">
+      <div class="ttl">Success</div>
+      <button class="btn success">Success Button</button>
+      <button class="btn success outline">Success Button</button>
+      <div class="st">filled · outlined</div>
+    </div>
+
+    <div class="grp">
+      <div class="ttl">Danger</div>
+      <button class="btn danger">Danger Button</button>
+      <button class="btn danger outline">Danger Button</button>
+      <div class="st">filled · outlined</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // button dropdown opens on hover (CSS); no JS toggle needed
+
+  // toggles
+  document.querySelectorAll('.switch').forEach(sw=>{
+    sw.addEventListener('click', ()=>{
+      const on = sw.classList.toggle('on');
+      sw.setAttribute('aria-pressed', on);
+    });
+  });
+</script>
+</body></html>

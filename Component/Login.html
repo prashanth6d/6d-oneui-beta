@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Login Page" subtitle="DS-standard responsive split login" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login · 6D Technologies ONE UI</title>
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{font-family:var(--font-ui);color:var(--ink-900);background:var(--surface-0)}
+  button{font-family:inherit}
+
+  /* ============================================================= LAYOUT */
+  .login{min-height:100vh;display:grid;grid-template-columns:50% 50%}
+  .login[data-hero-side="right"]{grid-template-columns:50% 50%}
+  .login[data-hero-side="right"] .hero{order:2;border-right:0;border-left:1px solid var(--line-100)}
+  .login[data-hero-side="right"] .form-side{order:1}
+
+  /* ================================================================ HERO */
+  .hero{position:relative;overflow:hidden;display:flex;flex-direction:column;
+        padding:48px 64px;border-right:1px solid var(--line-100);
+        background:linear-gradient(180deg, #103278 0%, #5C006B 100%)}
+  /* decorative circle overlay on top of the gradient */
+  .hero .ring{position:absolute;left:-120px;top:20%;width:520px;height:auto;
+              opacity:.9;pointer-events:none;user-select:none}
+  .hero .ring img{width:100%;height:100%;object-fit:contain}
+  .hero-logo{position:relative;z-index:1;display:inline-flex}
+  .hero-logo img{height:34px;width:auto;max-width:240px;display:block}
+  .hero-body{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;
+             justify-content:center;gap:clamp(14px,2.2vh,20px);max-width:520px;padding:clamp(20px,4vh,36px) 0}
+  .hero-eyebrow{display:none}
+  /* stacked crossfade carousel — all slides share one grid cell */
+  .hero-carousel{display:grid}
+  .hero-slide{grid-area:1/1;display:flex;flex-direction:column;gap:clamp(14px,2.2vh,20px);
+              opacity:0;transform:translateY(10px);pointer-events:none;
+              transition:opacity var(--dur-slow,.5s) var(--ease-standard,ease),
+                         transform var(--dur-slow,.5s) var(--ease-standard,ease)}
+  .hero-slide.is-active{opacity:1;transform:none;pointer-events:auto}
+  .hero-dots{display:flex;gap:10px}
+  .hero-dots .dot{width:26px;height:5px;padding:0;border:0;border-radius:var(--radius-pill,999px);
+                  background:rgba(255,255,255,.28);cursor:pointer;
+                  transition:background var(--dur-fast,.2s) var(--ease-standard,ease),width var(--dur-fast,.2s) var(--ease-standard,ease)}
+  .hero-dots .dot:hover{background:rgba(255,255,255,.5)}
+  .hero-dots .dot.is-active{width:38px;background:#fff}
+  @media (prefers-reduced-motion: reduce){
+    .hero-slide{transition:none;transform:none}
+    .hero-dots .dot{transition:none}
+  }
+  .hero h1{margin:0;font-family:var(--font-ui);font-weight:600;
+           font-size:clamp(28px,3vw,42px);line-height:1.12;letter-spacing:-.02em;
+           color:var(--navy-700);text-wrap:balance}
+  .hero h1 em{font-style:normal;color:var(--blue-500)}
+  .hero .sub{margin:0;font-size:16px;line-height:24px;font-weight:400;color:var(--ink-600);max-width:46ch;text-wrap:pretty}
+  .hero .feats{display:flex;flex-direction:column;gap:12px;margin-top:6px}
+  .hero .feat{display:flex;align-items:center;gap:12px;font-size:13px;line-height:18px;font-weight:500;color:var(--ink-700)}
+  .hero .feat .ic{width:22px;height:22px;flex:none;border-radius:50%;display:grid;place-items:center;
+                  background:var(--blue-500);color:#fff}
+  .hero .feat .ic svg{width:12px;height:12px}
+
+  /* HERO always uses the AARYA gradient; copy is white. */
+  .hero h1{color:#fff}
+  .hero h1 em{color:#BAE4FF}
+  .hero .sub{color:rgba(255,255,255,.82)}
+  .hero .feat{color:rgba(255,255,255,.92)}
+  .hero .feat .ic{background:#fff;color:var(--purple-900)}
+
+  /* ================================================================ FORM */
+  /* Right panel = 6-column grid (half of the 12-col page). The form occupies
+     the middle 4 columns, leaving exactly 1 column of gutter left + right. */
+  .form-side{display:grid;grid-template-columns:repeat(6,1fr);align-content:center;
+             padding:48px 0;background:var(--surface-0)}
+  .form-wrap{grid-column:2 / 6;width:100%}
+
+  /* company logo shown above the form only on small screens */
+  .brandmini{display:none;margin-bottom:28px}
+  .brandmini img{height:36px;width:auto}
+
+  .form-head{margin-bottom:26px}
+  .product-lockup{display:inline-flex;align-items:center;gap:10px;margin-bottom:16px}
+  .product-lockup img{height:20px;width:auto;display:block}
+  .product-lockup .pname{font-size:15px;font-weight:600;color:var(--navy-700);letter-spacing:-.01em}
+  .form-head h2{margin:0 0 6px;font-weight:600;font-size:24px;line-height:32px;letter-spacing:-.01em;color:var(--ink-900)}
+  .form-head p{margin:0;font-size:13px;line-height:20px;color:var(--ink-600)}
+
+  /* alert / error banner */
+  .alert{display:none;align-items:center;gap:10px;margin-bottom:18px;padding:9px 12px;border-radius:var(--radius-sm);
+         background:var(--danger-bg);border:1px solid rgba(218,30,40,.25);color:var(--danger);
+         font-size:12px;font-weight:500;line-height:16px}
+  .alert.show{display:flex}
+  .alert svg{width:15px;height:15px;flex:none}
+
+  form{display:flex;flex-direction:column;gap:18px}
+  .fld{display:flex;flex-direction:column;gap:6px}
+  /* --- LOGIN-ONLY floating-label fields (per spec screenshots) --- */
+  .fldbox{position:relative;border:1px solid var(--field-border);border-radius:8px;
+          background:#fff;transition:border-color .15s ease,box-shadow .15s ease}
+  .fldbox:focus-within{border-color:var(--field-border-focus);box-shadow:0 0 0 3px rgba(109,109,109,.08)}
+  .fld.err .fldbox{border-color:var(--danger)}
+  .fld.err .fldbox:focus-within{box-shadow:0 0 0 3px rgba(218,30,40,.1)}
+  .fldbox input{width:100%;border:0;outline:0;background:transparent;
+                font:600 15px/1 var(--font-ui);color:var(--field-value);
+                padding:25px 16px 11px}
+  .fldbox.has-eye input{padding-right:48px}
+  .fldbox input::placeholder{color:transparent}
+  .fldbox label{position:absolute;left:16px;top:50%;transform:translateY(-50%);
+                font:400 15px/1 var(--font-ui);color:var(--ink-400);
+                pointer-events:none;transition:top .15s ease,font-size .15s ease,color .15s ease}
+  .fldbox input:focus + label,
+  .fldbox input:not(:placeholder-shown) + label{top:15px;transform:none;font-size:12px;color:var(--field-label)}
+  .fldbox .eye{position:absolute;right:14px;top:50%;transform:translateY(-50%);
+               width:20px;height:20px;color:var(--ink-700);cursor:pointer;
+               background:none;border:0;padding:0;display:grid;place-items:center;transition:color .12s}
+  .fldbox .eye:hover{color:var(--ink-900)}
+  .err-msg{font-size:11px;line-height:14px;color:var(--danger);max-height:0;overflow:hidden;opacity:0;transition:max-height .2s ease,opacity .2s ease}
+  .fld.err .err-msg{max-height:24px;opacity:1}
+
+  /* remember + forgot row */
+  .row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:-2px}
+  .ck{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:500;color:var(--ink-700);cursor:pointer;user-select:none}
+  .ck .box{width:18px;height:18px;border-radius:var(--radius-sm);border:1.5px solid var(--field-border);flex:none;
+           display:grid;place-items:center;transition:background .15s ease,border-color .15s ease}
+  .ck .box.on{background:var(--blue-500);border-color:var(--blue-500)}
+  .ck .box svg{width:11px;height:11px;transform:scale(0);transition:transform .15s ease}
+  .ck .box.on svg{transform:scale(1)}
+  .link{font-size:12px;font-weight:500;color:var(--blue-500);background:none;border:0;cursor:pointer;padding:0}
+  .link:hover{color:var(--blue-600);text-decoration:underline}
+
+  /* primary CTA */
+  .btn-login{margin-top:4px;height:42px;border:0;border-radius:var(--radius-sm);background:var(--blue-500);color:#fff;
+             font-size:13px;font-weight:600;letter-spacing:.01em;cursor:pointer;display:flex;align-items:center;
+             justify-content:center;gap:10px;transition:background .15s ease,box-shadow .15s ease}
+  .btn-login:hover:not(:disabled){background:var(--blue-600);box-shadow:var(--shadow-md)}
+  .btn-login:active:not(:disabled){transform:translateY(.5px)}
+  .btn-login:disabled{background:var(--line-200);color:#fff;cursor:not-allowed;box-shadow:none}
+  .btn-login.loading{pointer-events:none;background:var(--blue-600)}
+  .btn-login .spin{width:16px;height:16px;border:2px solid rgba(255,255,255,.45);border-top-color:#fff;border-radius:50%;display:none;animation:spin .7s linear infinite}
+  .btn-login.loading .spin{display:block}
+  .btn-login.loading .txt{opacity:.85}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .form-foot{margin-top:28px;display:flex;flex-direction:column;align-items:center;gap:4px}
+  .form-foot .help{font-size:12px;color:var(--ink-600)}
+  .form-foot .help .link{font-size:12px}
+  .form-foot .copy{font-size:11px;color:var(--ink-400)}
+
+  /* ======================================================= RESPONSIVE */
+  /* md and below — tighten the split */
+  @media not all and (min-width:64rem){
+    .hero{padding:40px 44px}
+    .form-side{padding:40px 0}
+    .login{grid-template-columns:50% 50%}
+    .login[data-hero-side="right"]{grid-template-columns:50% 50%}
+  }
+  /* sm and below — drop the split, bring the desktop gradient in as a full-bleed
+     backdrop, and float the form in a clean white card on top of it. */
+  @media not all and (min-width:48rem){
+    .login,.login[data-hero-side="right"]{grid-template-columns:1fr}
+    .hero{display:none}
+    .form-side{position:relative;order:1 !important;grid-template-columns:1fr;
+               align-content:center;justify-items:center;padding:44px 22px;min-height:100vh;
+               background:linear-gradient(180deg, #103278 0%, #5C006B 100%);overflow:hidden}
+    /* soft decorative glow echoing the hero ring */
+    .form-side::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;
+                       left:-160px;top:-120px;pointer-events:none;
+                       background:radial-gradient(circle, rgba(255,255,255,.16) 0%, rgba(255,255,255,0) 70%)}
+    .form-side::after{content:"";position:absolute;width:360px;height:360px;border-radius:50%;
+                      right:-150px;bottom:-110px;pointer-events:none;
+                      background:radial-gradient(circle, rgba(186,228,255,.18) 0%, rgba(186,228,255,0) 70%)}
+    .form-wrap{position:relative;z-index:1;grid-column:1 / -1;width:100%;max-width:400px;margin:0 auto;
+               background:#fff;border-radius:var(--radius-xl);padding:32px 26px 26px;
+               box-shadow:0 24px 60px -12px rgba(16,50,120,.45), 0 4px 14px rgba(16,50,120,.18)}
+    /* white logo sits on the gradient, above the card */
+    .brandmini{display:block;text-align:center;margin:0 auto 22px}
+    .brandmini img{height:38px}
+    .form-head{text-align:center}
+    .form-head .product-lockup{justify-content:center}
+  }
+  @media not all and (min-width:30rem){
+    .form-side{padding:36px 16px}
+    .form-wrap{padding:28px 20px 22px}
+    .form-head h2{font-size:22px;line-height:28px}
+  }
+</style>
+</head>
+<body>
+  <main class="login" data-hero-side="left" data-hero-style="tint" data-screen-label="Login">
+
+    <!-- ============================ HERO / BRAND PANEL ============================ -->
+    <section class="hero" aria-label="Product overview">
+      <div class="ring" aria-hidden="true"><img src="../assets/login-circle.png" alt=""></div>
+      <a class="hero-logo" href="#" aria-label="6D Technologies home">
+        <img id="heroLogo" src="../assets/6d-logo-white.png" alt="6D Technologies — Smart Ideas, Delivered">
+      </a>
+      <div class="hero-body">
+        <div class="hero-carousel" id="heroCarousel" aria-roledescription="carousel" aria-label="Product highlights">
+          <div class="hero-slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 3">
+            <h1 data-bind="heroHeading">Your headline goes <em>here.</em></h1>
+            <p class="sub" data-bind="heroSubtext">A short supporting sentence that describes your product's value proposition to the person signing in.</p>
+          </div>
+          <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="2 of 3" aria-hidden="true">
+            <h1>A second dummy <em>headline.</em></h1>
+            <p class="sub">Another placeholder line you can swap for a real supporting message about what the product does.</p>
+          </div>
+          <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="3 of 3" aria-hidden="true">
+            <h1>And a third <em>message.</em></h1>
+            <p class="sub">One more dummy sentence to round out the rotating highlights on the sign-in screen.</p>
+          </div>
+        </div>
+        <div class="hero-dots" id="heroDots" role="tablist" aria-label="Choose slide">
+          <button class="dot is-active" type="button" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+          <button class="dot" type="button" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+          <button class="dot" type="button" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================ FORM PANEL ================================ -->
+    <section class="form-side" aria-label="Sign in">
+      <div class="form-wrap">
+
+        <!-- company logo for small screens (hero hidden) -->
+        <div class="brandmini"><img data-bind="companyLogo2" src="../assets/6d-logo.webp" alt="6D Technologies"></div>
+
+        <header class="form-head">
+          <div class="product-lockup">
+            <img data-bind="productLogo" src="../assets/products/ventas.png" alt="Ventas">
+          </div>
+          <h2 data-bind="welcome">Welcome to IoT CMP</h2>
+          <p data-bind="tagline">Sign in and stay connected</p>
+        </header>
+
+        <div class="alert" id="alert" role="alert">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>
+          <span id="alertMsg">Invalid username or password. Please try again.</span>
+        </div>
+
+        <form id="loginForm" novalidate>
+          <div class="fld" id="fldUser">
+            <div class="fldbox">
+              <input id="username" name="username" type="text" placeholder=" " autocomplete="username">
+              <label for="username">Username</label>
+            </div>
+            <div class="err-msg">Please enter your username.</div>
+          </div>
+
+          <div class="fld" id="fldPass">
+            <div class="fldbox has-eye">
+              <input id="password" name="password" type="password" placeholder=" " autocomplete="current-password">
+              <label for="password">Password</label>
+              <button type="button" class="eye" id="eye" aria-label="Show password">
+                <svg id="eyeIcon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <div class="err-msg">Please enter your password.</div>
+          </div>
+
+          <div class="row">
+            <span class="ck" id="remember" role="checkbox" aria-checked="false" tabindex="0">
+              <span class="box"><svg fill="none" stroke="#fff" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Remember me
+            </span>
+            <button type="button" class="link" id="forgot">Forgot password?</button>
+          </div>
+
+          <button type="submit" class="btn-login" id="submit" disabled>
+            <span class="spin"></span><span class="txt">Login</span>
+          </button>
+        </form>
+
+        <div class="form-foot">
+          <span class="help">Need access? <button type="button" class="link" id="contact">Contact your administrator</button></span>
+          <span class="copy" data-bind="copyright">© 2026 6D Technologies. All rights reserved.</span>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ====================== DYNAMIC CONFIG (replaceable per screen) ====================== -->
+  <script>
+    /* LOGIN_CONFIG drives every brand/copy element on this screen. To reuse this
+       framework for another product, set window.LOGIN_CONFIG before the page loads
+       (or call window.applyLoginConfig({...}) at runtime) — the logo, product logo,
+       product name, and hero copy all swap dynamically. */
+    window.LOGIN_CONFIG = Object.assign({
+      companyLogo : '../assets/6d-logo.webp',       // top-left brand logo (dynamic)
+      productLogo : '../assets/products/ventas.png', // product wordmark; defaults to Ventas, swap via the Product tweak (dynamic)
+      productName : 'IoT CMP',
+      eyebrow     : 'Empowering IoT',
+      heroHeading : 'Your headline goes <em>here.</em>',
+      heroSubtext : 'A short supporting sentence that describes your product\'s value proposition to the person signing in.',
+      feats       : ['SIM provisioning at scale','Real-time connectivity monitoring','Full device lifecycle control'],
+      copyright   : '© 2026 6D Technologies. All rights reserved.'
+    }, window.LOGIN_CONFIG || {});
+
+    window.applyLoginConfig = function(patch){
+      const c = Object.assign(window.LOGIN_CONFIG, patch || {});
+      const set = (sel, fn) => document.querySelectorAll('[data-bind="'+sel+'"]').forEach(fn);
+      set('companyLogo',  el => el.src = c.companyLogo);
+      set('companyLogo2', el => el.src = c.companyLogo);
+      set('ring',         el => el.src = c.productLogo);
+      set('productLogo',  el => { el.src = c.productLogo; el.style.display = c.productLogo ? 'block' : 'none'; });
+      set('productName',  el => el.textContent = c.productName);
+      set('eyebrow',      el => el.textContent = c.eyebrow);
+      set('heroHeading',  el => el.innerHTML = c.heroHeading);
+      set('heroSubtext',  el => el.textContent = c.heroSubtext);
+      set('welcome',      el => el.textContent = 'Welcome to ' + c.productName);
+      set('copyright',    el => el.textContent = c.copyright);
+      const fc = document.querySelector('[data-bind="feats"]');
+      if (fc && Array.isArray(c.feats)) {
+        fc.innerHTML = c.feats.map(f =>
+          '<div class="feat"><span class="ic"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>'+f+'</div>'
+        ).join('');
+      }
+    };
+    window.applyLoginConfig();
+  </script>
+
+  <!-- =============================== HERO CAROUSEL =============================== -->
+  <script>
+    (function(){
+      const track = document.getElementById('heroCarousel');
+      const dotsWrap = document.getElementById('heroDots');
+      if(!track || !dotsWrap) return;
+      const slides = [...track.querySelectorAll('.hero-slide')];
+      const dots = [...dotsWrap.querySelectorAll('.dot')];
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let i = 0, timer = null;
+      const INTERVAL = 5000;
+
+      function go(n){
+        i = (n + slides.length) % slides.length;
+        slides.forEach((s,x)=>{ s.classList.toggle('is-active', x===i); s.setAttribute('aria-hidden', x!==i); });
+        dots.forEach((d,x)=>{ d.classList.toggle('is-active', x===i); d.setAttribute('aria-selected', x===i); });
+      }
+      function play(){ if(reduce) return; stop(); timer = setInterval(()=>go(i+1), INTERVAL); }
+      function stop(){ if(timer){ clearInterval(timer); timer = null; } }
+
+      dots.forEach((d,x)=>d.addEventListener('click', ()=>{ go(x); play(); }));
+      track.addEventListener('mouseenter', stop);
+      track.addEventListener('mouseleave', play);
+      document.addEventListener('visibilitychange', ()=> document.hidden ? stop() : play());
+      go(0); play();
+    })();
+  </script>
+
+  <!-- =============================== FORM INTERACTIONS =============================== -->
+  <script>
+    (function(){
+      const form = document.getElementById('loginForm');
+      const user = document.getElementById('username');
+      const pass = document.getElementById('password');
+      const fldUser = document.getElementById('fldUser');
+      const fldPass = document.getElementById('fldPass');
+      const alertBox = document.getElementById('alert');
+      const submit = document.getElementById('submit');
+
+      // password show / hide
+      const eye = document.getElementById('eye'), eyeIcon = document.getElementById('eyeIcon');
+      const EYE = '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>';
+      const EYE_OFF = '<path d="M9.9 4.24A9.1 9.1 0 0 1 12 4c6.5 0 10 7 10 7a18 18 0 0 1-2.16 3.19M6.6 6.6A18 18 0 0 0 2 12s3.5 7 10 7a9.1 9.1 0 0 0 4.1-.94"/><path d="m2 2 20 20M9.9 9.9a3 3 0 0 0 4.2 4.2"/>';
+      eye.addEventListener('click', () => {
+        const show = pass.type === 'password';
+        pass.type = show ? 'text' : 'password';
+        eyeIcon.innerHTML = show ? EYE_OFF : EYE;
+        eye.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+        pass.focus();
+      });
+
+      // remember-me checkbox
+      const remember = document.getElementById('remember');
+      const toggleRemember = () => {
+        const box = remember.querySelector('.box');
+        const on = box.classList.toggle('on');
+        remember.setAttribute('aria-checked', on);
+      };
+      remember.addEventListener('click', toggleRemember);
+      remember.addEventListener('keydown', e => { if(e.key===' '||e.key==='Enter'){ e.preventDefault(); toggleRemember(); }});
+
+      // clear error state as the user types + enable/disable Login
+      const syncSubmit = () => {
+        submit.disabled = !(user.value.trim() && pass.value.trim());
+      };
+      [ [user,fldUser], [pass,fldPass] ].forEach(([inp,fld]) => {
+        inp.addEventListener('input', () => { fld.classList.remove('err'); alertBox.classList.remove('show'); syncSubmit(); });
+      });
+      syncSubmit();
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        alertBox.classList.remove('show');
+        let ok = true;
+        if(!user.value.trim()){ fldUser.classList.add('err'); ok = false; } else { fldUser.classList.remove('err'); }
+        if(!pass.value){ fldPass.classList.add('err'); ok = false; } else { fldPass.classList.remove('err'); }
+        if(!ok){ (user.value.trim()?pass:user).focus(); return; }
+
+        // demo submit — show the loading state briefly
+        submit.classList.add('loading');
+        setTimeout(() => {
+          submit.classList.remove('loading');
+          document.getElementById('alertMsg').textContent = 'Demo screen — connect this form to your authentication service.';
+          alertBox.classList.add('show');
+        }, 1100);
+      });
+
+      ['forgot','contact'].forEach(id => {
+        const b = document.getElementById(id);
+        if(b) b.addEventListener('click', () => {
+          document.getElementById('alertMsg').textContent = 'Demo screen — wire this action to your flow.';
+          alertBox.classList.add('show');
+        });
+      });
+    })();
+  </script>
+
+  <!-- =================================== TWEAKS =================================== -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="../login/tweaks-panel.jsx"></script>
+  <script type="text/babel">
+    /* Tweaks for the Login framework — drives the static DOM imperatively. */
+    const LOGIN_TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "heroSide": "left",
+      "heroStyle": "brand",
+      "productName": "Product Name",
+      "eyebrow": "Login Pahe",
+      "heroHeading": "Your headline goes \u003cem>here.\u003c\/em>",
+      "heroSubtext": "A short supporting sentence that describes your product's value proposition to the person signing in.",
+      "product": "Ventas",
+      "showProductLogo": true
+    }/*EDITMODE-END*/;
+
+    /* The 8 sanctioned 6D product wordmarks (assets/products/). Default = Ventas. */
+    const LOGIN_PRODUCTS = {
+      Aureus:  '../assets/products/aureus.png',
+      Canvas:  '../assets/products/canvas.png',
+      Echelon: '../assets/products/echelon.png',
+      Engrafi: '../assets/products/engrafi.png',
+      Infinity:'../assets/products/infinity.png',
+      Magik:   '../assets/products/magik.png',
+      Mercado: '../assets/products/mercado.png',
+      Ventas:  '../assets/products/ventas.png'
+    };
+
+    function LoginTweaks(){
+      const [t, setTweak] = useTweaks(LOGIN_TWEAK_DEFAULTS);
+      const root = document.querySelector('.login');
+      React.useEffect(() => {
+        if(!root) return;
+        root.setAttribute('data-hero-side', t.heroSide);
+        window.applyLoginConfig({
+          productName: t.productName,
+          heroHeading: t.heroHeading,
+          heroSubtext: t.heroSubtext,
+          productLogo: t.showProductLogo ? (LOGIN_PRODUCTS[t.product] || LOGIN_PRODUCTS.Ventas) : ''
+        });
+      }, [t]);
+      return (
+        <TweaksPanel>
+          <TweakSection label="Layout" />
+          <TweakRadio label="Hero side" value={t.heroSide} options={['left','right']}
+            onChange={(v)=>setTweak('heroSide', v)} />
+          <TweakSection label="Brand" />
+          <TweakSelect label="Product" value={t.product}
+            options={Object.keys(LOGIN_PRODUCTS)}
+            onChange={(v)=>setTweak('product', v)} />
+          <TweakText label="Product name" value={t.productName}
+            onChange={(v)=>setTweak('productName', v)} />
+          <TweakToggle label="Show product logo" value={t.showProductLogo}
+            onChange={(v)=>setTweak('showProductLogo', v)} />
+          <TweakSection label="Hero copy" />
+          <TweakText label="Heading" value={t.heroHeading}
+            onChange={(v)=>setTweak('heroHeading', v)} />
+          <TweakText label="Subtext" value={t.heroSubtext}
+            onChange={(v)=>setTweak('heroSubtext', v)} />
+        </TweaksPanel>
+      );
+    }
+    (function mount(){
+      const el = document.createElement('div');
+      document.body.appendChild(el);
+      ReactDOM.createRoot(el).render(<LoginTweaks />);
+    })();
+  </script>
+</body>
+</html>

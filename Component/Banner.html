@@ -1,0 +1,194 @@
+<!-- @dsCard group="Components" title="Banner" def="A banner is a full-width, 12-column-grid, fixed 80px-high promotional strip with a built-in carousel. Each slide is flexible — it can use a solid/gradient background colour or a full-bleed image, and carries a heading, optional sub-text and an action button. Slides advance via prev/next controls, pagination dots or autoplay (pauses on hover)." -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--font-ui);background:var(--surface-0);color:var(--ink-900)}
+  .card{padding:24px 0;display:flex;flex-direction:column;gap:var(--space-5);width:100%}
+  .grp{display:flex;flex-direction:column;gap:10px}
+  .ttl{font:var(--t-tiny);color:var(--ink-400);text-transform:uppercase;letter-spacing:.04em}
+
+  /* ============================ BANNER ============================ */
+  /* Responsive width · fixed 80px height · 6px radius · carousel slides */
+  .banner{position:relative;width:100%;height:80px;border-radius:var(--radius-md);
+          overflow:hidden;border:1px solid var(--line-100);background:var(--surface-50)}
+
+  /* track holds the slides side-by-side and slides horizontally */
+  .track{display:flex;height:100%;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+
+  /* each slide fills the banner exactly */
+  .slide{flex:0 0 100%;width:100%;height:100%;position:relative;overflow:hidden;
+         display:flex;align-items:center;gap:var(--space-3);padding:0 56px}
+  /* image / scrim layers for the full-image variant */
+  .slide .bg{position:absolute;inset:0;z-index:0}
+  .slide .scrim{position:absolute;inset:0;z-index:1;
+        background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.30) 45%,rgba(0,0,0,.10) 100%)}
+  .slide .copy{position:relative;z-index:2;min-width:0;flex:1;display:flex;flex-direction:column;justify-content:center;gap:3px}
+  .slide .head{font-size:14px;font-weight:600;line-height:18px;
+        white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .slide .sub{font-size:11px;font-weight:400;line-height:15px;
+        white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .slide .act{position:relative;z-index:2;flex:none}
+
+  /* base button (matches Buttons component) */
+  .btn{font-size:12px;font-weight:500;line-height:1;border-radius:var(--radius-sm);padding:9px 16px;
+       border:1px solid transparent;cursor:pointer;white-space:nowrap;
+       display:inline-flex;align-items:center;justify-content:center}
+  .btn.primary{background:var(--blue-500);color:var(--surface-0)}
+  .btn.primary:hover{background:var(--blue-600)}
+  .btn.onlight{background:var(--surface-0);color:var(--blue-500);border-color:var(--blue-500)}
+  .btn.onlight:hover{background:var(--blue-100);box-shadow:var(--shadow-md)}
+  /* white button for dark / image slides */
+  .btn.ondark{background:var(--surface-0);color:var(--ink-900)}
+  .btn.ondark:hover{box-shadow:var(--shadow-md)}
+
+  /* ---- slide background flavours ---- */
+  .bg-navy{background:linear-gradient(90deg,var(--navy-800) 0%,var(--navy-700) 100%)}
+  .bg-aarya{background:var(--aarya-gradient)}
+  .bg-tint{background:var(--blue-100)}
+  .on-dark .head{color:var(--surface-0)}
+  .on-dark .sub{color:rgba(255,255,255,.78)}
+  .on-light .head{color:var(--ink-900)}
+  .on-light .sub{color:var(--ink-600)}
+
+  /* striped image placeholder (DS convention — drop a real asset here) */
+  .ph{background:repeating-linear-gradient(135deg,#2B3550 0 12px,#343F5E 12px 24px)}
+  .ph .phlbl{position:absolute;right:10px;bottom:6px;z-index:1;
+        font-family:ui-monospace,Menlo,Consolas,monospace;font-size:9px;
+        color:rgba(255,255,255,.55);letter-spacing:.02em}
+
+  /* ---- prev / next controls (overlaid, edge-anchored) ---- */
+  .nav{position:absolute;top:50%;transform:translateY(-50%);z-index:5;
+       width:28px;height:28px;border-radius:50%;border:0;cursor:pointer;
+       display:flex;align-items:center;justify-content:center;
+       background:rgba(255,255,255,.92);color:var(--ink-700);box-shadow:var(--shadow-sm);
+       transition:background .15s,color .15s}
+  .nav:hover{background:var(--surface-0);color:var(--blue-500)}
+  .nav.prev{left:10px}
+  .nav.next{right:10px}
+  .nav svg{width:15px;height:15px}
+  /* on dark slides the controls keep a frosted look — handled by default light bg */
+
+  /* ---- pagination dots ---- */
+  .dots{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);z-index:5;
+        display:flex;gap:6px}
+  .dot{width:6px;height:6px;border-radius:50%;border:0;padding:0;cursor:pointer;
+       background:rgba(255,255,255,.55);transition:width .25s,background .2s}
+  .dot.active{width:18px;border-radius:var(--radius-pill);background:var(--surface-0)}
+  /* on light (tinted) slide the dots need contrast */
+  .banner.tint-dots .dot{background:rgba(0,0,0,.20)}
+  .banner.tint-dots .dot.active{background:var(--blue-500)}
+
+  /* ---- responsive: drop the sub-text on the smallest band ---- */
+  @media (max-width:30rem){
+    .slide{padding:0 48px}
+    .slide .sub{display:none}
+    .slide .head{font-size:13px}
+  }
+</style></head><body>
+<div class="card">
+
+  <div class="ds-grid">
+   <div class="grp ds-col-12">
+    <div class="ttl">Banner — carousel · full width · 12-column · 80px height</div>
+
+    <div class="banner" id="banner" aria-roledescription="carousel" aria-label="Promotional banner">
+      <div class="track" id="track">
+
+        <!-- Slide 1 · gradient background colour + text + button (light-on-dark) -->
+        <div class="slide bg-navy on-dark" role="group" aria-label="1 of 4">
+          <div class="copy">
+            <div class="head">AI-driven diagnostics &amp; troubleshooting</div>
+            <div class="sub">Detect, diagnose and fix connectivity issues before they impact customers.</div>
+          </div>
+          <button class="btn ondark act">Explore AARYA</button>
+        </div>
+
+        <!-- Slide 2 · solid tinted background + text + button (dark-on-light) -->
+        <div class="slide bg-tint on-light" role="group" aria-label="2 of 4">
+          <div class="copy">
+            <div class="head">Launch a new connectivity plan in minutes</div>
+            <div class="sub">Bundle data, voice and SMS, then push to any MVNO from one console.</div>
+          </div>
+          <button class="btn primary act">Create plan</button>
+        </div>
+
+        <!-- Slide 3 · AARYA gradient background + text + button -->
+        <div class="slide bg-aarya on-dark" role="group" aria-label="3 of 4">
+          <div class="copy">
+            <div class="head">Your monthly usage report is ready</div>
+            <div class="sub">Review consumption across 1,240 active SIMs and flag anomalies early.</div>
+          </div>
+          <button class="btn ondark act">View report</button>
+        </div>
+
+        <!-- Slide 4 · full-bleed image background + scrim + text + button -->
+        <div class="slide on-dark" role="group" aria-label="4 of 4">
+          <div class="bg ph"><span class="phlbl">banner image · 1768×80</span></div>
+          <div class="scrim"></div>
+          <div class="copy">
+            <div class="head">Onboard enterprise customers faster</div>
+            <div class="sub">Self-serve activation, automated KYC and bulk SIM provisioning out of the box.</div>
+          </div>
+          <button class="btn ondark act">Get started</button>
+        </div>
+
+      </div>
+
+      <button class="nav prev" id="prev" aria-label="Previous">
+        <svg fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="nav next" id="next" aria-label="Next">
+        <svg fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+
+      <div class="dots" id="dots"></div>
+    </div>
+   </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  const banner = document.getElementById('banner');
+  const track  = document.getElementById('track');
+  const slides = Array.from(track.children);
+  const dotsEl = document.getElementById('dots');
+  let i = 0, timer = null;
+  const DUR = 5000;
+
+  // build dots
+  slides.forEach((s, n)=>{
+    const b = document.createElement('button');
+    b.className = 'dot' + (n===0?' active':'');
+    b.setAttribute('aria-label', 'Go to slide ' + (n+1));
+    b.addEventListener('click', ()=>{ go(n); restart(); });
+    dotsEl.appendChild(b);
+  });
+  const dots = Array.from(dotsEl.children);
+
+  function go(n){
+    i = (n + slides.length) % slides.length;
+    track.style.transform = 'translateX(' + (-i*100) + '%)';
+    dots.forEach((d,k)=>d.classList.toggle('active', k===i));
+    // dot contrast: tinted (light) slide needs dark dots
+    banner.classList.toggle('tint-dots', slides[i].classList.contains('on-light'));
+  }
+  function next(){ go(i+1); }
+  function prev(){ go(i-1); }
+
+  document.getElementById('next').addEventListener('click', ()=>{ next(); restart(); });
+  document.getElementById('prev').addEventListener('click', ()=>{ prev(); restart(); });
+
+  function play(){ timer = setInterval(next, DUR); }
+  function stop(){ clearInterval(timer); timer = null; }
+  function restart(){ stop(); play(); }
+
+  banner.addEventListener('mouseenter', stop);
+  banner.addEventListener('mouseleave', play);
+
+  go(0); play();
+})();
+</script>
+</body></html>

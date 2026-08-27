@@ -1,0 +1,207 @@
+/* ============================================================================
+   6D Technologies — ONE UI Design System
+   Foundations: STRUCTURE tokens (z-index scale + locked component dimensions)
+   ----------------------------------------------------------------------------
+   STRICT: layering and component dimensions come ONLY from these tokens.
+   Never write a literal z-index, sidebar width, row height, etc. in screen
+   code. Replaces the previous ad-hoc z-index set (30/100/200/201/999/9999/
+   99999) with an ordered scale.
+   ============================================================================ */
+
+:root {
+  /* ---- Z-index scale (ordered — no other values exist) -------------------- */
+  --z-sticky:    100;  /* @kind other */ /* app header, left menu rail, sticky table toolbar */
+  --z-dropdown:  200;  /* @kind other */ /* field dropdowns, button menus, profile dropdown */
+  --z-scrim:     900;  /* @kind other */ /* dimmed backdrop behind drawer/modal */
+  --z-drawer:    910;  /* @kind other */ /* slide-in overlay/drawer panel */
+  --z-modal:     920;  /* @kind other */ /* modal / popup dialogs */
+  --z-popover:   930;  /* @kind other */ /* context menus, tooltips above modals */
+  --z-toaster:  1000;  /* @kind other */ /* toaster + mini toaster + snackbar — always topmost */
+
+  /* ---- App shell (locked) -------------------------------------------------- */
+  /* --header-h: 70px lives in colors_and_type.css (canonical, single source) */
+  --sidebar-w:           210px;       /* expanded left menu                   */
+  --sidebar-w-collapsed: 48px;        /* collapsed rail                       */
+  --nav-item-h:          48px;        /* left menu row height                 */
+  --nav-search-h:        40px;        /* left menu search field height        */
+  /* ---- Layout grid (responsive, 3 tiers — canonical foundation) -----------
+     12 → 6 → 2 column foundation. Grid GEOMETRY (container / margin / gutter)
+     is an INTENTIONAL exception to the 4/8/16/20/30 layout-spacing scale:
+     these are grid infrastructure, not general spacing, and may only be
+     consumed through the `.ds-grid` container below — never reused as ad-hoc
+     spacing elsewhere. Desktop values are the :root base; `.ds-grid` overrides
+     columns/gutter/margin at the tablet + mobile breakpoints. */
+  --container-max:       1320px;      /* @kind other */ /* desktop max content width (≥1024) */
+  --grid-cols:           12;          /* @kind other */ /* desktop columns (≥1024) */
+  --grid-gutter:         24px;        /* desktop gutter (≥1024)               */
+  --page-margin:         60px;        /* desktop container margin (≥1024)     */
+  --grid-cols-tablet:    6;           /* @kind other */ /* tablet columns 768–1023 */
+  --grid-gutter-tablet:  16px;        /* tablet gutter 768–1023               */
+  --page-margin-tablet:  32px;        /* tablet margin 768–1023               */
+  --grid-cols-mobile:    2;           /* @kind other */ /* mobile columns 320–767 */
+  --grid-gutter-mobile:  16px;        /* mobile gutter 320–767                */
+  --page-margin-mobile:  16px;        /* mobile margin 320–767                */
+
+  /* ---- Header internals (locked, per header-ui spec) ----------------------- */
+  --search-w:        280px;           /* gradient search bar width            */
+  --search-h:        40px;            /* gradient search bar height           */
+  --mic-size:        34px;            /* mic button circle                    */
+  --profile-dd-w:    264px;           /* profile dropdown width               */
+  --hdr-cell:        var(--header-h); /* reminders/profile square cells       */
+
+  /* ---- Data table (locked) -------------------------------------------------- */
+  /* Standards & Governance: data-first, progressive disclosure (detail →
+     side panel / modal / expandable row), minimal visual noise. Left-aligned
+     text, text-based statuses, one row-level dropdown max (never for primary
+     actions), overflow-menu row actions, bulk actions, WCAG 2.1 AA.
+     LOCKED behavior (see SKILL/RULES/CLAUDE): default 10 rows; Per View set is
+     5/10/25/50/100 (default 10); 7 default columns (rest under Add Column);
+     free search across ALL columns; every column heading sortable by default
+     (asc/desc toggle); dynamic Listing count = total rows across all pages;
+     Add Column is a multi-select dropdown that stays open until an outside
+     click, with a Danger text-button "Remove" per added column; truncated
+     cells show a custom tooltip popover on hover. */
+  --table-row-h:     60px;            /* LOCKED body row height (governance)  */
+  --table-rowdd-min: 120px;           /* row-level dropdown min width         */
+  --table-perview:   10;              /* @kind other */ /* LOCKED default Per View (set 5/10/25/50/100) */
+  --table-default-cols: 7;            /* @kind other */ /* LOCKED default visible columns */
+  --pg-btn:          28px;            /* pagination button (transparent bg)   */
+
+  /* ---- Overlay / Drawer (locked) --------------------------------------------
+     Right slide-in overlay (`Component/overlay-panel.html`): FIXED header +
+     footer, scrolling 12-grid body. Width is CONTENT-ADAPTIVE, expressed as a
+     span of the 12-col device width — more data → 10/8 cols, less data → 4/3
+     cols (default 8). Tablet (≤1023) & mobile (≤767) ALWAYS 100% width,
+     full-bleed. Width is never a fixed literal. */
+  --drawer-w:        auto;  /* @kind other */ /* width is content-driven — never fixed */
+  --drawer-max-w:    100vw;           /* hard cap so the panel never overflows */
+
+  /* ---- Toaster (locked) ------------------------------------------------------ */
+  --toast-min-w:     400px;           /* toaster min-width                    */
+  --toast-bar-h:     4px;             /* bottom progress bar                  */
+
+  /* ---- AARYA (AI assistant / chatbot) — locked ------------------------------
+     The conversational AI widget (Component/aarya.html): draggable, docks to a
+     launcher when minimised. Dimensions are LOCKED — reproduce exactly, never a
+     literal. Colors come only from the AARYA / semantic tokens in
+     colors_and_type.css (--aarya-gradient header, --purple-500 AI frame,
+     --primary-500 send). */
+  --aarya-w:          340px;          /* widget width (docked, draggable)        */
+  --aarya-video-h:    170px;          /* avatar video height (collapses to 0 off) */
+  --aarya-input-h:    48px;           /* sticky input bar min-height             */
+  --aarya-launcher-w: 58px;           /* minimised launcher pin width            */
+  --aarya-launcher-h: 66px;           /* minimised launcher pin height           */
+
+  /* ---- Accordion (locked, per accordion spec) ------------------------------ */
+  --acc-head-fs:     12px;            /* header font-size                     */
+  --acc-head-lh:     20px;            /* header line-height                   */
+  --acc-sub-fs:      11px;            /* subtext font-size                    */
+  --acc-sub-lh:      16px;            /* subtext line-height                  */
+  --acc-sub-gap:     0px;             /* gap between heading and subtext      */
+  --acc-body-fs:     12px;            /* body copy font-size                  */
+  --acc-body-lh:     16px;            /* body copy line-height                */
+  --acc-body-pad:    14px 16px;       /* body padding (equal top & bottom)    */
+  /* header weight: 400 when closed, 600 (Semibold) only for the open row;    */
+  /* the accordion is always 100% wide and responsive.                        */
+
+  /* ---- Avatar (locked, per avatar spec) -----------------------------------
+     Body is a CIRCLE (border-radius 50%) — the only avatar shape. Five sizes
+     only (default MD 40). A presence dot (bottom-left) and/or a status badge
+     (top-right) may be attached. Colors come ONLY from tokens: fills use
+     --blue-100 / --success-bg / --surface-100; presence uses
+     --success (available) / --alert (away) / --primary-500 (focused) /
+     --danger (busy); status badges tint an icons/ glyph white via CSS mask
+     over --success (approved) / --primary-500 (verified) / --ink-700 (locked)
+     / --danger (declined). Never a new avatar shape, size, or color. */
+  --avatar-xs:       24px;            /* dense tables, inline meta            */
+  --avatar-sm:       32px;            /* lists, comments                      */
+  --avatar-md:       40px;            /* DEFAULT                              */
+  --avatar-lg:       48px;            /* cards, detail rows                   */
+  --avatar-xl:       64px;            /* profile headers                      */
+
+  /* ---- Lozenge (locked, per lozenge spec) ----------------------------------
+     Prominent, compact status/attribute label (Component/lozenge.html) — higher
+     prominence than a Tag. Uppercase 600 glyph on --radius-sm; sanctioned
+     SEMANTIC colors ONLY (subtle + bold appearances: neutral / information /
+     success / warning / alert / danger; warning uses dark --ink-900 text, never
+     white-on-yellow). Optional leading icon (an icons/ glyph tinted to the text
+     color via inline currentColor — the file is never recoloured) and optional
+     trailing metric on SUBTLE semantic lozenges. Three locked heights; never a
+     literal. Never a new lozenge color, size, or radius. */
+  --lz-h-sm:         16px;            /* small — dense rows, table cells      */
+  --lz-h:            20px;            /* DEFAULT                              */
+  --lz-h-lg:         26px;            /* large — headers, focal labels        */
+
+  /* ---- Icons (locked) --------------------------------------------------------- */
+  --icon-size:       16px;            /* default icon size, all screens       */
+  /* hover color: var(--ink-900) — see CLAUDE.md icon rules                   */
+}
+
+/* ============================================================================
+   Responsive 12-column container (opt-in) — `.ds-grid`
+   ----------------------------------------------------------------------------
+   The canonical page container. Every screen composes inside `.ds-grid`: it
+   centers within --container-max, applies the tier margin as horizontal
+   padding, and lays a 12 / 6 / 2-column grid with the tier gutter. Children
+   span columns with `.ds-col-N` (N = 1..12). Mobile-first result: spans clamp
+   down at each breakpoint so hierarchy is preserved while content stacks.
+   Rules: align every component to columns; use spans that sum to the tier
+   column count; never float content outside the grid or invent a custom
+   container width; never mix a second grid system on the same screen.
+   ============================================================================ */
+.ds-grid{
+  box-sizing:border-box;
+  width:100%;
+  max-width:var(--container-max);
+  margin-inline:auto;
+  padding-inline:var(--page-margin);
+  display:grid;
+  grid-template-columns:repeat(var(--grid-cols), minmax(0,1fr));
+  column-gap:var(--grid-gutter);
+  row-gap:var(--grid-gutter);
+}
+.ds-col-1{grid-column:span 1}
+.ds-col-2{grid-column:span 2}
+.ds-col-3{grid-column:span 3}
+.ds-col-4{grid-column:span 4}
+.ds-col-5{grid-column:span 5}
+.ds-col-6{grid-column:span 6}
+.ds-col-7{grid-column:span 7}
+.ds-col-8{grid-column:span 8}
+.ds-col-9{grid-column:span 9}
+.ds-col-10{grid-column:span 10}
+.ds-col-11{grid-column:span 11}
+.ds-col-12{grid-column:span 12}
+
+/* Tablet 768–1023 — fluid, 6 columns, 16px gutter, 32px margin.
+   Collapse side panels, convert 4-col layouts to 2-col, stack secondary
+   content: any span > 6 clamps to the full 6-col width. */
+@media (min-width:768px) and (max-width:1023px){
+  .ds-grid{
+    max-width:none;
+    padding-inline:var(--page-margin-tablet);
+    grid-template-columns:repeat(var(--grid-cols-tablet), minmax(0,1fr));
+    column-gap:var(--grid-gutter-tablet);
+    row-gap:var(--grid-gutter-tablet);
+  }
+  .ds-col-7,.ds-col-8,.ds-col-9,.ds-col-10,.ds-col-11,.ds-col-12{grid-column:span 6}
+}
+
+/* Mobile 320–767 — fluid, 2 columns, 16px gutter, 16px margin.
+   Single-column-first: cards stack full width (span the 2-col track);
+   opt into a 2-up with `.ds-col-1`. No horizontal scroll, no multi-col forms. */
+@media (max-width:767px){
+  .ds-grid{
+    max-width:none;
+    padding-inline:var(--page-margin-mobile);
+    grid-template-columns:repeat(var(--grid-cols-mobile), minmax(0,1fr));
+    column-gap:var(--grid-gutter-mobile);
+    row-gap:var(--grid-gutter-mobile);
+  }
+  [class*="ds-col-"]{grid-column:span 2}
+  .ds-col-1{grid-column:span 1}
+}
+
+@media (prefers-reduced-motion: no-preference){
+  .ds-grid{transition:column-gap var(--dur-2,.2s) var(--ease-standard,ease),row-gap var(--dur-2,.2s) var(--ease-standard,ease)}
+}

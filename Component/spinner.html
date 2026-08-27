@@ -1,0 +1,68 @@
+<!-- @dsCard group="Components" title="Spinner" def="A spinner is an animated spinning icon that lets users know content is being loaded." -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--font-ui);background:var(--surface-0);color:var(--ink-900)}
+  .card{padding:28px 24px;display:flex;flex-direction:column;gap:32px;max-width:760px}
+  .sec{display:flex;flex-direction:column;gap:var(--space-3)}
+  .cap{font-size:10px;color:var(--ink-400);text-transform:uppercase;letter-spacing:.05em}
+  .strip{display:flex;align-items:flex-end;gap:34px;flex-wrap:wrap}
+  .cell{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+  .cell .name{font-size:11px;font-weight:600;color:var(--ink-900)}
+  .cell .use{font-size:10px;color:var(--ink-400);max-width:120px;line-height:1.45}
+  .swatch{height:56px;display:grid;place-items:center}
+
+  /* ---- Spinner ---- */
+  .spin{display:inline-block;border-radius:50%;border-style:solid;border-color:var(--line-200);
+        border-top-color:var(--blue-500);animation:spin .7s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .s-xs{width:12px;height:12px;border-width:2px}
+  .s-sm{width:16px;height:16px;border-width:2px}
+  .s-md{width:24px;height:24px;border-width:3px}
+  .s-lg{width:32px;height:32px;border-width:3px}
+  .s-xl{width:48px;height:48px;border-width:4px}
+  /* on-dark variant */
+  .spin.on-dark{border-color:rgba(255,255,255,.3);border-top-color:var(--surface-0)}
+  /* neutral variant */
+  .spin.neutral{border-top-color:var(--ink-600)}
+
+  /* contextual examples */
+  .demos{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:var(--space-2);height:32px;padding:0 14px;border-radius:var(--radius-sm);
+       background:var(--blue-500);color:var(--surface-0);font-size:12px;font-weight:500;border:0}
+  .btn.sec{background:var(--surface-0);color:var(--blue-600);border:1px solid var(--blue-500)}
+  .field{height:var(--field-h);width:200px;border:1px solid var(--line-200);border-radius:var(--radius-sm);background:var(--surface-0);
+         display:flex;align-items:center;gap:var(--space-2);padding:0 10px;font-size:12px;color:var(--ink-400)}
+  .field .grow{flex:1}
+  .toggle{width:34px;height:18px;border-radius:var(--radius-pill);background:var(--blue-500);position:relative;display:inline-flex;align-items:center}
+  .toggle .knob{position:absolute;right:2px;width:14px;height:14px;border-radius:50%;background:var(--surface-0);display:grid;place-items:center}
+  .inline{display:inline-flex;align-items:center;gap:10px;font-size:12px;color:var(--ink-600)}
+</style></head><body>
+<div class="card">
+
+  <!-- SIZES -->
+  <div class="sec">
+    <div class="cap">Sizes</div>
+    <div class="strip">
+      <div class="cell"><div class="swatch"><span class="spin s-xs"></span></div><span class="name">Extra small</span><span class="use">Use inside toggles</span></div>
+      <div class="cell"><div class="swatch"><span class="spin s-sm"></span></div><span class="name">Small</span><span class="use">Buttons, form fields, tight spaces</span></div>
+      <div class="cell"><div class="swatch"><span class="spin s-md"></span></div><span class="name">Medium</span><span class="use">Default — most use cases</span></div>
+      <div class="cell"><div class="swatch"><span class="spin s-lg"></span></div><span class="name">Large</span><span class="use">Section / panel loading</span></div>
+      <div class="cell"><div class="swatch"><span class="spin s-xl"></span></div><span class="name">Extra large</span><span class="use">Full-page / empty states</span></div>
+    </div>
+  </div>
+
+  <!-- CONTEXT -->
+  <div class="sec">
+    <div class="cap">In context</div>
+    <div class="demos">
+      <button class="btn"><span class="spin s-sm on-dark"></span>Saving…</button>
+      <div class="field"><span class="grow">Validating…</span><span class="spin s-sm neutral"></span></div>
+      <span class="toggle"><span class="knob"><span class="spin s-xs"></span></span></span>
+      <span class="inline"><span class="spin s-md"></span>Loading content…</span>
+    </div>
+  </div>
+
+</div>
+</body></html>

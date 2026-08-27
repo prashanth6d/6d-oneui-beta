@@ -1,0 +1,102 @@
+<!-- @dsCard group="Components" title="Timeline" def="A timeline tracks an item's progress through a sequence of steps. Completed steps use a filled success-green node and a solid green connector; the current step is a larger blue node; pending steps use a grey node and a dashed connector. Each step carries a title and a timestamp. Responsive and aligned to the 12-column grid." -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--font-ui);background:var(--surface-0);color:var(--ink-900)}
+
+  /* ---- 12-column grid stage (20px gutters) ---- */
+  .stage{padding:24px}
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px 20px}
+  .cell{grid-column:span 12}                                /* xxs / xs — full width */
+  @media (min-width:48rem){ .cell{grid-column:span 6} }     /* sm  — half */
+  @media (min-width:64rem){ .cell{grid-column:span 4} }     /* md  — third */
+  @media (min-width:90rem){ .cell{grid-column:span 3} }     /* lg+ — quarter */
+
+  /* ===================== TIMELINE ===================== */
+  .timeline{list-style:none;margin:0;padding:0}
+  .step{position:relative;display:grid;grid-template-columns:18px 1fr;column-gap:14px;
+        padding-bottom:18px}
+  .step:last-child{padding-bottom:0}
+
+  /* node column */
+  .node{position:relative;display:flex;justify-content:center}
+  .dot{width:14px;height:14px;border-radius:50%;margin-top:2px;z-index:1;flex:none;
+       transition:box-shadow .2s ease}
+
+  /* connector to the next step (drawn from this dot downward) */
+  .node::before{content:"";position:absolute;left:50%;transform:translateX(-50%);
+        top:17px;bottom:-18px;width:2px;background:var(--success)}
+  .step:last-child .node::before{display:none}
+
+  /* ---- state: completed ---- */
+  .step.done .dot{background:var(--success)}
+
+  /* ---- state: current ---- */
+  .step.current .dot{width:18px;height:18px;margin-top:0;background:var(--blue-500);
+        box-shadow:0 0 0 4px var(--blue-tint-15);animation:pulse 1.8s ease-out infinite}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 var(--blue-tint-15)}
+    70%{box-shadow:0 0 0 8px rgba(0,153,255,0)}
+    100%{box-shadow:0 0 0 0 rgba(0,153,255,0)}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .step.current .dot{animation:none;box-shadow:0 0 0 4px var(--blue-tint-15)}
+  }
+  /* link leaving the current step (toward pending) is dashed grey */
+  .step.current .node::before{background:none;border-left:2px dashed var(--line-200)}
+
+  /* ---- state: pending ---- */
+  .step.pending .dot{background:var(--line-300)}
+  .step.pending .node::before{background:none;border-left:2px dashed var(--line-200)}
+
+  /* content */
+  .content{padding-top:0;min-width:0}
+  .step-title{font:var(--t-body);color:var(--ink-900);margin:0}        /* 12px / 400 regular */
+  .step.current .step-title{font:var(--t-body-med);color:var(--ink-900)} /* 12px / 500 — active emphasis */
+  .step-time{font:var(--t-tiny);font-style:italic;color:var(--ink-600);margin-top:2px;text-wrap:pretty}  /* 10px italic */
+  .step.pending .step-title{color:var(--ink-400)}
+  .step.pending .step-time{color:var(--ink-400)}
+</style></head><body>
+<div class="stage">
+  <div class="grid">
+    <div class="cell">
+
+      <ul class="timeline">
+        <li class="step done">
+          <div class="node"><span class="dot"></span></div>
+          <div class="content">
+            <p class="step-title">Ordered</p>
+            <p class="step-time">9:15 AM, January 1, 2024</p>
+          </div>
+        </li>
+
+        <li class="step done">
+          <div class="node"><span class="dot"></span></div>
+          <div class="content">
+            <p class="step-title">Shipped</p>
+            <p class="step-time">12:20 PM, January 4, 2024</p>
+          </div>
+        </li>
+
+        <li class="step current">
+          <div class="node"><span class="dot"></span></div>
+          <div class="content">
+            <p class="step-title">Out for delivery</p>
+            <p class="step-time">07:00 AM, January 8, 2024</p>
+          </div>
+        </li>
+
+        <li class="step pending">
+          <div class="node"><span class="dot"></span></div>
+          <div class="content">
+            <p class="step-title">Delivered</p>
+            <p class="step-time">Estimated delivery by 09:20 AM</p>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+</body></html>
