@@ -1,0 +1,45 @@
+<!-- @dsCard group="Code Components" name="Select" subtitle="Importable Select — searchable single & multi-select" viewport="760x420" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<link href="../../styles.css" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--font-ui);background:var(--surface-0);color:var(--ink-900)}
+.card{padding:24px;display:flex;flex-direction:column;gap:var(--space-4)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(220px,300px));gap:22px 28px;align-items:start}
+.ttl{font:var(--t-tiny);color:var(--ink-400);text-transform:uppercase;letter-spacing:.04em}
+pre{margin:0;padding:12px 14px;background:var(--surface-50);border:1px solid var(--line-100);border-radius:var(--radius-sm);font-size:11px;color:var(--ink-700);overflow-x:auto}
+</style></head><body>
+<div class="card">
+  <div class="ttl">Single · multi · disabled</div>
+  <div id="root" class="grid"></div>
+  <div class="ttl">Usage</div>
+<pre>const { Select } = window.Ds6DTechnologiesONEUIDesignSystem_9f23d5;
+
+&lt;Select label="Partner Type" options={['MVNO Partner','Reseller','Enterprise']}
+        value={type} onChange={setType} /&gt;
+&lt;Select label="Regions" multiple value={regions} onChange={setRegions}
+        options={[{value:'n',label:'North'},{value:'s',label:'South'}]} /&gt;</pre>
+</div>
+<script>
+window.addEventListener('load', () => {
+  const ns = window.Ds6DTechnologiesONEUIDesignSystem_9f23d5 || {};
+  const { Select } = ns;
+  if (!Select) { document.getElementById('root').textContent = 'Bundle not compiled yet.'; return; }
+  const e = React.createElement;
+  const partners = ['MVNO Partner', 'Reseller', 'Enterprise', 'Distributor', 'Direct Customer'];
+  function Demo() {
+    const [one, setOne] = React.useState('');
+    const [many, setMany] = React.useState(['Reseller']);
+    return e(React.Fragment, null,
+      e(Select, { label: 'Single select (searchable)', options: partners, value: one, onChange: setOne }),
+      e(Select, { label: 'Multi select', options: partners, multiple: true, value: many, onChange: setMany }),
+      e(Select, { label: 'Disabled', options: partners, value: 'Reseller', disabled: true })
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(e(Demo));
+});
+</script>
+</body></html>

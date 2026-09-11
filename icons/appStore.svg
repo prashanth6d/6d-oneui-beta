@@ -1,0 +1,13 @@
+<svg id="appStore_6d" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3831" data-name="Rectangle 3831" width="24" height="24" fill="#555"></rect>
+    </clipPath>
+  </defs>
+  <g id="Group_4698" data-name="Group 4698" clip-path="url(#clip-path)">
+    <path id="Path_4591" data-name="Path 4591" d="M12,0A12,12,0,1,0,24,12,12,12,0,0,0,12,0m0,22.5A10.5,10.5,0,1,1,22.5,12,10.512,10.512,0,0,1,12,22.5" fill="#555"></path>
+    <path id="Path_4592" data-name="Path 4592" d="M9.93,13.836l4.255-7.257a.75.75,0,1,0-1.294-.759L11.93,7.458,10.97,5.82a.751.751,0,1,0-1.3.759L11.06,8.941l-2.87,4.9H5.384a.75.75,0,0,0,0,1.5h8.267l-.88-1.5Z" fill="#555"></path>
+    <path id="Path_4593" data-name="Path 4593" d="M18.616,13.836H15.67L13.379,9.93l-.869,1.484,3.967,6.766a.75.75,0,0,0,.649.371.742.742,0,0,0,.378-.1.752.752,0,0,0,.268-1.027l-1.223-2.085h2.067a.75.75,0,0,0,0-1.5" fill="#555"></path>
+    <path id="Path_4594" data-name="Path 4594" d="M6.088,17.421a.75.75,0,0,0,.269,1.026.741.741,0,0,0,.377.1.751.751,0,0,0,.649-.37l1.081-1.844H6.724Z" fill="#555"></path>
+  </g>
+</svg>

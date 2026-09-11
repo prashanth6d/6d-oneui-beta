@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24.002" viewBox="0 0 24 24.002">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3180" data-name="Rectangle 3180" width="20" height="24.002" transform="translate(0 0)" fill="#555"></rect>
+    </clipPath>
+  </defs>
+  <g id="bucketThreshold_6d" transform="translate(-1042 -3146)">
+    <g id="Group_4329" data-name="Group 4329">
+      <g id="Group_4328" data-name="Group 4328">
+        <g id="_6D_bucket_threshold" data-name="6D_bucket_threshold" transform="translate(1044 3146)">
+          <g id="Group_3936" data-name="Group 3936" clip-path="url(#clip-path)">
+            <path id="Path_3182" data-name="Path 3182" d="M8.983,12.051a.751.751,0,0,0-.7.55l-.831,2.993-.544-2.955a.749.749,0,0,0-.671-.611.737.737,0,0,0-.769.483L4.395,15.382H4.128a.75.75,0,0,0,0,1.5h.787a.751.751,0,0,0,.7-.486l.309-.825.645,3.5a.749.749,0,0,0,.7.613h.033a.751.751,0,0,0,.723-.55L9.1,15.288l.37,1.041a.752.752,0,0,0,.707.5H12.2a1.113,1.113,0,1,0-.023-1.5H10.7L9.716,12.55a.767.767,0,0,0-.733-.5" fill="#555"></path>
+            <path id="Path_3183" data-name="Path 3183" d="M15.122,16.061a2.048,2.048,0,0,1-2.045,2.046v1.5a3.546,3.546,0,0,0,0-7.092v1.5a2.048,2.048,0,0,1,2.045,2.046" fill="#555"></path>
+            <path id="Path_3184" data-name="Path 3184" d="M18.812,7.956H16.89V6.89a6.89,6.89,0,0,0-13.781,0V7.954H1.187A1.187,1.187,0,0,0,.014,9.324L2.174,23.24a.915.915,0,0,0,.912.76h7v0h6.824a.913.913,0,0,0,.912-.76l2.16-13.916a1.187,1.187,0,0,0-1.173-1.37M4.609,6.89a5.391,5.391,0,0,1,10.781,0V7.956H10.91v0h-6.3ZM16.422,22.5H10.91v0H3.577L1.552,9.454h8.537v0h8.358Z" fill="#555"></path>
+          </g>
+        </g>
+        <rect id="Rectangle_3507" data-name="Rectangle 3507" width="24" height="24" transform="translate(1042 3146)" fill="none"></rect>
+      </g>
+    </g>
+  </g>
+</svg>

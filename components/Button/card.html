@@ -1,0 +1,65 @@
+<!-- @dsCard group="Code Components" name="Button" subtitle="Importable Button, TextButton, Toggle" viewport="760x440" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<link href="../../styles.css" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--font-ui);background:var(--surface-0);color:var(--ink-900)}
+.card{padding:24px;display:flex;flex-direction:column;gap:var(--space-4)}
+.ttl{font:var(--t-tiny);color:var(--ink-400);text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+pre{margin:0;padding:12px 14px;background:var(--surface-50);border:1px solid var(--line-100);border-radius:var(--radius-sm);font-size:11px;color:var(--ink-700);overflow-x:auto}
+</style></head><body>
+<div class="card">
+  <div id="root"></div>
+  <div>
+    <div class="ttl">Usage</div>
+<pre>const { Button, TextButton, Toggle } = window.Ds6DTechnologiesONEUIDesignSystem_9f23d5;
+
+&lt;Button variant="primary" onClick={save}&gt;Save Changes&lt;/Button&gt;
+&lt;Button variant="secondary"&gt;Export&lt;/Button&gt;
+&lt;Button variant="ghost"&gt;Cancel&lt;/Button&gt;      // alias of tertiary
+&lt;Button variant="danger" outline&gt;Suspend&lt;/Button&gt;
+&lt;TextButton variant="danger"&gt;Remove&lt;/TextButton&gt;
+&lt;Toggle checked={on} onChange={setOn} label="Auto renew" /&gt;</pre>
+  </div>
+</div>
+<script>
+window.addEventListener('load', () => {
+  const ns = window.Ds6DTechnologiesONEUIDesignSystem_9f23d5 || {};
+  const { Button, TextButton, Toggle } = ns;
+  if (!Button) { document.getElementById('root').textContent = 'Bundle not compiled yet.'; return; }
+  const e = React.createElement;
+  const Group = (title, ...kids) =>
+    e('div', null, e('div', { className: 'ttl' }, title), e('div', { className: 'row' }, ...kids));
+
+  function Demo() {
+    const [on, setOn] = React.useState(true);
+    return e('div', { style: { display: 'flex', flexDirection: 'column', gap: '20px' } },
+      Group('Variants',
+        e(Button, { variant: 'primary' }, 'Primary'),
+        e(Button, { variant: 'secondary' }, 'Secondary'),
+        e(Button, { variant: 'tertiary' }, 'Tertiary'),
+        e(Button, { variant: 'success' }, 'Success'),
+        e(Button, { variant: 'danger' }, 'Danger'),
+        e(Button, { variant: 'ghost' }, 'Cancel')
+      ),
+      Group('Outline · disabled',
+        e(Button, { variant: 'success', outline: true }, 'Approve'),
+        e(Button, { variant: 'danger', outline: true }, 'Suspend'),
+        e(Button, { variant: 'primary', disabled: true }, 'Disabled')
+      ),
+      Group('Text buttons · toggle',
+        e(TextButton, { variant: 'primary' }, 'View Details'),
+        e(TextButton, { variant: 'danger' }, 'Remove'),
+        e(Toggle, { checked: on, onChange: setOn, label: 'Auto renew' }),
+        e('span', { style: { font: 'var(--t-micro)', color: 'var(--ink-400)' } }, on ? 'on' : 'off')
+      )
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(e(Demo));
+});
+</script>
+</body></html>

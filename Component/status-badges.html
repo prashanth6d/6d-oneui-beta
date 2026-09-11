@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Status & Chips" subtitle="Dot+word statuses + pills" viewport="700x180" --><html lang="en"><head><meta charset="utf-8">
+
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  body{margin:0;font-family:var(--font-ui);background:var(--surface-0)}
+  .card{padding:20px 22px;display:flex;flex-direction:column;gap:var(--space-3)}
+  .ttl{font-size:10px;color:var(--ink-400);margin-bottom:9px}
+  .row{display:flex;gap:var(--space-4);align-items:center;flex-wrap:wrap}
+  .stat{display:inline-flex;align-items:center;font:var(--t-body-med);font-weight:600}
+  .chip{display:inline-flex;align-items:center;gap:6px;font:var(--t-micro);padding:3px 9px;border-radius:var(--radius-pill)}
+</style></head><body>
+<div class="card">
+  <div>
+    <div class="ttl">Status (colored label)</div>
+    <div class="row">
+      <span class="stat" style="color:var(--success)">Active</span>
+      <span class="stat" style="color:var(--danger)">Failed</span>
+      <span class="stat" style="color:var(--warning)">Pending</span>
+      <span class="stat" style="color:var(--ink-400)">Blocked</span>
+    </div>
+  </div>
+  <div>
+    <div class="ttl">Chips / pills</div>
+    <div class="row">
+      <span class="chip" style="background:var(--success-bg);color:var(--success)">Active</span>
+      <span class="chip" style="background:var(--danger-bg);color:var(--danger)">Failed</span>
+      <span class="chip" style="background:var(--blue-tint-15);color:var(--blue-600)">MVNO</span>
+      <span class="chip" style="background:var(--surface-100);color:var(--ink-600)">4 Items Selected</span>
+    </div>
+  </div>
+</div></body></html>

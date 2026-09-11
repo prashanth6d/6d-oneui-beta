@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Components" name="Breadcrumb" subtitle="Max 4 steps (3 previous + current); beyond 4 only first & current stay, the rest collapse into hover dots" viewport="700x130" --><html lang="en"><head><meta charset="utf-8">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--font-ui);background:var(--surface-0);color:var(--ink-900)}
+  .card{padding:22px}
+  .ttl{font-size:10px;color:var(--ink-400);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em}
+
+  .bc{display:flex;align-items:center;gap:var(--space-2);font-size:12px;font-weight:600;line-height:20px}
+  .bc a{color:var(--ink-900);text-decoration:none;cursor:pointer}
+  .bc a:hover{text-decoration:underline}
+  .bc .cur{font-weight:400;color:var(--ink-400)}
+  .sep{color:var(--ink-400);font-weight:400}
+
+  /* simple tooltip on completed steps */
+  .tip{position:relative}
+  .tip::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 9px);left:50%;transform:translateX(-50%);
+    background:var(--ink-900);color:var(--surface-0);font-size:11px;font-weight:400;line-height:1;white-space:nowrap;
+    padding:6px 9px;border-radius:var(--radius-sm);opacity:0;visibility:hidden;transition:opacity .15s;pointer-events:none;z-index:20}
+  .tip::before{content:"";position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);
+    border:5px solid transparent;border-top-color:var(--ink-900);opacity:0;visibility:hidden;transition:opacity .15s;z-index:20}
+  .tip:hover::after,.tip:hover::before{opacity:1;visibility:visible}
+
+  /* collapsed "…" with hover dropdown of hidden steps */
+  .dots{position:relative;display:inline-flex}
+  .dots .box{width:36px;height:30px;border-radius:var(--radius-md);border:1px solid transparent;display:grid;place-items:center;
+             cursor:pointer;color:var(--ink-600);transition:border-color .15s,color .15s}
+  .dots .box svg{width:18px;height:18px}
+  .dots:hover .box{border-color:var(--blue-500);color:var(--blue-500)}
+  .dots .menu{position:absolute;top:calc(100% + 8px);left:0;width:max-content;background:var(--surface-0);border:1px solid var(--line-100);
+              border-radius:var(--radius-sm);box-shadow:var(--field-list-shadow);z-index:15;
+              opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .2s ease,transform .2s ease,visibility .2s}
+  .dots:hover .menu{opacity:1;visibility:visible;transform:translateY(0)}
+  .dots .menu a{display:flex;align-items:center;height:26px;padding:0 16px;font-size:12px;
+                font-weight:400;color:var(--ink-900);text-decoration:none;border-top:1px solid var(--line-100);cursor:pointer;white-space:nowrap}
+  .dots .menu a:first-child{border-top:0}
+  .dots .menu a:hover{background:var(--blue-100)}
+
+  .head-block{margin-bottom:24px}
+  .head-block h1{margin:0 0 8px;font-size:20px;line-height:28px;font-weight:500;color:var(--ink-900)}
+  .head-block p{margin:0;font-size:12px;line-height:16px;font-weight:400;color:var(--ink-600);max-width:640px}
+</style></head><body>
+<div class="card">
+
+  <div class="head-block">
+    <h1>Breadcrumbs</h1>
+    <p>Breadcrumbs serve as an effective visual aid, indicating the location of the user within the website&rsquo;s hierarchy, making them a great source of contextual information for landing pages. Also, breadcrumbs allow for easy navigation to higher-level pages.</p>
+  </div>
+
+  <div class="ttl">Up to 4 steps — 3 previous + current. Hover a completed step for its tooltip</div>
+  <div class="bc">
+    <a class="tip" data-tip="Sites">Sites</a><span class="sep">/</span>
+    <a class="tip" data-tip="Surat DC 167">Surat DC 167</a><span class="sep">/</span>
+    <a class="tip" data-tip="Rack A06">Rack A06</a><span class="sep">/</span>
+    <span class="cur">Shelf 1</span>
+  </div>
+
+  <div class="ttl" style="margin-top:28px">More than 4 steps — only the first &amp; current stay; every step between collapses into the dots. Hover the dots for the hidden steps</div>
+  <div class="bc">
+    <a class="tip" data-tip="Sites">Sites</a><span class="sep">/</span>
+    <span class="dots">
+      <span class="box" tabindex="0">
+        <svg fill="currentColor" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg>
+      </span>
+      <div class="menu">
+        <a>Surat DC 167</a>
+        <a>Rack A06</a>
+        <a>Shelf 1</a>
+      </div>
+    </span>
+    <span class="sep">/</span>
+    <span class="cur">Slot 2</span>
+  </div>
+
+</div></body></html>

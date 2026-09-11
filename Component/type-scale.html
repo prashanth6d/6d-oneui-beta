@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Type scale" subtitle="Canonical type guidelines — sizes, weights, roles" viewport="700x500" --><html lang="en"><head><meta charset="utf-8">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  body{margin:0;font-family:var(--font-ui);background:var(--surface-0);color:var(--ink-900)}
+  .card{padding:24px 28px}
+  .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:var(--space-5)}
+  .meta .k{font-size:12px;font-weight:400;color:var(--ink-400);margin-bottom:6px}
+  .meta .v{font-size:13px;font-weight:700;color:var(--ink-900)}
+  table{width:100%;border-collapse:collapse}
+  th,td{text-align:left;padding:10px 12px;border-top:1px solid var(--line-100);font-size:12px;color:var(--ink-700)}
+  th{font-weight:600;color:var(--ink-400);border-top:0;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+  td b{color:var(--ink-900);font-weight:700}
+  .sample{color:var(--ink-900)}
+  .note{margin-top:16px;font-size:12px;line-height:16px;color:var(--ink-600)}
+  .note b{color:var(--ink-900)}
+</style></head><body>
+<div class="card">
+
+  <div class="meta">
+    <div><div class="k">Font-Family</div><div class="v">Poppins</div></div>
+    <div><div class="k">Font-Sizes</div><div class="v">12, 14, 16, 20 &amp; 24px</div></div>
+    <div><div class="k">Font-Weights</div><div class="v">Light, Regular, Semibold &amp; Bold</div></div>
+    <div><div class="k">Letter-Spacing</div><div class="v">0px</div></div>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Size</th><th>Line-height</th><th>Ratio</th><th>Sample</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><b>24px</b></td><td>32px</td><td>1.33×</td><td class="sample" style="font-size:24px;line-height:32px;font-weight:700">Headline</td></tr>
+      <tr><td><b>20px</b></td><td>28px</td><td>1.40×</td><td class="sample" style="font-size:20px;line-height:28px;font-weight:500">Page title</td></tr>
+      <tr><td><b>16px</b></td><td>24px</td><td>1.50×</td><td class="sample" style="font-size:16px;line-height:24px;font-weight:500">Section heading</td></tr>
+      <tr><td><b>14px</b></td><td>20px</td><td>1.43×</td><td class="sample" style="font-size:14px;line-height:20px;font-weight:700">Card / popup heading</td></tr>
+      <tr><td><b>12px</b></td><td>16px</td><td>1.33×</td><td class="sample" style="font-size:12px;line-height:16px;font-weight:400">Body content &amp; labels</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note"><b>Mandatory.</b> Every size is bound to the line-height above; each holds a
+  ≥ 1.33× ratio for readability &amp; WCAG 2.1 AA. No custom size or line-height outside this
+  table unless explicitly approved. Sub-caption glyphs (badges / pills / locked micro copy)
+  use the exception tier only: <b>10/14</b> &amp; <b>9/12</b>.</div>
+</div></body></html>

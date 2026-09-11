@@ -1,0 +1,87 @@
+<!-- @dsCard group="Components" name="Snackbar" subtitle="Brief, non-interrupting bottom-left message on a dark surface; auto-dismiss after 5s or persistent until the user acts/closes it. Tokens only." viewport="760x360" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--font-ui);background:var(--surface-50);color:var(--ink-900);min-height:100vh}
+
+  /* demo controls */
+  .panel{padding:24px;display:flex;flex-direction:column;gap:14px;max-width:340px}
+  .sec-ttl{font-size:11px;font-weight:600;color:var(--ink-900);text-transform:uppercase;letter-spacing:.05em;
+           border-bottom:1px solid var(--line-100);padding-bottom:6px}
+  .trig{font-size:12px;font-weight:500;border-radius:var(--radius-sm);padding:9px 14px;border:1px solid var(--line-200);
+        background:var(--surface-0);color:var(--ink-900);cursor:pointer;width:fit-content}
+  .trig:hover{background:var(--surface-100)}
+
+  /* ---- snackbar: bottom-left, dark, non-interrupting ---- */
+  .snack-stack{position:fixed;bottom:10px;left:10px;display:flex;flex-direction:column-reverse;gap:var(--space-2);z-index:var(--z-toaster)}
+  .snack{display:inline-flex;align-items:center;gap:14px;background:var(--ink-900);color:var(--surface-0);
+         border-radius:var(--radius-sm);padding:11px 16px;box-shadow:var(--shadow-lg);max-width:420px;
+         animation:snackIn .3s ease both}
+  @keyframes snackIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+  .snack.out{animation:snackOut .3s ease forwards}
+  @keyframes snackOut{to{opacity:0;transform:translateY(12px)}}
+  .snack .msg{font-size:12px;color:var(--surface-0);line-height:1.5}
+  .snack a{font-size:12px;font-weight:500;color:var(--blue-500);cursor:pointer;text-decoration:none;white-space:nowrap}
+  .snack a:hover{text-decoration:underline}
+  .snack .x{width:16px;height:16px;color:var(--surface-0);opacity:.6;cursor:pointer;flex:none;transition:transform .2s ease,opacity .2s ease,color .2s ease}
+  .snack .x:hover{color:var(--danger);opacity:1;transform:rotate(180deg)}
+</style></head><body>
+
+  <div class="panel">
+    <div class="sec-ttl">Snackbar</div>
+    <button class="trig" id="showAuto">Show auto-dismiss snackbar</button>
+    <button class="trig" id="showPersist">Show persistent snackbar</button>
+  </div>
+
+  <!-- snackbars -->
+  <div class="snack-stack" id="stack">
+    <div class="snack" data-auto="true">
+      <span class="msg">Changes saved to draft.</span>
+      <a>Undo</a>
+    </div>
+    <div class="snack" data-auto="false">
+      <span class="msg">Connection lost — reconnecting in the background.</span>
+      <a>Retry now</a>
+      <svg class="x" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </div>
+  </div>
+
+<script>
+  const stack = document.getElementById('stack');
+
+  function dismiss(el){
+    el.classList.add('out');
+    setTimeout(()=> el.remove(), 300);
+  }
+
+  function wire(snack){
+    // close icon (persistent snackbars)
+    const x = snack.querySelector('.x');
+    if(x) x.addEventListener('click', ()=> dismiss(snack));
+    // action links dismiss the snackbar too
+    snack.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> dismiss(snack)));
+    // auto-dismiss after 5s
+    if(snack.dataset.auto === 'true') setTimeout(()=> { if(snack.isConnected) dismiss(snack); }, 5000);
+  }
+
+  stack.querySelectorAll('.snack').forEach(wire);
+
+  function spawn(auto){
+    const el = document.createElement('div');
+    el.className = 'snack';
+    el.dataset.auto = auto;
+    if(auto){
+      el.innerHTML = '<span class="msg">Changes saved to draft.</span><a>Undo</a>';
+    } else {
+      el.innerHTML = '<span class="msg">Connection lost — reconnecting in the background.</span><a>Retry now</a>'+
+        '<svg class="x" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>';
+    }
+    stack.appendChild(el);
+    wire(el);
+  }
+
+  document.getElementById('showAuto').addEventListener('click', ()=> spawn(true));
+  document.getElementById('showPersist').addEventListener('click', ()=> spawn(false));
+</script>
+</body></html>

@@ -1,0 +1,172 @@
+<!-- @dsCard group="Components" name="Dropdown" subtitle="Searchable single & multi-select dropdowns with tags, clear, and keyboard navigation" viewport="760x420" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--font-ui);background:var(--surface-0);color:var(--ink-900)}
+  .card{padding:24px;display:grid;grid-template-columns:repeat(2,1fr);gap:26px 28px;align-items:start}
+  .grp{display:flex;flex-direction:column;gap:var(--space-3)}
+  .ttl{font-size:11px;font-weight:600;color:var(--ink-900);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--line-100);padding-bottom:6px}
+  .lbl{font-size:12px;font-weight:500;color:var(--ink-600);margin-bottom:6px;display:block}
+
+  /* ---- base field (40px — --field-h) ---- */
+  .field{height:var(--field-h);border:1px solid var(--line-200);border-radius:var(--radius-sm);background:var(--surface-0);padding:0 10px;
+         display:flex;align-items:center;gap:var(--space-2);font-size:12px;font-weight:500;color:var(--ink-900);transition:border-color .15s ease,box-shadow .15s ease}
+  .field:hover{border-color:var(--ink-400)}
+  .field:hover:not(.dis){background:var(--surface-50)}
+  .field.dis{background:var(--surface-50);border-color:var(--line-100)}
+  .field.dis input{color:var(--ink-400)}
+  .clear{width:16px;height:16px;color:var(--clear-icon);cursor:pointer;transition:color .12s,transform .12s;flex:none;opacity:0;pointer-events:none}
+  .clear.show{opacity:1;pointer-events:auto}
+  .clear:hover{color:var(--clear-icon-hover);transform:scale(1.12)}
+  .caret-icon{width:16px;height:16px;color:var(--ink-600);flex:none;transition:transform .2s ease}
+
+  /* ---- select / dropdown ---- */
+  .sel{position:relative}
+  .sel .field{cursor:pointer}
+  .sel.open .field{border-color:var(--ink-600)}
+  .sel.open .caret-icon{transform:rotate(180deg)}
+  .val{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .val.ph{color:var(--ink-400)}
+  .list{position:absolute;top:calc(100% + 4px);left:0;width:100%;background:var(--surface-0);border:1px solid var(--field-list-border);
+        border-radius:var(--radius-sm);box-shadow:var(--field-list-shadow);overflow:hidden;z-index:20;
+        opacity:0;transform:translateY(-6px);visibility:hidden;transition:opacity .18s ease,transform .18s ease,visibility .18s}
+  .sel.open .list{opacity:1;transform:translateY(0);visibility:visible}
+  .srch{display:flex;align-items:center;gap:var(--space-2);padding:8px 10px;border-bottom:1px solid var(--line-100)}
+  .srch svg{width:13px;height:13px;color:var(--ink-400);flex:none}
+  .srch input{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:12px;color:var(--ink-900)}
+  .srch input::placeholder{color:var(--ink-400)}
+  .opts{max-height:168px;overflow:auto}
+  .opt{padding:9px 10px;font-size:12px;font-weight:500;color:var(--ink-900);display:flex;align-items:center;gap:10px;cursor:pointer}
+  .opt:hover{background:var(--blue-100)}
+  .opt.hidden{display:none}
+  .opt.sel{background:var(--blue-tint-08)}
+  .no-res{padding:12px 10px;font-size:12px;color:var(--ink-400);text-align:center}
+
+  /* tags (multi) — fixed single-line height */
+  .field.multi{height:var(--field-h);padding:0 8px;flex-wrap:nowrap;overflow:hidden}
+  .tags{display:flex;gap:6px;flex-wrap:nowrap;flex:1;align-items:center;overflow:hidden}
+  .tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;background:var(--tag-bg);
+       border:1px solid var(--tag-border);border-radius:3px;padding:2px 7px;animation:tagIn .15s ease}
+  @keyframes tagIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+  .tag svg{width:11px;height:11px;color:var(--ink-600);cursor:pointer}
+  .tag svg:hover{color:var(--danger)}
+  /* View CTA + selected tooltip */
+  .mslabel{display:flex;align-items:center;justify-content:space-between}
+  .viewwrap{position:relative}
+  .viewcta{font-size:12px;font-weight:500;color:var(--blue-500);cursor:pointer}
+  .viewcta:hover{text-decoration:underline}
+  .seltip{position:absolute;top:calc(100% + 6px);right:0;min-width:180px;background:var(--surface-0);border:1px solid var(--line-100);
+          border-radius:var(--radius-sm);box-shadow:var(--field-list-shadow);padding:5px;display:none;z-index:30}
+  .viewwrap:hover .seltip{display:block}
+  .seltip .si{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 8px;font-size:12px;font-weight:500;border-radius:var(--radius-sm)}
+  .seltip .si:hover{background:var(--blue-100)}
+  .seltip .si svg{width:12px;height:12px;color:var(--ink-600);cursor:pointer;flex:none}
+  .seltip .si svg:hover{color:var(--danger)}
+  .opt.active{background:var(--blue-100)}
+  .box svg{stroke:var(--surface-0)}
+  .field.dis .caret-icon{color:var(--ink-400)}
+</style></head><body>
+<div class="card">
+
+  <!-- SINGLE SELECT -->
+  <div class="grp">
+    <div class="ttl">Dropdown</div>
+    <div><label class="lbl">Single select (searchable)</label>
+      <div class="sel" data-select>
+        <div class="field"><span class="val ph">Select</span><svg class="clear" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg><svg class="caret-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="list">
+          <div class="srch"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input placeholder="Search"></div>
+          <div class="opts">
+            <div class="opt">MVNO Partner</div><div class="opt">Reseller</div><div class="opt">Enterprise</div><div class="opt">Distributor</div><div class="opt">Direct Customer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div><label class="lbl">Disabled</label>
+      <div class="field dis"><span class="val" style="color:var(--ink-400)">Default Value</span><svg class="caret-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </div>
+  </div>
+
+  <!-- MULTI SELECT -->
+  <div class="grp">
+    <div class="ttl">Multi Select</div>
+    <div>
+      <div class="mslabel"><label class="lbl">Multi select</label><span class="viewwrap" id="msView" style="display:none"><span class="viewcta">View</span><div class="seltip" id="msTip"></div></span></div>
+      <div class="sel" data-multi>
+        <div class="field multi"><div class="tags"><span class="val ph">Select</span></div><svg class="caret-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="list">
+          <div class="srch"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input placeholder="Search"></div>
+          <div class="opts">
+            <div class="opt" data-v="Value 1"><span class="box"><svg fill="none" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Value 1</div>
+            <div class="opt" data-v="Value 2"><span class="box"><svg fill="none" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Value 2</div>
+            <div class="opt" data-v="Value 3"><span class="box"><svg fill="none" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Value 3</div>
+            <div class="opt" data-v="Value 4"><span class="box"><svg fill="none" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Value 4</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function closeAllSelects(except){ document.querySelectorAll('.sel.open').forEach(s=>{ if(s!==except) s.classList.remove('open'); }); }
+  document.addEventListener('click', ()=>closeAllSelects(null));
+
+  // keyboard helper: ↑/↓ move active option, Enter choose, Esc close
+  function wireKeys(sel, srch, getVisible, choose){
+    let active=-1;
+    function paint(){ const vis=getVisible(); sel.querySelectorAll('.opt').forEach(o=>o.classList.remove('active')); if(active>=0&&vis[active]){ vis[active].classList.add('active'); const o=vis[active], w=sel.querySelector('.opts'); if(o.offsetTop<w.scrollTop) w.scrollTop=o.offsetTop; else if(o.offsetTop+o.offsetHeight>w.scrollTop+w.clientHeight) w.scrollTop=o.offsetTop+o.offsetHeight-w.clientHeight; } }
+    srch.addEventListener('keydown',(e)=>{
+      const vis=getVisible();
+      if(e.key==='ArrowDown'){ e.preventDefault(); active=Math.min(active+1,vis.length-1); paint(); }
+      else if(e.key==='ArrowUp'){ e.preventDefault(); active=Math.max(active-1,0); paint(); }
+      else if(e.key==='Enter'){ e.preventDefault(); if(active>=0&&vis[active]) choose(vis[active]); }
+      else if(e.key==='Escape'){ sel.classList.remove('open'); }
+    });
+    sel.addEventListener('_reset',()=>{ active=-1; paint(); });
+  }
+
+  // ---- single select ----
+  document.querySelectorAll('[data-select]').forEach(sel=>{
+    const field=sel.querySelector('.field'), val=sel.querySelector('.val'), clr=sel.querySelector('.clear');
+    const srch=sel.querySelector('.srch input'), opts=[...sel.querySelectorAll('.opt')], optsWrap=sel.querySelector('.opts');
+    const visible=()=>opts.filter(o=>!o.classList.contains('hidden'));
+    field.addEventListener('click',(e)=>{ e.stopPropagation(); const o=sel.classList.contains('open'); closeAllSelects(sel); sel.classList.toggle('open',!o); if(!o){ srch.value=''; filter(''); sel.dispatchEvent(new Event('_reset')); setTimeout(()=>srch.focus(),60);} });
+    srch.addEventListener('click',e=>e.stopPropagation());
+    srch.addEventListener('input',()=>{ filter(srch.value.toLowerCase()); sel.dispatchEvent(new Event('_reset')); });
+    function filter(q){ let any=false; opts.forEach(o=>{ const m=o.textContent.toLowerCase().includes(q); o.classList.toggle('hidden',!m); if(m)any=true;}); let nr=optsWrap.querySelector('.no-res'); if(!any){ if(!nr){nr=document.createElement('div');nr.className='no-res';nr.textContent='No results';optsWrap.appendChild(nr);} } else if(nr) nr.remove(); }
+    function choose(o){ opts.forEach(x=>x.classList.remove('sel')); o.classList.add('sel'); val.textContent=o.textContent; val.classList.remove('ph'); clr.classList.add('show'); sel.classList.remove('open'); }
+    opts.forEach(o=>o.addEventListener('click',(e)=>{ e.stopPropagation(); choose(o); }));
+    clr.addEventListener('click',(e)=>{ e.stopPropagation(); val.textContent='Select'; val.classList.add('ph'); clr.classList.remove('show'); opts.forEach(x=>x.classList.remove('sel')); });
+    wireKeys(sel, srch, visible, choose);
+  });
+
+  // ---- multi select ----
+  document.querySelectorAll('[data-multi]').forEach(sel=>{
+    const field=sel.querySelector('.field'), tags=sel.querySelector('.tags');
+    const srch=sel.querySelector('.srch input'), opts=[...sel.querySelectorAll('.opt')];
+    const viewWrap=document.getElementById('msView'), tip=document.getElementById('msTip');
+    const visible=()=>opts.filter(o=>!o.classList.contains('hidden'));
+    const chosen=new Set();
+    field.addEventListener('click',(e)=>{ if(e.target.closest('.tag')) return; e.stopPropagation(); const o=sel.classList.contains('open'); closeAllSelects(sel); sel.classList.toggle('open',!o); if(!o){ srch.value=''; opts.forEach(x=>x.classList.remove('hidden')); sel.dispatchEvent(new Event('_reset')); setTimeout(()=>srch.focus(),60);} });
+    srch.addEventListener('click',e=>e.stopPropagation());
+    srch.addEventListener('input',()=>{ const q=srch.value.toLowerCase(); opts.forEach(o=>o.classList.toggle('hidden',!o.dataset.v.toLowerCase().includes(q))); sel.dispatchEvent(new Event('_reset')); });
+    const xsvg='<svg fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>';
+    function render(){
+      const arr=[...chosen];
+      if(arr.length===0){ tags.innerHTML='<span class="val ph">Select</span>'; viewWrap.style.display='none'; }
+      else if(arr.length<=2){ tags.innerHTML=arr.map(v=>'<span class="tag" data-t="'+v+'">'+v+xsvg+'</span>').join(''); viewWrap.style.display='none'; }
+      else { tags.innerHTML='<span class="val">'+arr.length+' Selected</span>'; viewWrap.style.display='inline-block';
+             tip.innerHTML=arr.map(v=>'<div class="si">'+v+'<svg data-rm="'+v+'" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></div>').join(''); }
+    }
+    function toggle(o){ const v=o.dataset.v; if(chosen.has(v)){chosen.delete(v);o.querySelector('.box').classList.remove('on');} else {chosen.add(v);o.querySelector('.box').classList.add('on');} render(); }
+    function removeV(v){ chosen.delete(v); const op=opts.find(o=>o.dataset.v===v); if(op)op.querySelector('.box').classList.remove('on'); render(); }
+    opts.forEach(o=>o.addEventListener('click',(e)=>{ e.stopPropagation(); toggle(o); }));
+    tags.addEventListener('click',(e)=>{ const t=e.target.closest('.tag'); if(!t)return; e.stopPropagation(); removeV(t.dataset.t); });
+    tip.addEventListener('click',(e)=>{ const r=e.target.closest('[data-rm]'); if(!r)return; e.stopPropagation(); removeV(r.dataset.rm); });
+    wireKeys(sel, srch, visible, toggle);
+  });
+</script>
+</body></html>
