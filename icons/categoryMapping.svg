@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3258" data-name="Rectangle 3258" width="24" height="22" fill="#555"></rect>
+    </clipPath>
+  </defs>
+  <g id="categoryMapping_6d" transform="translate(-230 -3389)">
+    <g id="_6D_Category_Mapping" data-name="6D_Category Mapping" transform="translate(230 3390)">
+      <g id="Group_4055" data-name="Group 4055" clip-path="url(#clip-path)">
+        <path id="Path_3499" data-name="Path 3499" d="M23.229,11.812H21.494V10.235a.956.956,0,0,0-.956-.955H12.75V7h1.979a.771.771,0,0,0,.771-.771V.771A.771.771,0,0,0,14.729,0H9.271A.771.771,0,0,0,8.5.771V6.229A.771.771,0,0,0,9.271,7H11.25V9.28H3.462a.956.956,0,0,0-.956.955v1.577H.771A.771.771,0,0,0,0,12.583v5.459a.771.771,0,0,0,.771.77H6.229A.771.771,0,0,0,7,18.042V12.583a.771.771,0,0,0-.771-.771H4.006V10.78H11.25V15H9.271a.771.771,0,0,0-.771.771v5.458A.771.771,0,0,0,9.271,22h5.458a.771.771,0,0,0,.771-.771V15.771A.771.771,0,0,0,14.729,15H12.75V10.78h7.244v1.032H17.771a.771.771,0,0,0-.771.771v5.459a.771.771,0,0,0,.771.77h5.458a.771.771,0,0,0,.771-.77V12.583a.771.771,0,0,0-.771-.771M10,1.5h4v4H10ZM5.5,17.313h-4v-4h4ZM14,20.5H10v-4h4Zm8.5-3.187h-4v-4h4Z" fill="#555"></path>
+      </g>
+    </g>
+    <rect id="Rectangle_3550" data-name="Rectangle 3550" width="24" height="24" transform="translate(230 3389)" fill="none"></rect>
+  </g>
+</svg>

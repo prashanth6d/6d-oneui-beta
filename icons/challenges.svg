@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3123" data-name="Rectangle 3123" width="24" height="22.698" transform="translate(0 0)" fill="#555"></rect>
+    </clipPath>
+  </defs>
+  <g id="challenges_6d" transform="translate(-195 -1460)">
+    <g id="_6D_market_focus" data-name="6D_market_focus" transform="translate(195 1461)">
+      <g id="Group_3828" data-name="Group 3828" clip-path="url(#clip-path)">
+        <path id="Path_3025" data-name="Path 3025" d="M16.935,9.646a8.126,8.126,0,1,1-2.97-3.38l1.166-1.027A9.6,9.6,0,1,0,18.1,8.615Z" fill="#555"></path>
+        <path id="Path_3026" data-name="Path 3026" d="M23.985,3.688a.752.752,0,0,0-.535-.57l-1.8-.5L21.4.655A.749.749,0,0,0,20.146.2L17.655,2.5a.751.751,0,0,0-.233.654L17.676,5l-7.843,6.91a1.212,1.212,0,0,0-.225-.045,1.229,1.229,0,1,0,1.229,1.23c0-.022-.011-.04-.012-.061l7.833-6.9,1.781.529a.752.752,0,0,0,.685-.135l2.6-2.1a.75.75,0,0,0,.264-.736m-3.5,1.419-1.337-.4-.19-1.371L20.1,2.29,20.227,3.3a.749.749,0,0,0,.544.627l.873.242Z" fill="#555"></path>
+        <path id="Path_3027" data-name="Path 3027" d="M9.607,9.278a3.785,3.785,0,0,1,.83.1l1.3-1.146a5.31,5.31,0,1,0,3.183,4.862,5.226,5.226,0,0,0-.231-1.466l-1.3,1.146c.009.107.032.211.032.32A3.813,3.813,0,1,1,9.607,9.278" fill="#555"></path>
+      </g>
+    </g>
+    <rect id="Rectangle_3390" data-name="Rectangle 3390" width="24" height="24" transform="translate(195 1460)" fill="none"></rect>
+  </g>
+</svg>

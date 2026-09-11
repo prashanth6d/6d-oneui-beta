@@ -1,0 +1,12 @@
+<svg id="Continue_Inspection_Default_6D" data-name="Continue Inspection_Default_6D" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_4641" data-name="Rectangle 4641" width="24" height="24" fill="#555555"></rect>
+    </clipPath>
+  </defs>
+  <g id="Group_26626" data-name="Group 26626" clip-path="url(#clip-path)">
+    <path id="Path_5468" data-name="Path 5468" d="M23.782,22.721l-4.2-4.231a11.2,11.2,0,1,0-1.059,1.062l4.2,4.226a.75.75,0,1,0,1.064-1.057M1.5,11.165a9.665,9.665,0,1,1,9.666,9.665A9.677,9.677,0,0,1,1.5,11.165" fill="#555555"></path>
+    <path id="Path_5469" data-name="Path 5469" d="M11.165,9a2.167,2.167,0,1,0,2.167,2.167A2.169,2.169,0,0,0,11.165,9m0,2.834a.667.667,0,1,1,.667-.667.667.667,0,0,1-.667.667" fill="#555555"></path>
+    <path id="Path_5470" data-name="Path 5470" d="M18.186,10.779c-1.838-3.062-4.2-4.615-7.021-4.615s-5.182,1.553-7.02,4.615a.757.757,0,0,0,0,.772c1.838,3.062,4.2,4.615,7.02,4.615s5.183-1.553,7.021-4.615a.757.757,0,0,0,0-.772m-7.021,3.887c-2.173,0-3.974-1.146-5.493-3.5,1.519-2.354,3.32-3.5,5.493-3.5s3.975,1.147,5.494,3.5c-1.519,2.355-3.32,3.5-5.494,3.5" fill="#555555"></path>
+  </g>
+</svg>
