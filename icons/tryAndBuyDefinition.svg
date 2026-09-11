@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3220" data-name="Rectangle 3220" width="24" height="18" fill="#555555"></rect>
+    </clipPath>
+  </defs>
+  <g id="_6D_try_and_buy_definition_default" data-name="6D_try_and_buy_definition_default" transform="translate(-558 -6767)">
+    <g id="_6D_Try_and_Buy_Definition" data-name="6D_Try and Buy Definition" transform="translate(558 6770)">
+      <g id="Group_3988" data-name="Group 3988" clip-path="url(#clip-path)">
+        <path id="Path_3355" data-name="Path 3355" d="M8.411,13.488a.732.732,0,0,0,.732-.732V9.214a.732.732,0,0,0-1.464,0v3.542a.732.732,0,0,0,.732.732" fill="#555555"></path>
+        <path id="Path_3356" data-name="Path 3356" d="M12,13.488a.732.732,0,0,0,.732-.732V9.214a.732.732,0,0,0-1.464,0v3.542a.732.732,0,0,0,.732.732" fill="#555555"></path>
+        <path id="Path_3357" data-name="Path 3357" d="M15.589,13.488a.732.732,0,0,0,.732-.732V9.214a.732.732,0,1,0-1.464,0v3.542a.732.732,0,0,0,.732.732" fill="#555555"></path>
+        <path id="Path_3358" data-name="Path 3358" d="M24,3.188A3.188,3.188,0,0,0,20.813,0H3.188A3.18,3.18,0,0,0,1.816,6.053l2.56,11.513A.527.527,0,0,0,4.87,18H19.129a.525.525,0,0,0,.494-.434L22.184,6.053A3.179,3.179,0,0,0,24,3.188M2.444,6.279l.036.011-.036-.011M18.323,16.5H5.677L3.424,6.375H20.576Zm3.2-10.21.036-.011-.036.011m-.706-1.415H3.188a1.688,1.688,0,1,1,0-3.375H20.813a1.688,1.688,0,0,1,0,3.375" fill="#555555"></path>
+      </g>
+    </g>
+    <rect id="Rectangle_3530" data-name="Rectangle 3530" width="24" height="24" transform="translate(558 6767)" fill="none"></rect>
+  </g>
+</svg>

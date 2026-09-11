@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3256" data-name="Rectangle 3256" width="24" height="20" fill="#555555"></rect>
+    </clipPath>
+  </defs>
+  <g id="wallet_6d" data-name="wallet_6d" transform="translate(-1041 -2903)">
+    <g id="payment_wrapper" data-name="payment_wrapper" transform="translate(1041 2905)">
+      <g id="Group_4049" data-name="Group 4049" clip-path="url(#clip-path)">
+        <path id="Path_3473" data-name="Path 3473" d="M24,13.323V6a1.5,1.5,0,0,0-1.5-1.5v-3h.75a.75.75,0,0,0,0-1.5H3A3,3,0,0,0,0,3V16.25A3.75,3.75,0,0,0,3.75,20h18A2.25,2.25,0,0,0,24,17.75ZM3,1.5H21v3H3a1.5,1.5,0,0,1,0-3m18.75,17h-18A2.25,2.25,0,0,1,1.5,16.25V5.6A2.982,2.982,0,0,0,3,6H22.5V17.75a.75.75,0,0,1-.75.75" fill="#555555"></path>
+      </g>
+    </g>
+    <rect id="Rectangle_3549" data-name="Rectangle 3549" width="24" height="24" transform="translate(1041 2903)" fill="none"></rect>
+  </g>
+</svg>
