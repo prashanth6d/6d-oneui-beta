@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="hdd_6d" transform="translate(-939 -1701)">
+    <g id="_6D_hdd" data-name="6D_hdd" transform="translate(788.192 957.654)">
+      <circle id="Ellipse_11" data-name="Ellipse 11" cx="0.75" cy="0.75" r="0.75" transform="translate(153.808 758.846)" fill="#555"></circle>
+      <circle id="Ellipse_12" data-name="Ellipse 12" cx="0.75" cy="0.75" r="0.75" transform="translate(156.808 758.846)" fill="#555"></circle>
+      <path id="Path_708" data-name="Path 708" d="M174.35,756.314l-3.708-6.8a2.249,2.249,0,0,0-1.975-1.173H156.949a2.251,2.251,0,0,0-1.976,1.173l-3.707,6.8a3.747,3.747,0,0,0-.458,1.8v2.235a3,3,0,0,0,3,3h18a3,3,0,0,0,3-3v-2.235A3.765,3.765,0,0,0,174.35,756.314Zm-18.06-6.078h0a.75.75,0,0,1,.66-.39h11.718a.751.751,0,0,1,.659.39l3.094,5.673a2.942,2.942,0,0,0-.612-.063h-18a2.878,2.878,0,0,0-.612.064Zm17.018,10.11a1.5,1.5,0,0,1-1.5,1.5h-18a1.5,1.5,0,0,1-1.5-1.5v-1.5a1.5,1.5,0,0,1,1.5-1.5h18a1.5,1.5,0,0,1,1.5,1.5Z" fill="#555"></path>
+    </g>
+    <rect id="Rectangle_3317" data-name="Rectangle 3317" width="24" height="24" transform="translate(939 1701)" fill="none"></rect>
+  </g>
+</svg>

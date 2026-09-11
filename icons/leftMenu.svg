@@ -1,0 +1,13 @@
+<svg id="leftMenu_6d" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3653" data-name="Rectangle 3653" width="24" height="24" fill="#555"></rect>
+    </clipPath>
+  </defs>
+  <g id="Group_4486" data-name="Group 4486" clip-path="url(#clip-path)">
+    <path id="Path_4292" data-name="Path 4292" d="M21.407,0H2.593A2.593,2.593,0,0,0,0,2.593V21.407A2.593,2.593,0,0,0,2.593,24H21.407A2.593,2.593,0,0,0,24,21.407V2.593A2.593,2.593,0,0,0,21.407,0M22.5,21.407A1.094,1.094,0,0,1,21.407,22.5H2.593A1.094,1.094,0,0,1,1.5,21.407V2.593A1.094,1.094,0,0,1,2.593,1.5H21.407A1.094,1.094,0,0,1,22.5,2.593Z" fill="#555"></path>
+    <path id="Path_4293" data-name="Path 4293" d="M18.469,6.188H5.531a.75.75,0,0,0,0,1.5H18.469a.75.75,0,0,0,0-1.5" fill="#555"></path>
+    <path id="Path_4294" data-name="Path 4294" d="M14.25,11.25H5.531a.75.75,0,0,0,0,1.5H14.25a.75.75,0,0,0,0-1.5" fill="#555"></path>
+    <path id="Path_4295" data-name="Path 4295" d="M9.89,16.313H5.531a.75.75,0,0,0,0,1.5H9.89a.75.75,0,0,0,0-1.5" fill="#555"></path>
+  </g>
+</svg>

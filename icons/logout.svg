@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="logout_6d" transform="translate(-780 -4377)">
+    <rect id="Rectangle_3331" data-name="Rectangle 3331" width="24" height="24" transform="translate(780 4377)" fill="none"></rect>
+    <g id="_6D_logout" data-name="6D_logout" transform="translate(505.408 1876.073)">
+      <path id="Path_413" data-name="Path 413" d="M290.342,2515.927a.75.75,0,0,0-.75.75v3a.75.75,0,0,1-.75.75h-12a.75.75,0,0,1-.75-.75v-13.5a.75.75,0,0,1,.75-.75h12a.75.75,0,0,1,.75.75v3a.75.75,0,0,0,1.5,0v-3a2.25,2.25,0,0,0-2.25-2.25h-12a2.25,2.25,0,0,0-2.25,2.25v13.5a2.251,2.251,0,0,0,2.25,2.25h12a2.25,2.25,0,0,0,2.25-2.25v-3A.75.75,0,0,0,290.342,2515.927Z" fill="#555" fill-rule="evenodd"></path>
+      <path id="Path_414" data-name="Path 414" d="M298.373,2512.4h0l-4.5-4.5a.751.751,0,0,0-1.062,1.062l3.221,3.219H282.842a.75.75,0,0,0,0,1.5h13.189l-3.221,3.219a.751.751,0,0,0,1.062,1.062l4.5-4.5A.75.75,0,0,0,298.373,2512.4Z" fill="#555" fill-rule="evenodd"></path>
+    </g>
+  </g>
+</svg>

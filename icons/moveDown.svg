@@ -1,0 +1,11 @@
+<svg id="moveDown_6d" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3698" data-name="Rectangle 3698" width="24" height="24" fill="#555555"></rect>
+    </clipPath>
+  </defs>
+  <g id="Group_4525" data-name="Group 4525" clip-path="url(#clip-path)">
+    <path id="Path_4333" data-name="Path 4333" d="M12,24A12,12,0,1,1,24,12,12,12,0,0,1,12,24M12,1.5A10.5,10.5,0,1,0,22.5,12,10.512,10.512,0,0,0,12,1.5" fill="#555555"></path>
+    <path id="Path_4334" data-name="Path 4334" d="M12.53,18.367a.75.75,0,0,1-1.061,0L7.061,13.959A.75.75,0,0,1,8.122,12.9l3.128,3.128V6.163a.75.75,0,0,1,1.5,0v9.863L15.878,12.9a.75.75,0,0,1,1.06,1.061Z" transform="translate(0 0)" fill="#555555"></path>
+  </g>
+</svg>

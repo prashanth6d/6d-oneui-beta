@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="hddNetwork_6d" transform="translate(-776 -2681)">
+    <g id="_6D_hdd_network" data-name="6D_hdd_network" transform="translate(628.411 1905.796)">
+      <circle id="Ellipse_13" data-name="Ellipse 13" cx="0.75" cy="0.75" r="0.75" transform="translate(153.589 781.204)" fill="#555"></circle>
+      <circle id="Ellipse_14" data-name="Ellipse 14" cx="0.75" cy="0.75" r="0.75" transform="translate(150.589 781.204)" fill="#555"></circle>
+      <path id="Path_710" data-name="Path 710" d="M168.589,785.7a3,3,0,0,0,3-3v-1.5a3,3,0,0,0-3-3h-18a3,3,0,0,0-3,3v1.5a3,3,0,0,0,3,3h8.25v4.5a2.25,2.25,0,0,0-2.25,2.25h-8.25a.75.75,0,1,0,0,1.5h8.25a2.25,2.25,0,0,0,2.25,2.25h1.5a2.25,2.25,0,0,0,2.25-2.25h8.25a.75.75,0,0,0,0-1.5h-8.25a2.25,2.25,0,0,0-2.25-2.25v-4.5Zm-7.5,6.75v1.5a.75.75,0,0,1-.75.75h-1.5a.75.75,0,0,1-.75-.75v-1.5a.75.75,0,0,1,.75-.75h1.5A.75.75,0,0,1,161.089,792.454Zm-10.5-8.25a1.5,1.5,0,0,1-1.5-1.5v-1.5a1.5,1.5,0,0,1,1.5-1.5h18a1.5,1.5,0,0,1,1.5,1.5v1.5a1.5,1.5,0,0,1-1.5,1.5Z" fill="#555"></path>
+    </g>
+    <rect id="Rectangle_3321" data-name="Rectangle 3321" width="24" height="24" transform="translate(776 2681)" fill="none"></rect>
+  </g>
+</svg>

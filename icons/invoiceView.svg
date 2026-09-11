@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3247" data-name="Rectangle 3247" width="20" height="24" fill="#555"></rect>
+    </clipPath>
+  </defs>
+  <g id="invoiceView_6d" transform="translate(-813 -1988)">
+    <g id="Group_4342" data-name="Group 4342">
+      <g id="_6D_Invoice_View" data-name="6D_Invoice View" transform="translate(815 1988)">
+        <g id="Group_4037" data-name="Group 4037" clip-path="url(#clip-path)">
+          <path id="Path_3447" data-name="Path 3447" d="M13.25,0H3A3,3,0,0,0,0,3V21a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V6.749ZM18.5,21A1.5,1.5,0,0,1,17,22.5H3A1.5,1.5,0,0,1,1.5,21V3A1.5,1.5,0,0,1,3,1.5H13.249V5.25a1.5,1.5,0,0,0,1.5,1.5H18.5Z" fill="#555"></path>
+          <path id="Path_3448" data-name="Path 3448" d="M10,11.829A2.169,2.169,0,1,0,12.169,14,2.169,2.169,0,0,0,10,11.829m0,2.838A.669.669,0,1,1,10.669,14a.67.67,0,0,1-.669.669" fill="#555"></path>
+          <path id="Path_3449" data-name="Path 3449" d="M10,9.647C6.045,9.647,3.672,14,3.672,14S6.045,18.348,10,18.348,16.328,14,16.328,14,13.955,9.647,10,9.647m0,7.2c-2.143,0-3.773-1.806-4.536-2.849.765-1.042,2.4-2.852,4.536-2.852S13.773,12.953,14.536,14c-.765,1.042-2.4,2.852-4.536,2.852" fill="#555"></path>
+        </g>
+      </g>
+      <rect id="Rectangle_3542" data-name="Rectangle 3542" width="24" height="24" transform="translate(813 1988)" fill="none"></rect>
+    </g>
+  </g>
+</svg>

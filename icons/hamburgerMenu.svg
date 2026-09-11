@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3274" data-name="Rectangle 3274" width="16.5" height="13.5" fill="#555"></rect>
+    </clipPath>
+  </defs>
+  <g id="hamburgerMenu_6d" transform="translate(-80 -364)">
+    <g id="Group_4084" data-name="Group 4084" transform="translate(84 369)">
+      <g id="Group_4083" data-name="Group 4083" clip-path="url(#clip-path)">
+        <path id="Path_3563" data-name="Path 3563" d="M15.75,12H.75a.75.75,0,0,0,0,1.5h15a.75.75,0,0,0,0-1.5" fill="#555" fill-rule="evenodd"></path>
+        <path id="Path_3564" data-name="Path 3564" d="M15.75,6H.75a.75.75,0,0,0,0,1.5h15a.75.75,0,0,0,0-1.5" fill="#555" fill-rule="evenodd"></path>
+        <path id="Path_3565" data-name="Path 3565" d="M.75,1.5h15a.75.75,0,0,0,0-1.5H.75a.75.75,0,0,0,0,1.5" fill="#555" fill-rule="evenodd"></path>
+      </g>
+    </g>
+    <rect id="Rectangle_3275" data-name="Rectangle 3275" width="24" height="24" transform="translate(80 364)" fill="none"></rect>
+  </g>
+</svg>

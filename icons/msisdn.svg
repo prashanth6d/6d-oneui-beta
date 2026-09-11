@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3422" data-name="Rectangle 3422" width="20" height="24" fill="#555555"></rect>
+    </clipPath>
+  </defs>
+  <g id="msisdn_6d" transform="translate(-217 -2175)">
+    <rect id="Rectangle_3421" data-name="Rectangle 3421" width="24" height="24" transform="translate(217 2175)" fill="none"></rect>
+    <g id="Group_4277" data-name="Group 4277" transform="translate(219 2175)">
+      <g id="Group_4276" data-name="Group 4276" clip-path="url(#clip-path)">
+        <path id="Path_3932" data-name="Path 3932" d="M19.655,5.018,14.684.327A1.178,1.178,0,0,0,13.879,0H3.161A3.252,3.252,0,0,0,.926.878,2.926,2.926,0,0,0,0,3V21a2.923,2.923,0,0,0,.926,2.121A3.248,3.248,0,0,0,3.161,24H16.839a3.248,3.248,0,0,0,2.235-.879A2.923,2.923,0,0,0,20,21V5.781a1.061,1.061,0,0,0-.345-.763M18.5,21a1.42,1.42,0,0,1-.458,1.033,1.758,1.758,0,0,1-1.2.467H3.161a1.758,1.758,0,0,1-1.2-.467A1.42,1.42,0,0,1,1.5,21V3a1.42,1.42,0,0,1,.458-1.033,1.758,1.758,0,0,1,1.2-.467h10.58L18.5,5.99Z" fill="#555555"></path>
+        <path id="Path_3933" data-name="Path 3933" d="M5.356,8.243a.753.753,0,0,0,.75-.75V4.462a.75.75,0,1,0-1.5,0V7.493a.751.751,0,0,0,.75.75" fill="#555555"></path>
+        <path id="Path_3934" data-name="Path 3934" d="M8.756,8.243a.751.751,0,0,0,.75-.75V4.462a.75.75,0,1,0-1.5,0V7.493a.751.751,0,0,0,.75.75" fill="#555555"></path>
+        <path id="Path_3935" data-name="Path 3935" d="M8.756,8.243" fill="#555555"></path>
+        <path id="Path_3936" data-name="Path 3936" d="M12.156,8.243Z" fill="#555555"></path>
+        <path id="Path_3937" data-name="Path 3937" d="M12.156,8.243a.751.751,0,0,0,.75-.75V4.462a.75.75,0,1,0-1.5,0V7.493a.751.751,0,0,0,.75.75" fill="#555555"></path>
+        <path id="Path_3938" data-name="Path 3938" d="M4.605,12.92V19.2a1.373,1.373,0,0,0,1.374,1.373h8.042A1.373,1.373,0,0,0,15.4,19.2V12.92a1.374,1.374,0,0,0-1.374-1.373H5.979A1.374,1.374,0,0,0,4.605,12.92m1.5,3.89H9.25v2.263H6.105Zm4.645,0H13.9v2.263H10.75Zm3.145-1.5H10.75V13.047H13.9Zm-4.645,0H6.105V13.047H9.25Z" fill="#555555"></path>
+      </g>
+    </g>
+  </g>
+</svg>
