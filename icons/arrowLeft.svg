@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="arrowLeft_6d" transform="translate(24) rotate(90)">
+    <g id="_6D_accordion_arrow_down" data-name="6D_accordion_arrow_down">
+      <rect id="Rectangle_2623" data-name="Rectangle 2623" width="24" height="24" transform="translate(24 24) rotate(180)" fill="none"></rect>
+    </g>
+    <path id="_6D_accordion_arrow_up" data-name="6D_accordion_arrow_up" d="M8,8.748a.745.745,0,0,1-.529-.219L.219,1.277A.748.748,0,1,1,1.277.219L8,6.943,14.723.219A.748.748,0,1,1,15.78,1.277L8.528,8.529A.744.744,0,0,1,8,8.748Z" transform="translate(4 8)" fill="#555"></path>
+  </g>
+</svg>
