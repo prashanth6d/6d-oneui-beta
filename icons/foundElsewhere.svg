@@ -1,0 +1,11 @@
+<svg id="foundElsewhere_6d" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_4520" data-name="Rectangle 4520" width="24" height="24" fill="#555"></rect>
+    </clipPath>
+  </defs>
+  <g id="Group_26402" data-name="Group 26402" clip-path="url(#clip-path)">
+    <path id="Path_5182" data-name="Path 5182" d="M23.752,22.693l-5.565-5.02a10.431,10.431,0,1,0-1.1,1.028l5.661,5.106a.75.75,0,0,0,1-1.114M1.5,10.51a9.011,9.011,0,1,1,9.01,9.01A9.02,9.02,0,0,1,1.5,10.51" fill="#555"></path>
+    <path id="Path_5183" data-name="Path 5183" d="M14,6.268H9.509a.75.75,0,0,0,0,1.5h2.682l-5.7,5.7a.75.75,0,0,0,1.061,1.061l5.705-5.7v2.684a.75.75,0,0,0,1.5,0V7.018a.75.75,0,0,0-.75-.75" fill="#555"></path>
+  </g>
+</svg>

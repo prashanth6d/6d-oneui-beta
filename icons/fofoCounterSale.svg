@@ -1,0 +1,11 @@
+<svg id="fofoCounterSale_6d" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3274" data-name="Rectangle 3274" width="24" height="24" fill="#555"></rect>
+    </clipPath>
+  </defs>
+  <g id="Group_4081" data-name="Group 4081" clip-path="url(#clip-path)">
+    <path id="Path_3738" data-name="Path 3738" d="M23.5,13.208H14.2v-2.5a1.9,1.9,0,0,0-1.9-1.9H4.95A1.943,1.943,0,0,0,3,10.709v2.5H.5c-.25,0-.5.15-.5.35v3.349c0,.2.2.35.5.35h1V24h21V17.257h1c.25,0,.5-.15.5-.35V13.558c0-.2-.2-.35-.5-.35m-22,1.5H3a1.5,1.5,0,0,0,1.5-1.5v-2.5a.445.445,0,0,1,.45-.4H12.3a.4.4,0,0,1,.4.4v2.5a1.5,1.5,0,0,0,1.5,1.5h8.3v1.05H1.5ZM21,22.5H3V17.257H21Z" fill="#555"></path>
+    <path id="Path_3739" data-name="Path 3739" d="M8.482,7.8a3.9,3.9,0,1,0-3.9-3.9,3.9,3.9,0,0,0,3.9,3.9m0-6.294a2.4,2.4,0,1,1-2.4,2.4A2.4,2.4,0,0,1,8.482,1.5Z" fill="#555"></path>
+  </g>
+</svg>
