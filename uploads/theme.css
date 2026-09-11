@@ -1,0 +1,214 @@
+/* ============================================================================
+   6D Technologies — ONE UI Design System
+   THEME: OBC
+   ----------------------------------------------------------------------------
+   Source: OBC_Color_Theme.pdf (Color Palette sheet). Values transcribed
+   verbatim from the sheet; role ASSIGNMENTS are design decisions recorded
+   in the "DECISIONS" block below and must be confirmed before production.
+
+   STRICT — this file may ONLY override tokens declared in
+   tokens/semantic.css. It must NEVER declare:
+     - spacing, radii, z-index, durations, easings   (core / structure / motion)
+     - neutral greys                                  (shared across all themes)
+     - AARYA gradients                                (6D product identity, fixed)
+   A theme file containing any of the above is a bug.
+
+   Activation:  <html data-theme="obc">
+   ============================================================================ */
+
+/* ============================================================================
+   DECISIONS (confirm with OBC brand owner — see notes at end of file)
+   ----------------------------------------------------------------------------
+   D1. The sheet lists FIVE "Primary Colors". A theme needs exactly one action
+       colour. Assigned: Ocean Teal family = brand/action. The remaining four
+       are treated as accents, not actions.
+   D2. Ocean Teal #00A8B5 fails WCAG AA against white text (2.89:1). The
+       action FILL is therefore Deep Teal #167B87 (4.98:1 ✓); Ocean Teal is
+       retained for accents, borders, focus rings and charts.
+   D3. Sheet gives Ocean Teal as #00A8B5 but the chart "Primary" as #00A9B6.
+       Treated as one colour, sampled twice. Canonical = #00A8B5.
+   D4. Sheet's Information #42A6CE + #EBF6FA are EXACTLY the values CLAUDE.md
+       §4 deprecates in favour of #0099FF. Theme honours the sheet and
+       re-enables the teal info pair FOR OBC ONLY. Flag if wrong.
+   D5. Sheet's Deep Red #DA1E28 resolves the open danger-token question
+       (skill currently carries #D74B4B; CLAUDE.md deprecates #E53935).
+   ============================================================================ */
+
+[data-theme="obc"] {
+
+  /* ==========================================================================
+     LAYER 1 — OBC brand primitives
+     Raw palette. NEVER referenced directly by component CSS.
+     ========================================================================== */
+
+  /* ---- Primary family ---------------------------------------------------- */
+  --obc-ocean-teal:        #00A8B5;   /* rgb(0,168,181)    */
+  --obc-deep-teal:         #167B87;   /* rgb(37,123,135)   */
+  --obc-vibrant-green:     #00A559;   /* rgb(0,165,89)     */
+  --obc-wine-red:          #801533;   /* rgb(128,21,51)    */
+  --obc-golden-yellow:     #E1B32A;   /* rgb(225,179,42)   */
+
+  /* ---- Secondary family — base ------------------------------------------- */
+  --obc-marine-blue:       #145081;
+  --obc-royal-berry:       #9A2F61;
+  --obc-dark-violet:       #3A174B;
+  --obc-deep-aqua:         #337C80;
+  --obc-stone-gray:        #989897;
+
+  /* ---- Secondary family — mid tint --------------------------------------- */
+  /* NOTE: sheet labels BOTH tint rows "(20%)". Ordered here by measured
+     lightness: this row is the darker of the two. Values are hand-picked,
+     not computed opacity — several are hue-shifted from their base. */
+  --obc-marine-blue-mid:   #4A8FCC;
+  --obc-royal-berry-mid:   #9F4895;
+  --obc-dark-violet-mid:   #7C57A4;
+  --obc-deep-aqua-mid:     #7FC8CC;
+  --obc-stone-gray-mid:    #E6E6E5;
+
+  /* ---- Secondary family — light tint ------------------------------------- */
+  --obc-marine-blue-light: #89BDE6;
+  --obc-royal-berry-light: #C784B9;
+  --obc-dark-violet-light: #B590C2;
+  --obc-deep-aqua-light:   #CCFCFF;
+  --obc-stone-gray-light:  #FFFFFF;   /* sheet gives pure white — confirm */
+
+  /* ---- Status ------------------------------------------------------------ */
+  --obc-success:           #13B544;
+  --obc-success-10:        #E7F8EC;
+  --obc-error:             #DA1E28;
+  --obc-error-10:          #FBE8E9;
+  --obc-info:              #42A6CE;
+  --obc-info-10:           #EBF6FA;
+  --obc-warning:           #F7D21E;
+  --obc-warning-20:        #FDF5D1;
+
+  /* ---- Chart: qualitative ------------------------------------------------ */
+  --obc-chart-teal:        #00A9B6;
+  --obc-chart-ocean-blue:  #2E86DE;
+  --obc-chart-soft-purple: #7B6CF6;
+  --obc-chart-amber:       #F4B942;
+  --obc-chart-coral:       #F26B4F;
+  --obc-chart-deep-teal:   #004A50;
+
+  /* ---- Chart: sequential (single-hue ramp) ------------------------------- */
+  --obc-seq-1:             #00A9B6;
+  --obc-seq-2:             #33BBC6;
+  --obc-seq-3:             #66CDD6;
+  --obc-seq-4:             #99DFE5;
+  --obc-seq-5:             #CCEFF2;
+
+  /* ---- Chart: diverging -------------------------------------------------- */
+  --obc-div-pos-strong:    #00A9B6;
+  --obc-div-pos-medium:    #4FC8D1;
+  --obc-div-pos-light:     #99DFE5;
+  --obc-div-neutral:       #E6EEF0;
+  --obc-div-neg-light:     #FFD8CC;
+  --obc-div-neg-medium:    #FF9B80;
+  --obc-div-neg-strong:    #FF6A4D;
+
+
+  /* ==========================================================================
+     LAYER 2 — semantic overrides
+     These names MUST already exist in tokens/semantic.css. Component CSS
+     references ONLY these. Any name below that semantic.css does not declare
+     is a contract violation — fix semantic.css, do not add it here.
+     ========================================================================== */
+
+  /* ---- Brand / action ---------------------------------------------------- */
+  --brand:                 var(--obc-ocean-teal);
+  --brand-accent:          var(--obc-deep-teal);
+
+  --action-primary:        var(--obc-deep-teal);        /* see D2 */
+  --action-primary-hover:  #10606A;                     /* DERIVED — confirm  */
+  --action-primary-active: #0C4B53;                     /* DERIVED — confirm  */
+  --action-primary-subtle: var(--obc-deep-aqua-light);
+  --on-action:             #FFFFFF;                     /* 4.98:1 ✓           */
+
+  --action-secondary-ink:    var(--obc-deep-teal);
+  --action-secondary-border: var(--obc-deep-teal);
+
+  --link:                  var(--obc-deep-teal);
+  --link-hover:            #10606A;                     /* DERIVED — confirm  */
+
+  --focus-ring:            rgba(0, 168, 181, 0.35);
+  --selection-bg:          var(--obc-deep-aqua-light);
+
+  /* ---- Status ------------------------------------------------------------ */
+  --success:               var(--obc-success);
+  --success-bg:            var(--obc-success-10);
+  --on-success:            var(--ink-900);               /* 2.72:1 vs white ✗ */
+
+  --danger:                var(--obc-error);             /* see D5            */
+  --danger-bg:             var(--obc-error-10);
+  --on-danger:             #FFFFFF;                      /* 5.00:1 ✓          */
+
+  --info:                  var(--obc-info);              /* see D4            */
+  --info-bg:               var(--obc-info-10);
+
+  --warning:               var(--obc-warning);
+  --warning-bg:            var(--obc-warning-20);
+  --on-warning:            var(--ink-900);               /* 1.3:1 vs white ✗  */
+
+  --gold:                  var(--obc-warning);           /* alias, CLAUDE.md §4 */
+
+  /* ---- Status text labels (SKILL.md: coloured text, no leading dot) ------ */
+  --status-active:         var(--obc-success);
+  --status-failed:         var(--obc-error);
+  --status-pending:        var(--obc-golden-yellow);
+  --status-blocked:        var(--obc-stone-gray);
+
+  /* ---- Charts ------------------------------------------------------------ */
+  --chart-1:               var(--obc-chart-teal);
+  --chart-2:               var(--obc-chart-ocean-blue);
+  --chart-3:               var(--obc-chart-soft-purple);
+  --chart-4:               var(--obc-chart-amber);
+  --chart-5:               var(--obc-chart-coral);
+  --chart-6:               var(--obc-chart-deep-teal);
+
+  --chart-seq-1:           var(--obc-seq-1);
+  --chart-seq-2:           var(--obc-seq-2);
+  --chart-seq-3:           var(--obc-seq-3);
+  --chart-seq-4:           var(--obc-seq-4);
+  --chart-seq-5:           var(--obc-seq-5);
+
+  --chart-div-pos-strong:  var(--obc-div-pos-strong);
+  --chart-div-pos-medium:  var(--obc-div-pos-medium);
+  --chart-div-pos-light:   var(--obc-div-pos-light);
+  --chart-div-neutral:     var(--obc-div-neutral);
+  --chart-div-neg-light:   var(--obc-div-neg-light);
+  --chart-div-neg-medium:  var(--obc-div-neg-medium);
+  --chart-div-neg-strong:  var(--obc-div-neg-strong);
+
+  /* ---- Typography -------------------------------------------------------- */
+  /* The OBC sheet specifies NO typeface. Inheriting the 6D default (Poppins).
+     Replace both lines when OBC supplies its brand face, and set the two
+     optical correction tokens so the locked type scale still reads correctly. */
+  --font-family-ui:        'Poppins', system-ui, sans-serif;
+  --font-family-numeric:   'Poppins', system-ui, sans-serif;
+  --font-optical-nudge:    0;
+  --font-weight-label:     500;
+
+  /* ---- Brand assets ------------------------------------------------------ */
+  /* The OBC sheet contains NO logo. themes/obc/logo.svg and logo-mark.svg
+     are REQUIRED before this theme can be used on a real screen — the
+     collapsed 48px rail cannot take a wordmark. */
+  --logo-width:            112px;   /* PLACEHOLDER — set from actual asset */
+  --logo-height:           28px;    /* PLACEHOLDER — set from actual asset */
+  --logo-mark-width:       28px;
+}
+
+/* ============================================================================
+   NOT OVERRIDDEN BY THIS THEME — intentional
+   ----------------------------------------------------------------------------
+   Neutral greys. The OBC sheet's neutral ramp is IDENTICAL to 6D ONE UI
+   (#1D1D1D / #555555 / #777777 / #8D8D8D / #C6C6C6 / #F4F4F4 / #DCDCDC /
+   #EDEDED), so they stay in the shared layer where they belong.
+
+   ONE discrepancy to resolve: the sheet gives 60% grey as #777777, while
+   the skill's --field-label is #6D6D6D (CLAUDE.md §4). Different values for
+   the same role. Pick one and fix it in semantic.css, not here — it is not
+   an OBC-specific colour.
+
+   Also unchanged: --aarya-gradient / --aarya-soft-gradient / --aarya-frame.
+   AARYA is 6D product identity and does not re-skin per customer.
+   ============================================================================ */

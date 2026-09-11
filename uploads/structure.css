@@ -1,0 +1,53 @@
+/* ============================================================================
+   6D Technologies — ONE UI Design System
+   Foundations: STRUCTURE tokens (z-index scale + locked component dimensions)
+   ----------------------------------------------------------------------------
+   STRICT: layering and component dimensions come ONLY from these tokens.
+   Never write a literal z-index, sidebar width, row height, etc. in screen
+   code. Replaces the previous ad-hoc z-index set (30/100/200/201/999/9999/
+   99999) with an ordered scale.
+   ============================================================================ */
+
+:root {
+  /* ---- Z-index scale (ordered — no other values exist) -------------------- */
+  --z-sticky:    100;   /* app header, left menu rail, sticky table toolbar   */
+  --z-dropdown:  200;   /* field dropdowns, button menus, profile dropdown    */
+  --z-scrim:     900;   /* dimmed backdrop behind drawer/modal                */
+  --z-drawer:    910;   /* slide-in overlay/drawer panel                      */
+  --z-modal:     920;   /* modal / popup dialogs                              */
+  --z-popover:   930;   /* context menus, tooltips above modals               */
+  --z-toaster:  1000;   /* toaster + mini toaster — always topmost            */
+
+  /* ---- App shell (locked) -------------------------------------------------- */
+  /* --header-h: 70px lives in colors_and_type.css (canonical, single source) */
+  --sidebar-w:           210px;       /* expanded left menu                   */
+  --sidebar-w-collapsed: 48px;        /* collapsed rail                       */
+  --nav-item-h:          48px;        /* left menu row height                 */
+  --nav-search-h:        40px;        /* left menu search field height        */
+  --page-margin:         24px;        /* master page container margins        */
+  --grid-cols:           12;          /* layout grid                          */
+  --grid-gutter:         20px;        /* grid gutter                          */
+
+  /* ---- Header internals (locked, per header-ui spec) ----------------------- */
+  --search-w:        280px;           /* gradient search bar width            */
+  --search-h:        40px;            /* gradient search bar height           */
+  --mic-size:        34px;            /* mic button circle                    */
+  --profile-dd-w:    264px;           /* profile dropdown width               */
+  --hdr-cell:        var(--header-h); /* reminders/profile square cells       */
+
+  /* ---- Data table (locked) -------------------------------------------------- */
+  --table-row-h:     60px;            /* body row height                      */
+  --pg-btn:          28px;            /* pagination button (transparent bg)   */
+
+  /* ---- Overlay / Drawer (locked) -------------------------------------------- */
+  --drawer-w:        auto;            /* width is content-driven — never fixed */
+  --drawer-max-w:    100vw;           /* hard cap so the panel never overflows */
+
+  /* ---- Toaster (locked) ------------------------------------------------------ */
+  --toast-min-w:     400px;           /* toaster min-width                    */
+  --toast-bar-h:     4px;             /* bottom progress bar                  */
+
+  /* ---- Icons (locked) --------------------------------------------------------- */
+  --icon-size:       16px;            /* default icon size, all screens       */
+  /* hover color: var(--ink-900) — see CLAUDE.md icon rules                   */
+}
