@@ -1,0 +1,12 @@
+/* ============================================================================
+   6D Technologies — ONE UI Design System
+   Root stylesheet (single entry point)
+   ----------------------------------------------------------------------------
+   Linking this one file pulls in the complete token set plus the classes used
+   by the importable code components. It delegates to colors_and_type.css
+   (colour + type), which in turn @imports tokens/structure.css and
+   tokens/motion.css. Component HTML files link colors_and_type.css directly —
+   both entry points resolve to the same token set.
+   ============================================================================ */
+@import url('colors_and_type.css');
+@import url('components/ds-components.css');
