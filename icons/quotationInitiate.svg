@@ -1,0 +1,15 @@
+<svg id="Quotation_Initiate_Default_6D" data-name="Quotation Initiate_Default_6D" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_4668" data-name="Rectangle 4668" width="24" height="24" fill="#555555"></rect>
+    </clipPath>
+  </defs>
+  <g id="Group_26663" data-name="Group 26663" clip-path="url(#clip-path)">
+    <path id="Path_5529" data-name="Path 5529" d="M14.8,6.745a.75.75,0,0,0-.75-.75H4.541a.75.75,0,0,0,0,1.5h9.508a.75.75,0,0,0,.75-.75" fill="#555555"></path>
+    <path id="Path_5530" data-name="Path 5530" d="M8.463,11.25H4.541a.75.75,0,0,0,0,1.5H8.463a.75.75,0,0,0,0-1.5" fill="#555555"></path>
+    <path id="Path_5531" data-name="Path 5531" d="M8.321,16.5H4.542a.75.75,0,1,0,0,1.5H8.321a.75.75,0,0,0,0-1.5" fill="#555555"></path>
+    <path id="Path_5532" data-name="Path 5532" d="M10.32,22.5H2.476A1.144,1.144,0,0,1,1.5,21.265V2.735A1.144,1.144,0,0,1,2.476,1.5H16.442a1.144,1.144,0,0,1,.976,1.235V8.087a.75.75,0,0,0,1.5,0V2.735A2.619,2.619,0,0,0,16.442,0H2.476A2.619,2.619,0,0,0,0,2.735v18.53A2.619,2.619,0,0,0,2.476,24H10.32a.75.75,0,0,0,0-1.5" fill="#555555"></path>
+    <path id="Path_5533" data-name="Path 5533" d="M17.089,10.177A6.912,6.912,0,1,0,24,17.086a6.919,6.919,0,0,0-6.911-6.909m0,12.323A5.412,5.412,0,1,1,22.5,17.086,5.418,5.418,0,0,1,17.089,22.5" fill="#555555"></path>
+    <path id="Path_5534" data-name="Path 5534" d="M16.056,13.851a.75.75,0,0,0-1.144.639v5.2a.747.747,0,0,0,.384.654.746.746,0,0,0,.759-.016l4.223-2.6a.75.75,0,0,0,0-1.278Zm.356,4.5V15.832l2.043,1.257Z" fill="#555555"></path>
+  </g>
+</svg>

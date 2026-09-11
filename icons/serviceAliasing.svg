@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22.5" height="24" viewBox="0 0 22.5 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3495" data-name="Rectangle 3495" width="22" height="24" fill="#555555" stroke="rgba(0,0,0,0)" stroke-width="1"></rect>
+    </clipPath>
+  </defs>
+  <g id="_6D_service_aliasing_default" data-name="6D_service_aliasing_default" transform="translate(0.5)">
+    <path id="Path_4052" data-name="Path 4052" d="M6.925,2V3.976H5V5.354H3.268V7.363H1.907v2.1H0v5.07H1.907v2.1H3.268v2.008H5v1.379H6.925V22H10.2V20.484H8.425V18.509H6.5v-1.38H4.768V15.12H3.408v-2.1H1.5V10.98H3.408v-2.1H4.768V6.871H6.5V5.491H8.425V3.516H10.2V2Z" fill="#555555" stroke="rgba(0,0,0,0)" stroke-width="1"></path>
+    <g id="Group_4320" data-name="Group 4320">
+      <g id="Group_4319" data-name="Group 4319" clip-path="url(#clip-path)">
+        <path id="Path_4053" data-name="Path 4053" d="M12.75,2.038V.75a.75.75,0,0,0-1.5,0v22.5a.75.75,0,0,0,1.5,0V21.962a9.989,9.989,0,0,0,0-19.924m0,18.424V3.538a8.495,8.495,0,0,1,0,16.924" fill="#555555" stroke="rgba(0,0,0,0)" stroke-width="1"></path>
+      </g>
+    </g>
+  </g>
+</svg>

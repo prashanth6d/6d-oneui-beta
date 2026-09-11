@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="recharge_6d" transform="translate(-678 -1592)">
+    <rect id="Rectangle_3275" data-name="Rectangle 3275" width="24" height="24" transform="translate(678 1592)" fill="none"></rect>
+    <g id="Group_4264" data-name="Group 4264" transform="translate(-610.693 1260.902)">
+      <path id="Path_3856" data-name="Path 3856" d="M1304.693,331.1h-9a3,3,0,0,0-3,3v18a3,3,0,0,0,3,3h9a3,3,0,0,0,3-3v-18A3,3,0,0,0,1304.693,331.1Zm1.5,21a1.5,1.5,0,0,1-1.5,1.5h-9a1.5,1.5,0,0,1-1.5-1.5v-18a1.5,1.5,0,0,1,1.5-1.5h9a1.5,1.5,0,0,1,1.5,1.5Z" fill="#555" fill-rule="evenodd"></path>
+      <circle id="Ellipse_34" data-name="Ellipse 34" cx="1.5" cy="1.5" r="1.5" transform="translate(1298.693 349.098)" fill="#555"></circle>
+      <path id="Path_3857" data-name="Path 3857" d="M1303.252,336.915h-5.716l-.393,1.26h1.876a1.457,1.457,0,0,1,1.4.69h-2.9l-.384,1.26h3.3a1.11,1.11,0,0,1-.394.438,1.976,1.976,0,0,1-1.043.264h-1.632l.009.953,3.139,3.528h1.6v-.342l-2.589-2.9a3.205,3.205,0,0,0,1.641-.516,2.089,2.089,0,0,0,.865-1.427h.842l.385-1.26H1302a2.463,2.463,0,0,0-.255-.69h1.122Z" fill="#555" fill-rule="evenodd"></path>
+    </g>
+  </g>
+</svg>
