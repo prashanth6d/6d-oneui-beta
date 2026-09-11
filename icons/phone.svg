@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="phone_6d" transform="translate(-546 -1230)">
+    <g id="_6D_phone" data-name="6D_phone" transform="translate(325.622 -108.403)">
+      <path id="Path_611" data-name="Path 611" d="M237.378,1338.4h-9a3,3,0,0,0-3,3v18a3,3,0,0,0,3,3h9a3,3,0,0,0,3-3v-18A3,3,0,0,0,237.378,1338.4Zm1.5,21a1.5,1.5,0,0,1-1.5,1.5h-9a1.5,1.5,0,0,1-1.5-1.5v-18a1.5,1.5,0,0,1,1.5-1.5h9a1.5,1.5,0,0,1,1.5,1.5Z" fill="#555"></path>
+      <circle id="Ellipse_10" data-name="Ellipse 10" cx="1.5" cy="1.5" r="1.5" transform="translate(231.378 1356.403)" fill="#555"></circle>
+    </g>
+    <rect id="Rectangle_3315" data-name="Rectangle 3315" width="24" height="24" transform="translate(546 1230)" fill="none" opacity="0.4"></rect>
+  </g>
+</svg>

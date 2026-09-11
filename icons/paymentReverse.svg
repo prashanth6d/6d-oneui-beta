@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="Payment_Reverse" data-name="Payment Reverse" transform="translate(16840 -9721)">
+    <rect id="Rectangle_31939" data-name="Rectangle 31939" width="24" height="24" transform="translate(-16840 9721)" fill="none"></rect>
+    <path id="Union_437" data-name="Union 437" d="M6.728,24H3a3,3,0,0,1-3-3V3A3,3,0,0,1,3,0h9a3,3,0,0,1,3,3V4.626h.59a4.41,4.41,0,0,1,0,8.819H15V21a3,3,0,0,1-3,3ZM1.5,3V21A1.5,1.5,0,0,0,3,22.5h9A1.5,1.5,0,0,0,13.5,21V13.445H9.451l1.682,1.682a.75.75,0,0,1-1.061,1.06l-3.11-3.11a.75.75,0,0,1,0-1.061L10.1,8.882a.75.75,0,0,1,1.06,1.061l-2,2h6.437a2.909,2.909,0,1,0,0-5.819h-8.1a.75.75,0,0,1,0-1.5H13.5V3A1.5,1.5,0,0,0,12,1.5H3A1.5,1.5,0,0,0,1.5,3Zm5,16.5a1,1,0,1,1,1,1A1,1,0,0,1,6.5,19.5Z" transform="translate(-16838 9721)" fill="#555555"></path>
+  </g>
+</svg>
