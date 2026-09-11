@@ -1,0 +1,13 @@
+<svg id="_6D_socket_circle_default" data-name="6D_socket_circle_default" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_2873" data-name="Rectangle 2873" width="24" height="24" fill="#555555"></rect>
+    </clipPath>
+  </defs>
+  <g id="Group_867" data-name="Group 867" clip-path="url(#clip-path)">
+    <path id="Path_1981" data-name="Path 1981" d="M23.2,0H.8A.8.8,0,0,0,0,.8V23.2a.8.8,0,0,0,.8.8H23.2a.8.8,0,0,0,.8-.8V.8a.8.8,0,0,0-.8-.8m-.7,22.5H1.5V1.5h21Z" fill="#555555"></path>
+    <path id="Path_1982" data-name="Path 1982" d="M12,20.8A8.8,8.8,0,1,0,3.2,12,8.81,8.81,0,0,0,12,20.8M12,4.7A7.3,7.3,0,1,1,4.7,12,7.309,7.309,0,0,1,12,4.7" fill="#555555"></path>
+    <path id="Path_1983" data-name="Path 1983" d="M8.8,13.6A1.6,1.6,0,1,0,7.2,12a1.6,1.6,0,0,0,1.6,1.6" fill="#555555"></path>
+    <path id="Path_1984" data-name="Path 1984" d="M15.2,13.6A1.6,1.6,0,1,0,13.6,12a1.6,1.6,0,0,0,1.6,1.6" fill="#555555"></path>
+  </g>
+</svg>

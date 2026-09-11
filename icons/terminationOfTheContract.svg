@@ -1,0 +1,12 @@
+<svg id="_6D_Termination_of_the_contract_Default" data-name="6D_Termination of the contract_Default" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3973" data-name="Rectangle 3973" width="20" height="20" fill="#555555"></rect>
+    </clipPath>
+  </defs>
+  <g id="Group_4913" data-name="Group 4913" clip-path="url(#clip-path)">
+    <path id="Path_4939" data-name="Path 4939" d="M11.442,8.658A2.791,2.791,0,1,0,8.651,5.868a2.787,2.787,0,0,0,2.791,2.791m0-4.452A1.66,1.66,0,1,1,9.781,5.868a1.663,1.663,0,0,1,1.661-1.661" transform="translate(-1.442 -0.513)" fill="#555555"></path>
+    <path id="Path_4940" data-name="Path 4940" d="M10,0A10,10,0,1,0,20,10,10,10,0,0,0,10,0m0,1.25a8.732,8.732,0,0,1,7.529,13.185L15.3,13v-.391A3.32,3.32,0,0,0,12,9.288H9.539L2.848,4.976A8.741,8.741,0,0,1,10,1.25m4,10.909-2.517-1.622H12a2.058,2.058,0,0,1,2,1.622M10,18.75a8.734,8.734,0,0,1-7.8-12.7l14.618,9.418A8.735,8.735,0,0,1,10,18.75" fill="#555555"></path>
+    <path id="Path_4941" data-name="Path 4941" d="M7.119,15.727a.23.23,0,0,1-.226-.233V14.6a2.075,2.075,0,0,1,.6-1.464,2.035,2.035,0,0,1,.618-.427l-1.157-.745A3.321,3.321,0,0,0,5.643,14.6v.893a1.48,1.48,0,0,0,1.476,1.483h7.618L12.8,15.727Z" transform="translate(-0.94 -1.994)" fill="#555555"></path>
+  </g>
+</svg>

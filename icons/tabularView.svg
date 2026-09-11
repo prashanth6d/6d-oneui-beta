@@ -1,0 +1,10 @@
+<svg id="_6D_tabular_view_default" data-name="6D_tabular_view_default" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_2895" data-name="Rectangle 2895" width="24" height="24" fill="#555555"></rect>
+    </clipPath>
+  </defs>
+  <g id="Group_904" data-name="Group 904" clip-path="url(#clip-path)">
+    <path id="Path_2100" data-name="Path 2100" d="M22,0H2A2,2,0,0,0,0,2V22a2,2,0,0,0,2,2H22a2,2,0,0,0,2-2V2a2,2,0,0,0-2-2M2,1.5H22a.5.5,0,0,1,.5.5V7.483H1.5V2A.5.5,0,0,1,2,1.5M7.339,14.824H1.5V8.983H7.339Zm1.5-5.841H15.73v5.841H8.839Zm8.391,0H22.5v5.841H17.23ZM1.5,22V16.324H7.339V22.5H2a.5.5,0,0,1-.5-.5m7.339-5.676H15.73V22.5H8.839ZM22,22.5H17.23V16.324H22.5V22a.5.5,0,0,1-.5.5" fill="#555555"></path>
+  </g>
+</svg>

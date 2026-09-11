@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3282" data-name="Rectangle 3282" width="20" height="24" fill="#555555" stroke="rgba(0,0,0,0)" stroke-width="1"></rect>
+    </clipPath>
+  </defs>
+  <g id="_6D_Stock_Order_default" data-name="6D_Stock Order_default" transform="translate(-1452 -3560)">
+    <g id="Group_4094" data-name="Group 4094" transform="translate(1454 3560)">
+      <g id="Group_4093" data-name="Group 4093" clip-path="url(#clip-path)">
+        <path id="Path_3756" data-name="Path 3756" d="M7.561,8.24H4.254a.9.9,0,0,0-.9.9v3.306a.906.906,0,0,0,.9.906H7.561a.906.906,0,0,0,.9-.906V9.14a.9.9,0,0,0-.9-.9m-.6,3.617H4.844V9.74H6.961Z" fill="#555555" stroke="rgba(0,0,0,0)" stroke-width="1"></path>
+        <path id="Path_3757" data-name="Path 3757" d="M7.561,15.6H4.254a.906.906,0,0,0-.9.906v3.31a.9.9,0,0,0,.9.9H7.561a.9.9,0,0,0,.9-.9v-3.31a.906.906,0,0,0-.9-.906m-.6,3.617H4.844V17.1H6.961Z" fill="#555555" stroke="rgba(0,0,0,0)" stroke-width="1"></path>
+        <path id="Path_3758" data-name="Path 3758" d="M13.25,0H3A3,3,0,0,0,0,3V21a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V6.749ZM18.5,21A1.5,1.5,0,0,1,17,22.5H3A1.5,1.5,0,0,1,1.5,21V3A1.5,1.5,0,0,1,3,1.5H13.249V5.25a1.5,1.5,0,0,0,1.5,1.5H18.5Z" fill="#555555" stroke="rgba(0,0,0,0)" stroke-width="1"></path>
+        <path id="Path_3759" data-name="Path 3759" d="M11.2,10.712a.75.75,0,1,0-1.078,1.043l.018.018,1.364,1.364a.748.748,0,0,0,1,.053l3.783-3.063a.75.75,0,0,0-.943-1.166L12.089,11.6Z" fill="#555555" stroke="rgba(0,0,0,0)" stroke-width="1"></path>
+        <path id="Path_3760" data-name="Path 3760" d="M15.35,16.318l-3.259,2.639L11.2,18.07a.75.75,0,0,0-1.1,1.023c.012.012.024.025.037.037L11.508,20.5a.751.751,0,0,0,1,.052l3.783-3.063a.75.75,0,0,0-.943-1.166Z" fill="#555555" stroke="rgba(0,0,0,0)" stroke-width="1"></path>
+      </g>
+    </g>
+    <rect id="Rectangle_3283" data-name="Rectangle 3283" width="24" height="24" transform="translate(1452 3560)" fill="none"></rect>
+  </g>
+</svg>

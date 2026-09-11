@@ -1,0 +1,14 @@
+<svg id="_6D_stock_request_approval_default" data-name="6D_stock_request_approval_default" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3243" data-name="Rectangle 3243" width="24" height="24" fill="#555555"></rect>
+    </clipPath>
+  </defs>
+  <g id="Group_4033" data-name="Group 4033" clip-path="url(#clip-path)">
+    <path id="Path_3431" data-name="Path 3431" d="M4.686,10.2H15.313a.75.75,0,1,0,0-1.5H4.686a.75.75,0,0,0,0,1.5" fill="#555555"></path>
+    <path id="Path_3432" data-name="Path 3432" d="M9.314,17.38H4.687a.75.75,0,0,0,0,1.5H9.314a.75.75,0,1,0,0-1.5" fill="#555555"></path>
+    <path id="Path_3433" data-name="Path 3433" d="M9.314,13.04H4.687a.75.75,0,0,0,0,1.5H9.314a.75.75,0,1,0,0-1.5" fill="#555555"></path>
+    <path id="Path_3434" data-name="Path 3434" d="M19.376,15.249l-2.911,2.912-.839-.841a.75.75,0,0,0-1.062,1.06l1.371,1.371a.748.748,0,0,0,1.06,0l3.442-3.441a.75.75,0,0,0-1.061-1.061" fill="#555555"></path>
+    <path id="Path_3435" data-name="Path 3435" d="M20,11.5h0V6.749L13.25,0H3A3,3,0,0,0,0,3V21a3,3,0,0,0,3,3H17c.058,0,.111-.014.168-.017h0c.111.006.221.017.333.017A6.5,6.5,0,0,0,20,11.5M1.5,21V3A1.5,1.5,0,0,1,3,1.5H13.249V5.25a1.5,1.5,0,0,0,1.5,1.5H18.5v4.335h0A6.491,6.491,0,0,0,13.355,22.5H3A1.5,1.5,0,0,1,1.5,21m17.785-9.744-.05-.013.05.013M15.1,23.536l.023.008-.023-.008m-.978-.492.114.069-.114-.069m6.784-1.893A5,5,0,1,1,22.5,17.5a4.98,4.98,0,0,1-1.59,3.65" fill="#555555"></path>
+  </g>
+</svg>

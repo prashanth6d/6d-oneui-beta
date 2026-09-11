@@ -1,0 +1,13 @@
+<svg id="_6D_toot_tip__default" data-name="6D_toot tip _default" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_4027" data-name="Rectangle 4027" width="24" height="24" fill="#555555"></rect>
+    </clipPath>
+  </defs>
+  <g id="Group_4988" data-name="Group 4988" clip-path="url(#clip-path)">
+    <path id="Path_5047" data-name="Path 5047" d="M21.9,0H2.1A2.1,2.1,0,0,0,0,2.105v9.441a2.1,2.1,0,0,0,2.1,2.1H8.216l2.65,2.649a1.6,1.6,0,0,0,2.268,0l2.649-2.649H21.9a2.1,2.1,0,0,0,2.1-2.1V2.105A2.1,2.1,0,0,0,21.9,0m.6,11.546a.6.6,0,0,1-.6.6H15.783a1.5,1.5,0,0,0-1.06.44l-2.65,2.649a.1.1,0,0,1-.073.03.1.1,0,0,1-.074-.03L9.277,12.59a1.5,1.5,0,0,0-1.061-.44H2.1a.6.6,0,0,1-.6-.6V2.105A.6.6,0,0,1,2.1,1.5H21.9a.6.6,0,0,1,.6.605Z" fill="#555555"></path>
+    <path id="Path_5048" data-name="Path 5048" d="M12,18.231a2.884,2.884,0,1,0,2.884,2.884A2.885,2.885,0,0,0,12,18.231M12,22.5a1.384,1.384,0,1,1,1.384-1.385A1.386,1.386,0,0,1,12,22.5" fill="#555555"></path>
+    <path id="Path_5049" data-name="Path 5049" d="M18.455,4.363H5.545a.75.75,0,0,0,0,1.5h12.91a.75.75,0,0,0,0-1.5" fill="#555555"></path>
+    <path id="Path_5050" data-name="Path 5050" d="M12.021,7.838H5.544a.75.75,0,0,0,0,1.5h6.477a.75.75,0,0,0,0-1.5" fill="#555555"></path>
+  </g>
+</svg>
